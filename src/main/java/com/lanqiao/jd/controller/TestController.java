@@ -35,9 +35,9 @@ public class TestController {
 
 
         String absoPath = relaPath+fileUtil.rootPath;
-
-        ProductImgList productImgList = new ProductImgList();
-        productImgList.setImgUrl(relaPath);
-        return  Result.createSuccessResult(relaPath);
+//
+//        ProductImgList productImgList = new ProductImgList();
+//        productImgList.setImgUrl(relaPath);
+        return  Result.createSuccessResult(absoPath);
     }
 }
