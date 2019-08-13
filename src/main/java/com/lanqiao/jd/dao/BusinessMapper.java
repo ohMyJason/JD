@@ -1,7 +1,9 @@
 package com.lanqiao.jd.dao;
 
 import com.lanqiao.jd.entity.Business;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface BusinessMapper {
     int deleteByPrimaryKey(Integer businessId);
 
