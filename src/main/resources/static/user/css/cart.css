@@ -112,7 +112,7 @@ spacer {
     margin-top: 2px;
     width: 134px;
     height: 42px;
-    background: url("../images/cart1.png") no-repeat 0 0;
+    background: url("../images/cart/cart1.png") no-repeat 0 0;
     background-size: 134px 42px;
     text-indent: -20000px;
 }
@@ -124,7 +124,7 @@ spacer {
     line-height: 99em;
     top: 14px;
     right: 38px;
-    background: url("../images/cart2.png") #fff no-repeat;
+    background: url("../images/cart/cart2.png") #fff no-repeat;
 }
 /* 右侧搜索*/
 .cart-search {
