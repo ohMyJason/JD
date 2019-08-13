@@ -32,3 +32,4 @@ build/
 
 ### springboot ###
 **/resources/*.properties
+**/resources/*.xml

@@ -21,8 +21,6 @@ public class UserController {
     @PostMapping("/login")
     public Result login(User user) {
         return null;
-
-
     }
 
 
