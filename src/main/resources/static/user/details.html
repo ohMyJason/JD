@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/details.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            var $yin = $(".yin");
+            $(".Ul li img").mouseover(function() {
+                $(this).parent().addClass("li").siblings().removeClass("li");
+                $("#pian").attr("src", $(this).attr("src"));
+                $("#zhao").attr("src", $(this).attr("src"));
+            }).mouseout(function() {
+                $(this).parent().removeClass("li");
+            });
+            var l = $(".shang").eq(0).offset().left;
+            var t = $(".shang").eq(0).offset().top;
+            var width1 = $(".yin").outerWidth() / 2;
+            var height1 = $(".yin").outerHeight() / 2;
+            var maxL = $(".shang").width() - $yin.outerWidth();
+            var maxT = $(".shang").height() - $yin.outerHeight();
+            var bili = $("#zhao").width() / $("#pian").width();
+            $(".shang").mousemove(function(e) {
+                var maskL = e.clientX - l - width1,
+                    maskT = e.clientY - t - height1;
+                if (maskL < 0) {
+                    maskL = 0
+                };
+                if (maskT < 0) {
+                    maskT = 0
+                };
+                if (maskL > maxL) {
+                    maskL = maxL
+                };
+                if (maskT > maxT) {
+                    maskT = maxT
+                };
+                $yin.css({
+                    "left": maskL,
+                    "top": maskT
+                });
+                $(".xia").show();
+                $(".yin").show();
+                $("#zhao").css({
+                    "margin-left": -maskL * bili,
+                    "margin-top": -maskT * bili
+                });
+            });
+            $(".shang").mouseleave(function() {
+                $(".xia").hide();
+                $(".yin").hide();
+            });
+            var marginLeft = 0;
+            $(".you").click(function() {
+                marginLeft = marginLeft - 64;
+                if (marginLeft < -64) {
+                    marginLeft = -64
+                };
+                $(".tab ul").stop().animate({
+                        "margin-left": marginLeft
+                    },
+                    "fast");
+            });
+            $(".zuo").click(function() {
+                marginLeft = marginLeft + 64;
+                if (marginLeft > 0) {
+                    marginLeft = 0
+                };
+                $(".tab ul").stop().animate({
+                        "margin-left": marginLeft
+                    },
+                    "fast");
+            });
+            $(".lie li").click(function() {
+                var index = $(this).index();
+                $(this).addClass("ll").siblings().removeClass("ll");
+                $(".bao1>div").eq(index).show().siblings().hide();
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <div class="da ">
+
+        <div class="shang">
+
+            <img src="images/details1.jpg" height="350" width="350" id="pian" />
+
+            <div class="yin"></div>
+
+        </div>
+
+        <div class="bao">
+
+            <span class="zuo"></span>
+
+            <div class="tab">
+
+                <ul class="Ul">
+
+                    <li><img src="images/details1.jpg" height="52" width="52" /></li>
+                    <li><img src="images/details2.jpg" height="52" width="52" /></li>
+                    <li><img src="images/details3.jpg" height="52" width="52" /></li>
+                    <li><img src="images/details4.jpg" height="52" width="52" /></li>
+                    <li><img src="images/details5.jpg" height="52" width="52" /></li>
+                    <li><img src="images/details6.jpg" height="52" width="52" /></li>
+
+                </ul>
+
+            </div>
+
+            <span class="you"></span>
+
+        </div>
+
+        <div class="lie ">
+
+            <ul>
+
+                <li class="ll">图文介绍</li>
+
+                <li>评论（1）</li>
+
+            </ul>
+
+        </div>
+
+        <div class="nie">
+
+            <div class="bao1">
+
+                <div class="up">
+
+                    <span>暂无好评！</span>
+
+                    <p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗</p>
+
+                    <p>来源：师徒课堂</p>
+
+                </div>
+
+                <div class="down">
+
+                    <img src="images/details1.jpg" height="300" width="1329" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="xia">
+
+        <img src="images/aad6.jpg" height="600" width="600" id="zhao" />
+
+    </div>
+
+</div> </body>
+</html>
