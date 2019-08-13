@@ -1,6 +1,6 @@
 #header {
     height: 100px;
-    background: url(//image/login_1.jpg) repeat-x left bottom;
+    background: url(//images/login_1.jpg) repeat-x left bottom;
     box-shadow: 5px 5px 5px #f3f3f3;
 }
 
@@ -21,7 +21,7 @@ body {
     height: 50px;
     float: left;
     margin-top: 24px;
-    background: url("../image/login_2.png");
+    background: url("../images/login_2.png");
 }
 
 .logo_title {
@@ -82,7 +82,19 @@ body {
     font-weight: 700;
     background-position: 0 -200px;
     color: #fff;
-    background: url("../image/index.png") no-repeat 0px -200px;
+    background: url("../images/index.png") no-repeat 0px -200px;
+}
+.step-index_2{
+    margin: 0 auto;
+    display: block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    background-position: 0 -200px;
+    color: #ccc;
+    background: url("../images/index.png") no-repeat -45px -200px;
 }
 
 .step-desc {
@@ -98,7 +110,7 @@ body {
     position: absolute;
     top: 7px;
     height: 10px;
-    background: url("../image/index.png") 0px -100px;
+    background: url("../images/index.png") 0px -100px;
 }
 
 .pro-step_1 {
@@ -117,7 +129,7 @@ body {
     position: absolute;
     top: 7px;
     height: 10px;
-    background: url("../image/index.png") 0px -100px;
+    background: url("../images/index.png") 0px -100px;
 
 }
 
@@ -204,4 +216,74 @@ label {
     height: 15px;
     padding: 10px;
     text-decoration: none;
+}
+#step-wrap{
+    margin: 0px;
+    padding: 0px;
+    height: 246px;
+}
+.item_1{
+    height: 86px;
+    position: relative;
+    z-index: 2;
+}
+.form-item{
+    position: relative;
+    border: solid 1px #ddd;
+    width: 398px;
+    height: 52px;
+    z-index: 0;
+}
+
+.select-country{
+    padding: 0 0 0 20px;
+    cursor: pointer;
+    color: #666;
+    float: left;
+    width: 87px;
+    height: 50px;
+    line-height: 50px;
+    border-right: 1px solid rgb(221, 221, 221);
+}
+.arrow{
+    background: url("../images/login_2.png") no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 5px;
+    background-position: -2px -150px;
+}
+.item_input{
+    border-color: rgb(221, 221, 221);
+    border-width: 1px;
+    float: left;
+    width: 288px;
+    height: 51px;
+}
+.form-phone{
+    border: 0 none;
+    font-size: 14px;
+    width: 190px;
+    height: 19px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    padding-top: 16px;
+}
+.i-status{
+    position: absolute;
+    display: none;
+    width: 16px;
+    height: 16px;
+    top: 20px;
+    right: 20px;
+    background: url("../images/login_2.png") no-repeat;
+    display: block;
+    background-position: 0 -117px;
+}
+.item_2{
+    margin: 0;
+    padding: 0;
+    height: 86px;
+
 }
