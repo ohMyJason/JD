@@ -32,6 +32,78 @@
 		<javaClientGenerator targetPackage="com.lanqiao.jd.dao" targetProject="src/main/java" type="XMLMAPPER" />
 
 		<!--生成表配置，一个表一个table，加入已经生成，则会overwrite-->
+		<table tableName="tb_business" domainObjectName="Business"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_cart_item" domainObjectName="CartItem"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_comment" domainObjectName="Comment"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_order" domainObjectName="Order"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_order_item" domainObjectName="OrderItem"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_product" domainObjectName="Product"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_product_img_list" domainObjectName="ProductImgList"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_product_item" domainObjectName="ProductItem"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+		<table tableName="tb_shop_cart" domainObjectName="ShopCart"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
 		<table tableName="tb_user" domainObjectName="User"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
@@ -39,5 +111,15 @@
 
 			<!--<property name="useActualColumnNames" value="false"/>-->
 		</table>
+
+		<table tableName="tb_user_address" domainObjectName="UserAddress"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+
+			<!--<property name="useActualColumnNames" value="false"/>-->
+		</table>
+
+
 	</context>
 </generatorConfiguration>
