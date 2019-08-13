@@ -1,0 +1,294 @@
+#cart-top{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background: #E3E4E5;
+    border-bottom: solid 1px #dddddd;
+}
+
+.fleft{
+    width: 151.75px;
+    height: 30px;
+    float: left;
+}
+
+#cart-top-1{
+    width: 69px;
+    height: 30px;
+    float: left;
+    padding: 0px 2px;
+}
+
+#cart-top-1 .iconfont{
+    position: relative;
+    display: inline;
+    font-size: 16px;
+    color: #5c5452;
+    padding-right: 2px;
+}
+#cart-top-2{
+    width: 41.75px;
+    height: 30px;
+    float: left;
+    padding: 0px 25px 0px 10px;
+}
+#cart-top-2 .iconfont{
+    font-size: 14px;
+    position: relative;
+    display: inline;
+    color: #5c5452;
+}
+
+.fright{
+    width: 718px;
+    height: 30px;
+    float: right;
+}
+.fr-1{
+    width: 150px;
+    height: 30px;
+    padding: 0px 2px;
+    margin-right: 10px;
+}
+
+.fr-2{
+    width: 64px;
+    height: 30px;
+    padding: 0px 2px;
+}
+
+.fr-3{
+    width: 82px;
+    height: 30px;
+    padding: 0px 2px;
+}
+
+/*竖杠*/
+spacer {
+    width: 1px;
+    height: 12px;
+    margin-top: 9px;
+    padding: 0;
+    background: #ccc;
+    overflow: hidden;
+}
+/*全背景色*/
+#boo{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+/*横*/
+.header {
+    padding: 10px 0 0;
+}
+.w {
+    width: 990px;
+    margin: 0 auto;
+}
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/*logo*/
+#logo-2014 {
+    float: left;
+    position: relative;
+    width: 277px;
+    padding: 0;
+    z-index: 12;
+    height: 50px;
+    margin: 15px 0px 22px;
+}
+.logo {
+    display: block;
+    margin-top: 2px;
+    width: 134px;
+    height: 42px;
+    background: url("../images/cart1.png") no-repeat 0 0;
+    background-size: 134px 42px;
+    text-indent: -20000px;
+}
+.link2 {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    line-height: 99em;
+    top: 14px;
+    right: 38px;
+    background: url("../images/cart2.png") #fff no-repeat;
+}
+/* 右侧搜索*/
+.cart-search {
+    float: right;
+    border: 2px solid #c91623;
+    background: #c91623;
+    height: 24px;
+    margin-top: 30px;
+    overflow: hidden;
+}
+.itxt {
+    border: 0;
+    height: 18px;
+    line-height: 18px;
+    width: 260px;
+    padding: 3px 5px;
+    outline: 0;
+}
+.button {
+    display: inline-block;
+    vertical-align: top;
+    width: 48px;
+    height: 24px;
+    background: #c91623;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    -webkit-appearance: none;
+    border: 0;
+}
+/*购物车上方*/
+
+.mb10 {
+    margin-bottom: 10px;
+}
+.cart-filter-bar {
+    margin-top: 10px;
+    position: relative;
+}
+.switch-cart {
+    float: left;
+    position: relative;
+    height: 26px;
+    overflow: hidden;
+}
+.switch-cart li.curr, .cart-filter-bar .switch-cart li.curr a {
+    color: #E2231A;
+}
+.cart-filter-bar .switch-cart li {
+    float: left;
+    position: relative;
+    font-weight: 700;
+    font-size: 16px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    padding: 0 0 10px;
+    cursor: pointer;
+    margin: 5px 30px 0 0;
+}
+.cart-filter-bar .switch-cart li .number {
+    font-family: verdana;
+    font-size: 14px;
+}
+.cart-store {
+    float: right;
+    position: relative;
+    z-index: 5;
+    display: inline-block;
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 122px;
+}
+input[type="hidden" i] {
+    display: none;
+    -webkit-appearance: initial;
+    background-color: initial;
+    cursor: default;
+    padding: initial;
+    border: initial;
+}
+.label {
+    float: left;
+    line-height: 26px;
+}
+#jdarea {
+    position: relative;
+    float: left;
+    z-index: 3;
+    height: 26px;
+    cursor: default;
+    margin: 0;
+}
+.ui-area-text-wrap {
+    float: left;
+    position: relative;
+    top: 0;
+    height: 23px;
+    background: #fff;
+    border: 1px solid #CECBCE;
+    padding: 0 24px 0 4px;
+    line-height: 23px;
+    overflow: hidden;
+}
+
+ui-area-text-wrap b {
+    display: block;
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    width: 17px;
+    height: 17px;
+    background: url("../images/cart3.png") no-repeat 3px 5px;
+    overflow: hidden;
+}
+/*购物车主体*/
+#jd-cart{
+    width: 990px;
+    float: left;
+}
+.cart-thead {
+    display: inline-block;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 0 10px;
+    padding: 5px 0;
+    background: #f3f3f3;
+    border: 1px solid #e9e9e9;
+    border-top: 0;
+    position: relative;
+}
+.column{
+    float: left;
+}
+.t-checkbox {
+    height: 18px;
+    line-height: 18px;
+    padding-top: 7px;
+    width: 122px;
+    padding-left: 11px;
+}
+.t-goods{
+    width: 208px;
+}
+.t-props {
+    width: 140px;
+    height: 32px;
+    padding: 0 10px 0 20px;
+}
+.t-price {
+    width: 120px;
+    padding-right: 40px;
+    text-align: right;
+}
+.t-quantity {
+    width: 80px;
+    text-align: center;
+}
+.t-sum {
+    width: 100px;
+    padding-right: 40px;
+    text-align: right;
+}
+t-action {
+    width: 75px;
+}
