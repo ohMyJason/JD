@@ -26,6 +26,9 @@ public class FileUtil {
 
     @Value("${mp3.path}")
     public String mp3Path;
+
+    @Value("${root.path}")
+    public String rootPath;
     /**
      * 文件上传
      *
@@ -48,21 +51,22 @@ public class FileUtil {
         switch(flag){
             case 1:
 //                pdf
-                prePath=this.pdfPath;
+                prePath=this.rootPath+this.pdfPath;
                 break;
             case 2:
 //                img
-                prePath=this.imgPath;
+                prePath=this.rootPath+this.imgPath;
                 break;
             case 3:
 //                mp3
-                prePath=this.mp3Path;
+                prePath=this.rootPath+this.mp3Path;
                 break;
         }
         //加个时间戳，尽量避免文件名称重复
         String path = prePath + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + fileName;
         File dest = new File(path);
 
+        String[] relativelyPath = path.split("static");
         //判断文件是否已经存在
         if (dest.exists()) {
             return "-2";
@@ -79,7 +83,7 @@ public class FileUtil {
             return "-3";
         }
 
-        return path;
+        return relativelyPath[1];
     }
 
     /**
