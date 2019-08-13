@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 刘佳昇
  * @Date 2019/8/13 14:39
  */
+
 @RestController
 public class UserController {
     @Autowired
     UserMapper userMapper;
 
     @PostMapping("/login")
-    public Result login(User user){
+    public Result login(User user) {
         return null;
     }
-
 
 
 }

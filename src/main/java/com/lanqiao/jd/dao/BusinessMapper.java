@@ -4,6 +4,8 @@ import com.lanqiao.jd.entity.Business;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface BusinessMapper {
@@ -18,4 +20,7 @@ public interface BusinessMapper {
     int updateByPrimaryKeySelective(Business record);
 
     int updateByPrimaryKey(Business record);
+
+    //ADD
+    List<Business> selectAllBusiness();
 }
