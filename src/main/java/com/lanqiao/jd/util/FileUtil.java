@@ -1,5 +1,7 @@
 package com.lanqiao.jd.util;
 
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +17,15 @@ import java.util.Date;
 
 @Component
 public class FileUtil {
+//    图片路径
+    @Value("${img.path}")
+    public String imgPath;
 
+    @Value("${pdf.path}")
+    public String pdfPath;
+
+    @Value("${mp3.path}")
+    public String mp3Path;
     /**
      * 文件上传
      *
@@ -33,18 +43,20 @@ public class FileUtil {
         String fileName = file.getOriginalFilename();
 
         String prePath ="";
+
+
         switch(flag){
             case 1:
 //                pdf
-                prePath="D:/working/bar/src/main/resources/static/file/pdf/";
+                prePath=this.pdfPath;
                 break;
             case 2:
 //                img
-                prePath="D:/working/bar/src/main/resources/static/file/img/";
+                prePath=this.imgPath;
                 break;
             case 3:
 //                mp3
-                prePath="D:/working/bar/src/main/resources/static/file/mp3/";
+                prePath=this.mp3Path;
                 break;
         }
         //加个时间戳，尽量避免文件名称重复
