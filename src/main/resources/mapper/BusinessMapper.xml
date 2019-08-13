@@ -55,4 +55,7 @@
     set business_name = #{businessName,jdbcType=VARCHAR}
     where business_id = #{businessId,jdbcType=INTEGER}
   </update>
+  <select id="selectAllBusiness" resultMap="BaseResultMap" >
+    select * from tb_business
+  </select>
 </mapper>
