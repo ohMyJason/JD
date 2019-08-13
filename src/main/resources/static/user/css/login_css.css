@@ -1,0 +1,207 @@
+#header {
+    height: 100px;
+    background: url(//image/login_1.jpg) repeat-x left bottom;
+    box-shadow: 5px 5px 5px #f3f3f3;
+}
+
+.w {
+    width: 1210px;
+    height: 76px;
+    margin: 0 auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+.logo {
+    width: 160px;
+    height: 50px;
+    float: left;
+    margin-top: 24px;
+    background: url("../image/login_2.png");
+}
+
+.logo_title {
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    font-size: 24px;
+    color: #333;
+    margin-top: 34px;
+}
+
+.have_accoount {
+    font-size: 16px;
+    float: right;
+    margin-top: 55px;
+    color: #999;
+}
+
+.have_accoount a {
+    color: red;
+}
+
+#header:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#container {
+    width: 1210px;
+    height: 406px;
+    margin: 0 auto;
+}
+
+.progress {
+    position: relative;
+    margin: 80px auto 0;
+    width: 400px;
+    height: 54px;
+}
+
+.pro-step {
+    float: left;
+    text-align: center;
+    width: 60px;
+    height: 55px;
+}
+
+.step-index {
+    margin: 0 auto;
+    display: block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    background-position: 0 -200px;
+    color: #fff;
+    background: url("../image/index.png") no-repeat 0px -200px;
+}
+
+.step-desc {
+    color: #3b4;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.pro-line {
+    left: 55px;
+    width: 124px;
+    background-position: 0 -100px;
+    position: absolute;
+    top: 7px;
+    height: 10px;
+    background: url("../image/index.png") 0px -100px;
+}
+
+.pro-step_1 {
+    position: absolute;
+    float: left;
+    text-align: center;
+    width: 60px;
+    height: 55px;
+    left: 180px
+}
+
+.pro-line_1 {
+    left: 240px;
+    width: 124px;
+    background-position: 0 -100px;
+    position: absolute;
+    top: 7px;
+    height: 10px;
+    background: url("../image/index.png") 0px -100px;
+
+}
+
+.pro-step_2 {
+    position: absolute;
+    float: left;
+    text-align: center;
+    width: 60px;
+    height: 55px;
+    left: 365px;
+}
+
+#main {
+    position: relative;
+    margin: 50px auto 186px;
+    width: 400px;
+}
+
+.reg-form {
+    width: 400px;
+    height: 516px;
+    margin: 0 auto;
+}
+
+.register-form {
+    position: relative;
+    top: 50px;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    height: 516px;
+}
+
+.form-item {
+    position: relative;
+    border: solid 1px #ddd;
+    width: 398px;
+    height: 52px;
+}
+
+label {
+    position: relative;
+    padding-left: 20px;
+    line-height: 50px;
+    width: 87px;
+    height: 50px;
+    float: left;
+    font-size: 14px;
+    cursor: default;
+}
+
+.field {
+    border: 0 none;
+    font-size: 14px;
+    color: snow;
+    width: 190px;
+    height: 19px;
+    padding-bottom: 11px;
+    padding-left: 20px;
+    padding-top: 16px;
+}
+
+#footer {
+    width: 1210px;
+    height: 87px;
+    font-size: 12px;
+    text-align: center;
+    border-top: solid 1px #e6e6e6;
+    color: #999;
+    padding-bottom: 30px;
+    margin: 0 auto;
+}
+
+.links {
+    padding-top: 30px;
+    padding-bottom: 15px;
+    height: 21px;
+}
+
+#footer a {
+    color: #999;
+    margin: 10px auto;
+    width: 48px;
+    height: 15px;
+    padding: 10px;
+    text-decoration: none;
+}
