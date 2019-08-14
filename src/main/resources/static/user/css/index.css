@@ -174,7 +174,7 @@
     margin: 5px 5px;
     width: 66px;
     height: 66px;
-    background: #f6f6f6 url("images/index/ma.png") no-repeat;
+    background: #f6f6f6 url("../images/index/ma.png") no-repeat;
     background-size: 66px;
 }
 
@@ -494,7 +494,7 @@
     float: left;
     width: 190px;
     height: 260px;
-    background-image: url("images/index/seckill.png");
+    background-image: url("../images/index/seckill.png");
     background-size: 190px 260px;
 }
 
