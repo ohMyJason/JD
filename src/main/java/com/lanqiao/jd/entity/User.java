@@ -11,7 +11,7 @@ public class User {
 
     private BigDecimal balance;
 
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     public Integer getUserId() {
         return userId;
@@ -45,11 +45,11 @@ public class User {
         this.balance = balance;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
