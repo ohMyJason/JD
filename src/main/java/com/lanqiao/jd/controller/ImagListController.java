@@ -39,7 +39,7 @@ public class ImagListController {
         return productImgListService.changeImgList(productImgList);
     }
 
-    @PostMapping("selectImgList")
+    @PostMapping("selectImgListByItemId")
     public List<ProductImgList> selectImgList(@RequestParam(name = "id") int itemId){
         return productImgListService.selectAllImgList(itemId);
     }

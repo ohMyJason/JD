@@ -41,7 +41,7 @@ public class ProductImgListServiceImpl implements ProductImgListService {
 
             productImgList = productImgListMapper.selectByPrimaryKey(imgId);
 
-            String absPath = fileUtil.rootPath + productImgList.getImgUrl();
+            String absPath = fileUtil.rootPath +"static"+ productImgList.getImgUrl();
 
             File file = new File(absPath);
 
