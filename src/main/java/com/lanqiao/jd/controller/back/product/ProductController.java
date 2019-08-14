@@ -19,7 +19,7 @@ public class ProductController {
     ProductService productService;
     @Autowired
     FileUtil fileUtil;
-
+    //插入product，传入图片和product类
     @PostMapping("/insertProduct")
     public Result insertProduct(@RequestParam(name = "file") MultipartFile file, Product sourceProduct){
         String imgUrl = fileUtil.fileUpload(file, 2);
@@ -30,5 +30,20 @@ public class ProductController {
         product.setProductPrice(sourceProduct.getProductPrice());
         return productService.insertProduct(product);
     }
+    //根据主键删除，传值productId
+    @PostMapping("/delectProduct")
+    public Result delectProduct(@RequestParam(name = "productId") int productId){
+        return productService.delectProduct(productId);
+    }
+
+    //查看商品信息,传入主键
+
+    @PostMapping("selectProduct")
+    public Product selectProduct(@RequestParam(name = "productId") int productId){
+        return productService.selectProduct(productId);
+    }
+
+
+
 
 }
