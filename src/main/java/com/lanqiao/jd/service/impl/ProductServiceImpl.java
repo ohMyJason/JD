@@ -1,6 +1,7 @@
 package com.lanqiao.jd.service.impl;
 
 import com.lanqiao.jd.dao.ProductMapper;
+import com.lanqiao.jd.entity.ProdBusiComm;
 import com.lanqiao.jd.entity.Product;
 import com.lanqiao.jd.service.ProductService;
 import com.lanqiao.jd.util.FileUtil;
@@ -63,6 +64,8 @@ public class ProductServiceImpl implements ProductService {
             return  Result.createByFailure("出现错误，联系管理员");
         }
     }
+
+
     //根据business查询所有
     @Override
     public Result selectProduct(int productId) {
@@ -75,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    //模糊查询
+    //后台->模糊查询
     @Override
     public Result selectByProductNameBack(Product product) {
         try{
@@ -84,7 +87,17 @@ public class ProductServiceImpl implements ProductService {
         }catch (Exception e){
             return Result.createByFailure("出现错误，联系管理员");
         }
-
     }
 
+    //多表连接模糊查询
+    @Override
+    public Result fuzzyQueryProduct(String name) {
+        try{
+            List<ProdBusiComm> prodBusiCommList = productMapper.fuzzyQueryProduct(name);
+            return Result.createSuccessResult(prodBusiCommList.size(),prodBusiCommList);
+        }catch (Exception e){
+            return Result.createByFailure("出现错误，联系管理员");
+        }
+
+    }
 }

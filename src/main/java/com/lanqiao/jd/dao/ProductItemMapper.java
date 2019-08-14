@@ -1,8 +1,11 @@
 package com.lanqiao.jd.dao;
 
+import com.lanqiao.jd.entity.ProdBusiComm;
 import com.lanqiao.jd.entity.ProductItem;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -20,4 +23,5 @@ public interface ProductItemMapper {
     int updateByPrimaryKey(ProductItem record);
 
     ProductItem selectByProductId(Integer productId);
+
 }

@@ -75,7 +75,4 @@
     from tb_product_img_list
     where product_item_id = #{productItemId,jdbcType=INTEGER}
   </select>
-
-
-
 </mapper>

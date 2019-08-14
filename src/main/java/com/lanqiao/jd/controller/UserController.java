@@ -1,6 +1,8 @@
 package com.lanqiao.jd.controller;
 
+import com.lanqiao.jd.entity.Product;
 import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.service.ProductService;
 import com.lanqiao.jd.service.UserService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProductService productService;
+
     //注册功能->向数据库中插入一条user记录
     //need:userName password  phoneNumber
     @PostMapping("/register")
@@ -21,8 +26,16 @@ public class UserController {
         return userService.register(user);
     }
 
+    //登录 -> 检查用户名密码与数据库中的记录是否匹配
     @PostMapping("/login")
     public Result login(User user){
         return userService.login(user);
+    }
+
+    //主页->搜索栏：根据商品名称模糊查询
+    //need:name
+    @PostMapping("/fuzzyQueryProduct")
+    public Result fuzzyQueryProduct(String name){
+        return productService.fuzzyQueryProduct(name);
     }
 }
