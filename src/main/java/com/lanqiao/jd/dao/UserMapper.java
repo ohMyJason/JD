@@ -21,4 +21,6 @@ public interface UserMapper {
 
     //ADD
     User selectUserByUserNameAndPassword(User record);
+
+    User selectByUserName(User user);
 }

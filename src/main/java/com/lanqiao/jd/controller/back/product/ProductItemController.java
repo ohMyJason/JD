@@ -16,16 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductItemController {
     @Autowired
     ProductItemService productItemService;
+
     //添加信息
     @PostMapping("/insertProductItem")
     public Result insertProductItem(ProductItem productItem){
         return productItemService.insertProductItem(productItem);
     }
+
     //删除信息
     @PostMapping("/deleteProductItem")
     public Result deleteProductItem(@RequestParam(name = "productItemId") int productItemId){
         return productItemService.deleteProductItem(productItemId);
     }
+
     //修改信息
     @PostMapping("/changeProductItem")
     public Result changeProductItem(ProductItem productItem){
@@ -34,7 +37,7 @@ public class ProductItemController {
 
     //查询信息，传入productId
     @PostMapping("/selectProductItem")
-    public ProductItem selectProductItem(@RequestParam(name = "productId") int productId){
+    public Result selectProductItem(@RequestParam(name = "productId") int productId){
         return productItemService.selectProductItemByProductId(productId);
     }
 

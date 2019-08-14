@@ -61,29 +61,39 @@ public class ProductImgListServiceImpl implements ProductImgListService {
         }
     }
 
-//    @Override
-//    public Result changeImgList(ProductImgList productImgList) {
-//        try{
-//
-//            int col = productImgListMapper.updateByPrimaryKeySelective(productImgList);
-//            if (col>0){
-//                return Result.createSuccessResult();
-//            }else {
-//                return Result.createByFailure("插入数据库错误");
-//            }
-//        }catch (Exception e){
-//            return  Result.createByFailure("出现错误，联系管理员");
-//        }
-//    }
+    @Override
+    public Result changeImgList(String url,int imgId) {
+        try{
+
+            ProductImgList productImgList = productImgListMapper.selectByPrimaryKey(imgId);
+            String orgUrl = fileUtil.rootPath+ "static"+ productImgList.getImgUrl();
+            File file = new File(orgUrl);
+            if (file.exists()){
+                file.delete();
+                System.out.println("原文件删除成功");
+                productImgList.setImgUrl(url);
+                int col = productImgListMapper.updateByPrimaryKeySelective(productImgList);
+                if (col>0){
+                    return Result.createSuccessResult();
+                }else {
+                    return Result.createByFailure("修改失败");
+                }
+
+            }else {
+                return Result.createByFailure("原文件不存在");
+            }
+        }catch (Exception e){
+            return  Result.createByFailure("出现错误，联系管理员");
+        }
+    }
 
     @Override
-    public List<ProductImgList> selectAllImgList(int itemId) {
+    public Result selectAllImgList(int itemId) {
         try{
             List<ProductImgList> list = productImgListMapper.selectByItemId(itemId);
-            return list;
+            return Result.createSuccessResult(list.size(),list);
         }catch (Exception e){
-            System.out.println("出现错误");
-            return null;
+            return Result.createByFailure("查询失败");
         }
     }
 }

@@ -9,4 +9,8 @@ public interface UserService {
 
     //登录用户->检查用户名密码是否有匹配值
     Result login(User user);
+
+    User findUserById(Integer userId);
+
+    User findByUsername(User user);
 }

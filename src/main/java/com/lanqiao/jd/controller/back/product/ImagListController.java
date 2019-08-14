@@ -22,7 +22,7 @@ public class ImagListController {
     FileUtil fileUtil;
 
     @PostMapping("/insertImgList")
-    public Result insertImgList(@RequestParam(name = "file") MultipartFile file,@RequestParam(name = "id") int itemId){
+    public Result insertImgList(@RequestParam(name = "file") MultipartFile file,@RequestParam(name = "itemId") int itemId){
         String imgUrl = fileUtil.fileUpload(file, 2);
         ProductImgList productImgList = new ProductImgList();
         productImgList.setImgUrl(imgUrl);
@@ -35,14 +35,15 @@ public class ImagListController {
         return productImgListService.deleteImgListById(imgId);
     }
 
-//
-//    @PostMapping("/changeImgList")
-//    public Result changeImgList(@RequestParam(name = "record") ProductImgList productImgList){
-//        return productImgListService.changeImgList(productImgList);
-//    }
+
+    @PostMapping("/changeImgList")
+    public Result changeImgList(@RequestParam(name = "file") MultipartFile file,@RequestParam(name = "imgId") int imgId){
+        String imgUrl = fileUtil.fileUpload(file,2);
+        return productImgListService.changeImgList(imgUrl,imgId);
+    }
 
     @PostMapping("/selectImgListByItemId")
-    public List<ProductImgList> selectImgList(@RequestParam(name = "itemId") int itemId){
+    public Result selectImgList(@RequestParam(name = "itemId") int itemId){
         return productImgListService.selectAllImgList(itemId);
     }
 
