@@ -1,4 +1,4 @@
-package com.lanqiao.jd.controller;
+package com.lanqiao.jd.controller.back.product;
 
 import com.lanqiao.jd.entity.ProductImgList;
 import com.lanqiao.jd.service.ProductImgListService;
