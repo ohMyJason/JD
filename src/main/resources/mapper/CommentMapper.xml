@@ -103,4 +103,12 @@
       user_id = #{userId,jdbcType=INTEGER}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByProductItemId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select c.comment_id,c.comment_level,c.comment_detail,c.comment_time,u.user_id
+    from tb_comment c, tb_user u
+    where product_item_id = #{productItemId,jdbcType=INTEGER} and c.user_id = u.user_id
+  </select>
+
+
 </mapper>
