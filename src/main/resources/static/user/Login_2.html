@@ -4,6 +4,106 @@
 <meta charset="UTF-8">
 <title>注册第二页</title>
 <link type="text/css" rel="stylesheet" href="css/login_css.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $(".field").click(function () {
+                this.placeholder='';
+            })
+            $(".register-form input[name='user']").blur(function () {
+                if(this.val()==''){
+                    $(".register-form  input[name='input_2']").val("用户名不能为空");
+                }else if(this.length<6){
+                    $(".register-form  input[name='input_2']").val("用户名至少为6位");
+                }
+            })
+            $(".register-form input[name='pass']").blur(function () {
+                if(this.val()==''){
+                    $("input[name='input_3']").val("请输入密码");
+                }else if(this.length<6){
+                    $("input[name='input_3']").val("密码至少为6位");
+                }
+            })
+            $(".register-form input[name='repass']").blur(function () {
+                if(!this.val==$(".register-form input[name='pass']").val())
+                {
+                    $("input[name='input_4']").val("密码与上一次输入不同");
+                }
+            })
+            $(".register-form input[name='email']").blur(function () {
+                var reg=/^[_a-z0-9-\.]+@([-a-z0-9]+\.)+[a-z]{2,}$/;
+                if(this.val()==''){
+                    $("input[name='input_5']").val("请输入密码");
+                }
+                else if(!reg.test(this.val()))
+                {
+                    $("input[name='input_5']").val("邮箱格式错误");
+                }
+
+            })
+
+
+            // $(".register-form").validate({
+            //     rules:{
+            //         username:{
+            //             required:true,
+            //             maxlength:20,
+            //             minlength:6
+            //
+            //         },
+            //         pass:{
+            //             required:true,
+            //             maxlength:20,
+            //             minlength:8,
+            //         },
+            //         repass:{
+            //             required:true,
+            //             maxlength:20,
+            //             minlength:8,
+            //             equalTo:"#password",
+            //         },
+            //         email:{
+            //             required:true,
+            //             email: true
+            //         }
+            //     },
+            //     messages:{
+            //         username:{
+            //             required:"请输入用户名",
+            //             maxlength:"最长20个字符",
+            //             minlength:"最短6个字符"
+            //
+            //         },
+            //         pass:{
+            //             required:"请输入密码",
+            //             maxlength:"最长20个字符",
+            //             minlength:"最短8个字符",
+            //         },
+            //         repass:{
+            //             required:"请确认密码",
+            //             maxlength:"最长20个字符",
+            //             minlength:"最短8个字符",
+            //             equalTo:"两次密码输入不一致",
+            //         },
+            //         email:{
+            //             required:"请输入邮箱",
+            //             email:"请输入正确邮箱"
+            //         }
+            //
+            //     }
+            //
+            //
+            // })
+        })
+
+
+    </script>
+
+
 </head>
 <body>
 <div id="header">
@@ -35,31 +135,38 @@
     </div>
     <div class="main">
         <div class="reg-form">
-            <form action="" method="post" class="register-form">
+            <form  method="post" class="register-form">
                 <div class="form-item" style="border-color: rgb(153,153,153)">
                     <label class="label">用 &nbsp;&nbsp;户 &nbsp; 名:</label>
-                    <input type="text" class="field" placeholder="您的用户名或登录名" maxlength="=20">
+                    <input name="user" type="text" class="field" placeholder="您的用户名或登录名" maxlength="=20" >
                 </div>
-                <div class="input-tip"></div>
+                <div class="input-tip">
+                    <input name="input_2" value="" type="text" class="input_1" >
+                </div>
                 <div class="form-item" style="border-color: rgb(153,153,153)">
-                    <label class="label">设&nbsp;置&nbsp;密&nbsp;码:</label>
-                    <input type="text" class="field" placeholder="建议使用两种或两种以上字符组合" maxlength="=20">
+                    <label  class="label">设&nbsp;置&nbsp;密&nbsp;码:</label>
+                    <input name="pass" id="password" type="password" class="field" placeholder="建议使用两种或两种以上字符组合" maxlength="=20" >
                 </div>
-                <div class="input-tip"></div>
+                <div class="input-tip">
+                    <input name="input_3" value="" type="text" class="input_1" >
+                </div>
                 <div class="form-item" style="border-color: rgb(153,153,153)">
-                    <label class="label">确&nbsp;认&nbsp;密&nbsp;码:</label>
-                    <input type="text" class="field" placeholder="请再次输入密码" maxlength="=20">
+                    <label  class="label">确&nbsp;认&nbsp;密&nbsp;码:</label>
+                    <input name="repass" type="password" class="field" placeholder="请再次输入密码" maxlength="=20" >
                 </div>
-                <div class="input-tip"></div>
+                <div class="input-tip">
+                    <input name="input_4" value="" type="text" class="input_1" >
+                </div>
                 <div class="form-item" style="border-color: rgb(153,153,153)">
-                    <label class="label">输&nbsp;入&nbsp;邮&nbsp;箱:</label>
-                    <input type="text" class="field" placeholder="请输入邮箱" maxlength="=20">
+                    <label  class="label">输&nbsp;入&nbsp;邮&nbsp;箱:</label>
+                    <input name="email" type="text" class="field" placeholder="请输入邮箱" maxlength="=20" >
                 </div>
-                <div class="input-tip"></div>
+                <div class="input-tip">
+                    <input name="input_5" value="" type="text" class="input_1" >
+                </div>
                 <div class="item_3">
                     <div class="step_next">
                         立即注册
-
                     </div>
                 </div>
                 <div class="other">

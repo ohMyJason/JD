@@ -293,7 +293,7 @@ label {
     top: 20px;
     right: 20px;
     background: url("../images/login_2.png") no-repeat;
-    display: block;
+    display: none;
     background-position: 0 -117px;
 }
 .item_2{
@@ -328,6 +328,12 @@ label {
     font-size: 16px;
     font-family: "Microsoft YaHei","Hiragino Sans GB";
     cursor: pointer;
+}
+.step_next  a{
+    color: #fff;
+    font-size: 16px;
+    font-family: "Microsoft YaHei","Hiragino Sans GB";
+    text-decoration: none;
 }
 .other{
     margin-top: 28px;
@@ -371,4 +377,11 @@ label {
     color: #c5c5c5;
     font-size: 12px;
     padding-top: 5px;
+}
+.input_1{
+    outline: none;
+    border-width: 0px;
+    background-color: white;
+    color: #edd28b;
+
 }
