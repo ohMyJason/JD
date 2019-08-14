@@ -4,36 +4,86 @@
     <meta charset="UTF-8">
     <title>testLogin</title>
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-cookie.js"></script>
 </head>
 <script>
+    function getMessage() {
+        ajaxPost("/user/getMessage",function (data) {
+            alert(data);
+        })
+    }
+
     $(function () {
         $("#login").click(function () {
             login();
         })
 
+        $("#get-message").click(function () {
+            getMessage()
+        })
+
     })
 
+
+    //点击登录执行函数
     function login() {
+       ajaxPostWithData("/user/login",{
+           userName:$("#userName").val(),
+           password:$("#password").val()
+       },function (data) {
+           alert(data.data[1]);
+           //设置cookies
+           $.cookie("token",data.data[1].split(":")[1],{ expires:1,path:'/'});
+       })
+    }
+    
+
+
+    /**
+     * post请求封装方法带参数
+     * @param url
+     * @param data
+     * @param fun
+     */
+    function ajaxPostWithData(url,data,fun) {
         $.ajax({
-            url:"/user/login",
+            url:url,
             type:"post",
-            data:{
-                userName:$("#userName").val(),
-                password:$("#password").val()
-            },
+            data:data,
             dataType:"json",
-            success:function (data) {
-                alert(data.data[1]);
-            },
+            success:fun,
             error:function () {
                 alert("error");
             }
         })
     }
+
+    /**
+     * 不带参数请求
+     * @param url
+     * @param fun
+     */
+    function ajaxPost(url,fun) {
+        $.ajax({
+            url:url,
+            type:"post",
+            headers: {
+                'token':$.cookie("token")
+            },
+            dataType:"text",
+            success:fun,
+            error:function () {
+                alert("error");
+            }
+        })
+    }
+
+
 </script>
 <body>
 <input type="text" id="userName">
 <input type="text" id="password">
 <button id="login">登录</button>
+<button id="get-message">getMessage</button>
 </body>
 </html>
