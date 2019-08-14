@@ -32,4 +32,4 @@ build/
 
 ### springboot ###
 **/resources/*.properties
-**/resources/*.xml
+**/resources/generatorConfig.xml

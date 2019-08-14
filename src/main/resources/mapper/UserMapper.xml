@@ -6,7 +6,7 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="balance" property="balance" jdbcType="DECIMAL" />
-    <result column="phone_number" property="phoneNumber" jdbcType="INTEGER" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_name, password, balance, phone_number
@@ -25,7 +25,7 @@
     insert into tb_user (user_id, user_name, password, 
       balance, phone_number)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{balance,jdbcType=DECIMAL}, #{phoneNumber,jdbcType=INTEGER})
+      #{balance,jdbcType=DECIMAL}, #{phoneNumber,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lanqiao.jd.entity.User" >
     insert into tb_user
@@ -60,7 +60,7 @@
         #{balance,jdbcType=DECIMAL},
       </if>
       <if test="phoneNumber != null" >
-        #{phoneNumber,jdbcType=INTEGER},
+        #{phoneNumber,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         balance = #{balance,jdbcType=DECIMAL},
       </if>
       <if test="phoneNumber != null" >
-        phone_number = #{phoneNumber,jdbcType=INTEGER},
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
       </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
@@ -87,7 +87,22 @@
     set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       balance = #{balance,jdbcType=DECIMAL},
-      phone_number = #{phoneNumber,jdbcType=INTEGER}
+      phone_number = #{phoneNumber,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <!-- ADD -->
+  <select id="selectUserByUserNameAndPassword" resultMap="BaseResultMap" parameterType="com.lanqiao.jd.entity.User" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_user
+    where user_name = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserName" resultMap="BaseResultMap"  parameterType="com.lanqiao.jd.entity.User">
+    select
+    <include refid="Base_Column_List"/>
+    from  tb_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
 </mapper>

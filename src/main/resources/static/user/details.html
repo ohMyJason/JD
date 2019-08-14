@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/details.css" rel="stylesheet">
+    <link href="css/layui.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script>
         $(function() {
@@ -78,19 +79,32 @@
                 $(this).addClass("ll").siblings().removeClass("ll");
                 $(".bao1>div").eq(index).show().siblings().hide();
             });
+            $("input[value='+']").click(function(){
+                $(this).prev().val(parseInt($(this).prev().val()) + 1);
+                $("input[name='num']").trigger("input");
+            });
+            $("input[value='-']").click(function(){
+                var $num = parseInt($(this).next().val());
+                if($num>1) {
+                    $(this).next().val($num - 1);
+                    $("input[name='num']").trigger("input");
+                }
+                else {
+                    $(this).closest("ul").find("span").click();
+                }
+            });
         });
     </script>
 </head>
 <body>
 <div>
-    <div class="da ">
+    <div class="da">
 
         <div class="shang">
 
             <img src="images/details/details1.jpg" height="350" width="350" id="pian" />
 
             <div class="yin"></div>
-
         </div>
 
         <div class="bao">
@@ -115,7 +129,26 @@
             <span class="you"></span>
 
         </div>
-
+        <div class="wrap">
+            <div class="name">
+                水密码 化妆品女 洗面奶 补水 保湿 深层清洁 冰川矿泉 套装系列 洁肤晶露100g                </div>
+            <div class="summary">
+                <div class="dt">京东价</div>
+                <div class="dd">
+                    <span class="price">
+                        <span>￥</span>
+                        <span>29.90</span>
+                    </span>
+                </div>
+                <div class="btns">
+                    <ul>
+                        <li class="num"><input type="button" value="-" style="width: 20px"> <input name="num" type="text" value="1" size="5px"> <input type="button" value="+" style="width: 20px">
+                        </li>
+                    </ul>
+                    <button class="layui-btn layui-btn-warm">加入购物车</button>
+                </div>
+            </div>
+        </div>
         <div class="lie ">
 
             <ul>
@@ -151,8 +184,6 @@
             </div>
 
         </div>
-
-    </div>
 
     <div class="xia">
 

@@ -1,6 +1,7 @@
 body{
     width: 100%;
     margin: 0px;
+    background-color: white;
 }
 /*通用字体*/
 .font_text{ color: #999999;font-size: x-small; }
@@ -23,6 +24,7 @@ body{
     float: left;
     width: 170px;
     height: 60px;
+    cursor: pointer;
 }
 
 #logo b{
@@ -331,8 +333,14 @@ body{
 .msg-error{
     width: 306px;
     height: 23px;
+    margin-top: 5px;
     margin-left: 20px;
-    background-color: gold;
+    margin-bottom: 5px;
+    line-height: 23px;
+}
+.msg-error b{
+    font-weight: normal;
+    margin-left: 20px;
 }
 .form{
     float: right;
@@ -373,6 +381,10 @@ body{
     background-color: #F1251b;
 }
 
+.item4 a:hover{
+    color: white;
+}
+
 .user_img{
     float: left;
     width: 39px;
@@ -398,6 +410,7 @@ body{
     border: 0;
     overflow: hidden;
     font-size: 16px;
+    outline:none; /*文边框蓝色边框隐藏*/
 }
 
 #pwd{
@@ -407,6 +420,7 @@ body{
     border: 0;
     overflow: hidden;
     font-size: 16px;
+    outline:none;
 }
 
 .login_btn{

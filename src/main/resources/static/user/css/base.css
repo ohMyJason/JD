@@ -25,12 +25,12 @@ button {
 
 a {
     color: #666;
+    cursor: pointer;
     text-decoration: none;
 }
 
 a:hover {
-    /* color: #C81623; */
-    color: #c81623;
+    color: #F1251b;
 }
 
 input, button {
