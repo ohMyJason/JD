@@ -33,12 +33,12 @@ public class ProductController {
     //根据主键删除，传值productId
     @PostMapping("/delectProduct")
     public Result delectProduct(@RequestParam(name = "productId") int productId){
-        return productService.delectProduct(productId);
+        return productService.deleteProduct(productId);
     }
 
     //查看商品信息,传入主键
 
-    @PostMapping("selectProduct")
+    @PostMapping("/selectProduct")
     public Product selectProduct(@RequestParam(name = "productId") int productId){
         return productService.selectProduct(productId);
     }

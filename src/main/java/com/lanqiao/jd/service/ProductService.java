@@ -9,7 +9,7 @@ public interface ProductService {
     public Result insertProduct(Product product);
 
     //删除product
-    public Result delectProduct(int productId);
+    public Result deleteProduct(int productId);
 
     //查看product
     public Product selectProduct(int productId);

@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
     FileUtil fileUtil;
 
 
-    //添加produc
+    //添加product
     @Override
     public Result insertProduct(Product product) {
         try{
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
     //根据producid删除product
     @Override
-    public Result delectProduct(int productId) {
+    public Result deleteProduct(int productId) {
         try{
             Product product =new Product();
 
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
             return  Result.createByFailure("出现错误，联系管理员");
         }
     }
-    //根据主键查询produc
+    //根据主键查询product
     @Override
     public Product selectProduct(int productId) {
         try {
