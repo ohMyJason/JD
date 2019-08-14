@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+
     @Autowired
     ProductMapper productMapper;
     @Autowired
@@ -73,5 +76,16 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    //模糊查询
+    @Override
+    public Result selectByProductNameBack(Product product) {
+        try{
+            List<Product> productList =  productMapper.selectByProductNameBack(product);
+            return Result.createSuccessResult(productList.size(),productList);
+        }catch (Exception e){
+            return Result.createByFailure("出现错误，联系管理员");
+        }
+
+    }
 
 }

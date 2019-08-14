@@ -19,6 +19,7 @@ public class ProductController {
     ProductService productService;
     @Autowired
     FileUtil fileUtil;
+
     //插入product，传入图片和product类
     @PostMapping("/insertProduct")
     public Result insertProduct(@RequestParam(name = "file") MultipartFile file, Product sourceProduct){
@@ -30,20 +31,24 @@ public class ProductController {
         product.setProductPrice(sourceProduct.getProductPrice());
         return productService.insertProduct(product);
     }
+
     //根据主键删除，传值productId
     @PostMapping("/delectProduct")
     public Result delectProduct(@RequestParam(name = "productId") int productId){
         return productService.deleteProduct(productId);
     }
 
-    //查看商品信息,传入主键
 
+    //查看商品信息,传入主键
     @PostMapping("/selectProduct")
     public Product selectProduct(@RequestParam(name = "productId") int productId){
         return productService.selectProduct(productId);
     }
 
-
-
-
+    //后台商家管理模块->模糊查询
+    //need:businessId productName
+    @PostMapping("/selectByProductNameBack")
+    public Result selectByProductName(Product product){
+        return productService.selectByProductNameBack(product);
+    }
 }

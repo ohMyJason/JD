@@ -4,6 +4,8 @@ import com.lanqiao.jd.entity.Product;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface ProductMapper {
@@ -18,4 +20,7 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+    //Add
+    List<Product> selectByProductNameBack(Product product);
 }

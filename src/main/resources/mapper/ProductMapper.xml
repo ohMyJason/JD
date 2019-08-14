@@ -103,4 +103,13 @@
       business_id = #{businessId,jdbcType=INTEGER}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
+
+<!--Add-->
+  <!-- 后台->实现根据商家id进行商品名称的模糊查询 -->
+  <select id="selectByProductNameBack" resultMap="BaseResultMap" parameterType="com.lanqiao.jd.entity.Product" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_product
+    where business_id = #{businessId,jdbcType=INTEGER} and product_name like concat(concat("%",#{productName,jdbcType=VARCHAR}),"%")
+  </select>
 </mapper>

@@ -13,4 +13,6 @@ public interface ProductService {
 
     //查看product
     public Product selectProduct(int productId);
+
+    Result selectByProductNameBack(Product product);
 }

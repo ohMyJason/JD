@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
                 return Result.createByFailure("数据库错误");
             }
         }catch(Exception e){
-            return Result.createByFailure("出现错误，联系管理员");
+            return Result.createByFailure("出现错误，可能是用户已存在或手机号已经被注册");
         }
 
     }
