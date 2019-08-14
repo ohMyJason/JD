@@ -9,6 +9,7 @@
     $(".login_left").click(function () {
         $(".login_code").show();
         $(".user_login").hide();
+        $(".login_right .c").css({'color':'#666','font-weight':'normal'});
         $(".login_left .c").css({'color':'#F1251b','font-weight':'bold'});
     });
 
@@ -16,6 +17,7 @@
     $(".login_right").click(function () {
         $(".user_login").show();
         $(".login_code").hide();
+        $(".login_left .c").css({'color':'#666','font-weight':'normal'});
         $(".login_right .c").css({'color':'#F1251b','font-weight':'bold'});
     });
 

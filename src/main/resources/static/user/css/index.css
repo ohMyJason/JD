@@ -142,6 +142,7 @@
     margin-top: 25px;
     margin-left: 25px;
     border: 1px solid #eeeeee;
+    position: relative;
 }
 
 #search_top_center .ci-count {
@@ -182,6 +183,7 @@
 /*快速搜索*/
 #search_bottom {
     float: left;
+    margin-top: 3px;
 }
 
 #search_bottom li {
