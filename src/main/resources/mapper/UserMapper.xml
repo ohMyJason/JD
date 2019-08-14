@@ -98,4 +98,11 @@
     from tb_user
     where user_name = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectByUserName" resultMap="BaseResultMap"  parameterType="com.lanqiao.jd.entity.User">
+    select
+    <include refid="Base_Column_List"/>
+    from  tb_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
 </mapper>
