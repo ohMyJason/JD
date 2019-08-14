@@ -79,4 +79,19 @@
       product_id = #{productId,jdbcType=INTEGER}
     where cart_item_id = #{cartItemId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByProductId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_cart_item
+    where shop_cart_id = #{shopCartId} and product_id = #{productId}
+  </select>
+
+  <select id="selectByShopCartId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_cart_item
+    where shop_cart_id = #{shopCartId,jdbcType=INTEGER}
+  </select>
+
 </mapper>
