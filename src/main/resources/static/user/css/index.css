@@ -73,7 +73,8 @@
 
 #header {
     width: 1349px;
-    height: 141px
+    height: 141px;
+    background-color: white;
 }
 
 #header_coutent {

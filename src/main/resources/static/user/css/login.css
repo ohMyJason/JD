@@ -1,6 +1,7 @@
 body{
     width: 100%;
     margin: 0px;
+    background-color: white;
 }
 /*通用字体*/
 .font_text{ color: #999999;font-size: x-small; }
