@@ -125,4 +125,12 @@
       detail_6 = #{detail6,jdbcType=VARCHAR}
     where product_item_id = #{productItemId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_product_item
+    where product_id = #{productId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

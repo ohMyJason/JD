@@ -23,4 +23,5 @@ public interface BusinessMapper {
 
     //ADD
     List<Business> selectAllBusiness();
+
 }

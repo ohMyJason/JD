@@ -1,7 +1,13 @@
 package com.lanqiao.jd.dao;
 
 import com.lanqiao.jd.entity.Product;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Mapper
+@Repository
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer productId);
 
@@ -14,4 +20,9 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+    List<Product> selectAllProductByBusinessId(Integer businessId);
+
+    //Add
+    List<Product> selectByProductNameBack(Product product);
 }

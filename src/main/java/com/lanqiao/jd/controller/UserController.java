@@ -1,27 +1,28 @@
 package com.lanqiao.jd.controller;
 
-import com.lanqiao.jd.dao.UserMapper;
 import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.service.UserService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-/**
- * @author 刘佳昇
- * @Date 2019/8/13 14:39
- */
-
 @RestController
+@RequestMapping("/user")
 public class UserController {
     @Autowired
-    UserMapper userMapper;
+    UserService userService;
 
-    @PostMapping("/login")
-    public Result login(User user) {
-        return null;
+    //注册功能->向数据库中插入一条user记录
+    //need:userName password  phoneNumber
+    @PostMapping("/register")
+    public Result register(User user){
+        return userService.register(user);
     }
 
-
+    @PostMapping("/login")
+    public Result login(User user){
+        return userService.login(user);
+    }
 }

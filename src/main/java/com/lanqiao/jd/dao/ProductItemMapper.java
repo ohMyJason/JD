@@ -1,7 +1,11 @@
 package com.lanqiao.jd.dao;
 
 import com.lanqiao.jd.entity.ProductItem;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface ProductItemMapper {
     int deleteByPrimaryKey(Integer productItemId);
 
@@ -14,4 +18,6 @@ public interface ProductItemMapper {
     int updateByPrimaryKeySelective(ProductItem record);
 
     int updateByPrimaryKey(ProductItem record);
+
+    ProductItem selectByProductId(Integer productId);
 }
