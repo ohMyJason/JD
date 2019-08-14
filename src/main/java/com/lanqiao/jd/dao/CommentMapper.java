@@ -1,7 +1,13 @@
 package com.lanqiao.jd.dao;
 
 import com.lanqiao.jd.entity.Comment;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Mapper
+@Repository
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer commentId);
 
@@ -14,4 +20,6 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> selectByProductItemId(Integer productItemId);
 }

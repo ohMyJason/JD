@@ -44,4 +44,14 @@ public class UserServiceImpl implements UserService {
             return Result.createByFailure("出现错误，联系管理员");
         }
     }
+
+    @Override
+    public User findUserById(Integer userId) {
+        return userMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public User findByUsername(User user) {
+        return userMapper.selectByUserName(user);
+    }
 }
