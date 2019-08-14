@@ -43,7 +43,7 @@ public class ImagListController {
     }
 
     @PostMapping("/selectImgListByItemId")
-    public List<ProductImgList> selectImgList(@RequestParam(name = "itemId") int itemId){
+    public Result selectImgList(@RequestParam(name = "itemId") int itemId){
         return productImgListService.selectAllImgList(itemId);
     }
 

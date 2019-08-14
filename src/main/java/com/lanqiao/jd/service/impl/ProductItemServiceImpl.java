@@ -55,12 +55,12 @@ public class ProductItemServiceImpl implements ProductItemService {
     }
 
     @Override
-    public ProductItem selectProductItemByProductId(int productId) {
+    public Result selectProductItemByProductId(int productId) {
         try {
             ProductItem  productItem= productItemMapper.selectByProductId(productId);
-            return productItem;
+            return Result.createSuccessResult(productItem);
         }catch (Exception e){
-            return null;
+            return Result.createByFailure("查询异常");
         }
     }
 }

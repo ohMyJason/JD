@@ -17,5 +17,5 @@ public interface ProductItemService {
 
     //查询productItme
 
-    public ProductItem selectProductItemByProductId(int productId);
+    public Result selectProductItemByProductId(int productId);
 }

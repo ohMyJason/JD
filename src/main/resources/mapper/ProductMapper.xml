@@ -103,4 +103,12 @@
       business_id = #{businessId,jdbcType=INTEGER}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
+  <select id="selectAllProductByBusinessId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_product
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </select>
+
+
 </mapper>

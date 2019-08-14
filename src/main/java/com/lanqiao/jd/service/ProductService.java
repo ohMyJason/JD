@@ -12,5 +12,5 @@ public interface ProductService {
     public Result deleteProduct(int productId);
 
     //查看product
-    public Product selectProduct(int productId);
+    public Result selectProduct(int businessId);
 }
