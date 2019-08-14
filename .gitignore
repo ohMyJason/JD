@@ -31,4 +31,5 @@ build/
 .vscode/
 
 ### springboot ###
-application.properties
+**/resources/*.properties
+**/resources/*.xml

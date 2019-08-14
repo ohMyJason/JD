@@ -1,4 +1,8 @@
 /*标题*/
+body
+{
+    background-color: white;
+}
 .steps_left {
     /*width: 70px;*/
     /*height: 40px;*/
