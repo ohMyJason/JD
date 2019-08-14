@@ -20,6 +20,6 @@ public class ExceptionHandle {
     @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     public Result handle(RuntimeException e){
-        return Result.createByFailure("请登录");
+        return Result.createByFailure(e.getMessage());
     }
 }

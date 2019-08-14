@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testLogin</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+</head>
+<script>
+    $(function () {
+        $("#login").click(function () {
+            login();
+        })
+
+    })
+
+    function login() {
+        $.ajax({
+            url:"/user/login",
+            type:"post",
+            data:{
+                userName:$("#userName").val(),
+                password:$("#password").val()
+            },
+            dataType:"json",
+            success:function (data) {
+                alert(data.data[1]);
+            },
+            error:function () {
+                alert("error");
+            }
+        })
+    }
+</script>
+<body>
+<input type="text" id="userName">
+<input type="text" id="password">
+<button id="login">登录</button>
+</body>
+</html>

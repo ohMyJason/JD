@@ -11,6 +11,9 @@ import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -34,21 +37,27 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public Object login(@RequestBody User user) {
-        JSONObject jsonObject = new JSONObject();
+    public Result login(User user) {
+//        JSONObject jsonObject = new JSONObject();
         User userForBase = userService.findByUsername(user);
         if (userForBase == null) {
-            jsonObject.put("message", "登录失败,用户不存在");
-            return jsonObject;
+//            jsonObject.put("message", "登录失败,用户不存在");
+//            return jsonObject;
+            return Result.createByFailure("登录失败,用户不存在");
         } else {
             if (!userForBase.getPassword().equals(user.getPassword())) {
-                jsonObject.put("message", "登录失败,密码错误");
-                return jsonObject;
+//                jsonObject.put("message", "登录失败,密码错误");
+//                return jsonObject;
+                return Result.createByFailure("登录失败,密码错误");
             } else {
                 String token = tokenService.getToken(userForBase);
-                jsonObject.put("token", token);
-                jsonObject.put("user", userForBase);
-                return jsonObject;
+//                jsonObject.put("token", token);
+//                jsonObject.put("user", userForBase);
+//                return jsonObject;
+                List listObject = new ArrayList();
+                listObject.add(userForBase);
+                listObject.add("token:"+token);
+                return Result.createSuccessResult(2,listObject);
             }
         }
     }
