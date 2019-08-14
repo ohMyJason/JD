@@ -2,7 +2,9 @@ package com.lanqiao.jd.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lanqiao.jd.annotations.UserLoginToken;
+import com.lanqiao.jd.entity.Comment;
 import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.service.CommentService;
 import com.lanqiao.jd.service.TokenService;
 import com.lanqiao.jd.service.UserService;
 import com.lanqiao.jd.util.Result;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
-
+    @Autowired
+    CommentService commentService;
     @Autowired
     TokenService tokenService;
     //注册功能->向数据库中插入一条user记录
@@ -54,6 +57,17 @@ public class UserController {
     @PostMapping("/getMessage")
     public String getMessage(){
         return "你已通过验证";
+    }
+
+
+
+    //评论相关
+    @PostMapping("/insertComment")
+    public Result insertComment(Comment comment){return commentService.insertComment(comment);}
+    //展示某个商品的评论
+    @PostMapping("/showCommentByItemId")
+    public Result showCommentByItemId(@RequestParam(name = "productItemId") int productItemId){
+        return commentService.showCommentByItemID(productItemId);
     }
 
 }
