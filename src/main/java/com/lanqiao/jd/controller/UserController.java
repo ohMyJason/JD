@@ -56,7 +56,11 @@ public class UserController {
     @UserLoginToken
     @PostMapping("/getMessage")
     public String getMessage(){
-        return "你已通过验证";
+        try {
+            return "你已通过验证";
+        }catch (Exception e){
+            return "请登录";
+        }
     }
 
 
