@@ -63,15 +63,14 @@ public class ProductServiceImpl implements ProductService {
             return  Result.createByFailure("出现错误，联系管理员");
         }
     }
-    //根据主键查询product
+    //根据business查询所有
     @Override
-    public Product selectProduct(int productId) {
+    public Result selectProduct(int productId) {
         try {
-            Product product = productMapper.selectByPrimaryKey(productId);
-            return product;
+            List<Product> productList = productMapper.selectAllProductByBusinessId(productId);
+            return Result.createSuccessResult(productList.size(),productList);
         }catch (Exception e){
-            System.out.println("查询异常");
-            return null;
+            return Result.createByFailure("查询异常");
         }
 
     }

@@ -37,7 +37,7 @@ public class ProductItemController {
 
     //查询信息，传入productId
     @PostMapping("/selectProductItem")
-    public ProductItem selectProductItem(@RequestParam(name = "productId") int productId){
+    public Result selectProductItem(@RequestParam(name = "productId") int productId){
         return productItemService.selectProductItemByProductId(productId);
     }
 

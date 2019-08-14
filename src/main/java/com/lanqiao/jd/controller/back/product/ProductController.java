@@ -41,8 +41,8 @@ public class ProductController {
 
     //查看商品信息,传入主键
     @PostMapping("/selectProduct")
-    public Product selectProduct(@RequestParam(name = "productId") int productId){
-        return productService.selectProduct(productId);
+    public Result selectProduct(@RequestParam(name = "businessId") int businessId){
+        return productService.selectProduct(businessId);
     }
 
     //后台商家管理模块->模糊查询

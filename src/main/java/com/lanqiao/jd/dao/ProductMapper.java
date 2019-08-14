@@ -21,6 +21,8 @@ public interface ProductMapper {
 
     int updateByPrimaryKey(Product record);
 
+    List<Product> selectAllProductByBusinessId(Integer businessId);
+
     //Add
     List<Product> selectByProductNameBack(Product product);
 }

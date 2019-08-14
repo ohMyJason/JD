@@ -16,5 +16,5 @@ public interface ProductImgListService {
     public Result changeImgList(String url,int imgId);
 
     //通过producitemid 查看商品信息
-    public List<ProductImgList> selectAllImgList(int itemId);
+    public Result selectAllImgList(int itemId);
 }

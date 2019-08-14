@@ -88,13 +88,12 @@ public class ProductImgListServiceImpl implements ProductImgListService {
     }
 
     @Override
-    public List<ProductImgList> selectAllImgList(int itemId) {
+    public Result selectAllImgList(int itemId) {
         try{
             List<ProductImgList> list = productImgListMapper.selectByItemId(itemId);
-            return list;
+            return Result.createSuccessResult(list.size(),list);
         }catch (Exception e){
-            System.out.println("出现错误");
-            return null;
+            return Result.createByFailure("查询失败");
         }
     }
 }
