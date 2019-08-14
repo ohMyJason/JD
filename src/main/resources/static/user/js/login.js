@@ -28,15 +28,15 @@
         user.pass = $("#pwd").val();
 
         //非空验证
-        if(user.name==""||user.name==null){
+        if((user.name==""||user.name==null)&&(user.pass==""||user.pass==null)){
             showCSS();
-            $(".msg-error b").html("请输入账户名");
+            $(".msg-error b").html("请输入账户名和密码");
         }else if(user.pass==""||user.pass==null){
             showCSS();
             $(".msg-error b").html("请输入密码");
-        }else if((user.name==""||user.name==null)&&(user.pass==""||user.pass==null)){
+        }else if(user.name==""||user.name==null){
             showCSS();
-            $(".msg-error b").html("请输入账户名和密码");
+            $(".msg-error b").html("请输入账户名");
         }else{
             $(".msg-error b").html("");
             //提交
