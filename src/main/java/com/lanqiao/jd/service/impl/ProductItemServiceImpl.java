@@ -1,11 +1,14 @@
 package com.lanqiao.jd.service.impl;
 
 import com.lanqiao.jd.dao.ProductItemMapper;
+import com.lanqiao.jd.entity.ProdBusiComm;
 import com.lanqiao.jd.entity.ProductItem;
 import com.lanqiao.jd.service.ProductItemService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductItemServiceImpl implements ProductItemService {
@@ -63,4 +66,5 @@ public class ProductItemServiceImpl implements ProductItemService {
             return Result.createByFailure("查询异常");
         }
     }
+
 }

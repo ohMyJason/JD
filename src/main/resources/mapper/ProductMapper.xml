@@ -9,6 +9,7 @@
     <result column="stock" property="stock" jdbcType="INTEGER" />
     <result column="business_id" property="businessId" jdbcType="INTEGER" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     product_id, product_name, product_price, product_img_url, stock, business_id
   </sql>
@@ -112,6 +113,8 @@
     from tb_product
     where business_id = #{businessId,jdbcType=INTEGER} and product_name like concat(concat("%",#{productName,jdbcType=VARCHAR}),"%")
   </select>
+
+  <!-- 后台->根据商家ID查询该商家所有的产品 -->
   <select id="selectAllProductByBusinessId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
@@ -119,5 +122,18 @@
     where business_id = #{businessId,jdbcType=INTEGER}
   </select>
 
-
+  <!-- 主页->模糊查询 -->
+  <select id="fuzzyQueryProduct" resultType="com.lanqiao.jd.entity.ProdBusiComm" parameterType="java.lang.String" >
+  select a.product_id,product_name, product_price ,product_img_url ,business_name ,ifnull(comment_count,0)as comment_count from
+  (select p.product_id,p.product_name,p.product_price,p.product_img_url,b.business_name
+  from tb_product p NATURAL join tb_business b) as a
+left join
+  (select p.product_id, count(*) as comment_count
+  from tb_comment c,tb_product p,tb_product_item pi
+  where c.product_item_id = pi.product_item_id and pi.product_id = p.product_id
+  GROUP BY p.product_id
+  ) as b
+on a.product_id = b.product_id
+  where product_name LIKE concat(concat("%",#{name,jdbcType=VARCHAR}),"%")
+  </select>
 </mapper>

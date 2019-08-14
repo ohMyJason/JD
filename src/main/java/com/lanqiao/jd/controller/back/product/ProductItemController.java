@@ -40,5 +40,4 @@ public class ProductItemController {
     public Result selectProductItem(@RequestParam(name = "productId") int productId){
         return productItemService.selectProductItemByProductId(productId);
     }
-
 }
