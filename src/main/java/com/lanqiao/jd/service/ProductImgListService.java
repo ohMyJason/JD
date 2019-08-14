@@ -13,7 +13,7 @@ public interface ProductImgListService {
     public Result deleteImgListById(int imgId);
 
     //修改新纪录
-    public Result changeImgList(ProductImgList productImgList);
+//    public Result changeImgList(ProductImgList productImgList);
 
     //通过producitemid 查看商品信息
     public List<ProductImgList> selectAllImgList(int itemId);
