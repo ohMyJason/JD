@@ -25,6 +25,7 @@ button {
 
 a {
     color: #666;
+    cursor: pointer;
     text-decoration: none;
 }
 
