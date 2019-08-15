@@ -9,45 +9,60 @@
     <script>
         $(function () {
             var flag=-1;
+            //输入手机号码
             $(".form-click").click(function () {
+                //判断手机号码的格式
                 var reg=/^1[3-9]\d{9}$/;
                 if(!reg.test($("input[name='input-phone']").val()))
                 {
                     $("input[name='input_1']").val("格式错误");
-                    $(".i-status").hide();
+                    $(".i-status").hide();//隐藏输入框下的提示框
 
                 }
                 else{
                     flag=1;
-                    $(".i-status").show();
-                    $("input[name='input_1']").hide();
+                    $(".i-status").show();//显示提示信息
+                    $("input[name='input_1']").hide();//隐藏确认图标
                 }
             })
+            //点击下一步
             $(".step_next").click(function () {
+                //确定手机号码是否符合格式
                 if(flag==1)
                 {
-                    $.cookie("phoneNumber",$("input[name='input-phone']").val(),{ expires:1,path:'/'});
-                    $(location).attr('href','Login_2.html');
+                    //判断该手机号码是否已经被注册
+                    $.ajax({
+                        url:"/user/verifyPhoneNumber",
+                        type:"post",
+                        data:{phoneNumber:$("input[name='input-phone']").val(),
+                        },
+                        datatype:JSON,
+                        //对比数据库已经存在的手机号码，返回一个确认值
+                        success:function (result) {
+                            if(result.code==0){
+                                $.cookie("phoneNumber",$("input[name='input-phone']").val(),{ expires:1,path:'/'});
+                                // $(location).attr('href','Login_2.html');
+                                window.location.href="http://localhost:8080/user/Login_2.html";
+                            }else{
+                                //手机号码已经存在，弹出提示信息
+                                if(confirm(result.msg)){
+                                    window.location.href="http://localhost:8080/user/login.html";
+                                }else{
+                                    window.location.reload();
+                                }
+
+                            }
+                        }
+                    })
+
                 }
                 else{
                     alert("手机号码验证失败");
                 }
 
-            })
-
-
-
-            $.ajax({
-                url:"/register",
-                type:"post",
-                data:{phoneNumber:$("input[name='input-phone']").val(),
-                },
-                datatype:JSON,
-                success:function (data) {
-                }
-
 
             })
+
         })
     </script>
     <style>

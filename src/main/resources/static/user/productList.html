@@ -2,465 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        a {
-            text-decoration: none;
-        }
-
-        li{
-            list-style: none;
-        }
-        .li {
-            float: left;
-            margin-left: 20px;
-            list-style: none;
-
-        }
-
-        .nav {
-            background: #e3e4e5;
-            width: 100%;
-            position: relative;
-            /*border: 2px solid chocolate;*/
-            height: 45px;
-        }
-
-        .navleft {
-            float: left;
-            width: 10%;
-            margin-top: 0%;
-
-        }
-
-        .navright {
-            float: right;
-            margin-top: 0%;
-            width: 60%;
-            margin-right: 0%;
-
-        }
-
-        .two {
-            height: 180px;
-            padding: 10px 10px 10px 10px;
-        }
-
-        .left-two {
-            height: 180px;
-            float: left;
-            width: 24%;
-        }
-
-        .right-two {
-            height: 180px;
-            float: right;
-            width: 75%;
-        }
-
-        .right-two.noe {
-            margin-top: 30px;
-            height: 40px;
-            float: left;
-            width: 100%;
-        }
-
-        .right-two.two {
-            margin-top: 1px;
-            height: 10px;
-            float: left;
-            width: 70%;
-            padding-left: 0px;
-            padding-top: 0px;
-        }
-
-        .right-two.three {
-            margin-top: 30px;
-            height: 40px;
-            /*border: 3px solid cadetblue;*/
-            float: left;
-            width: 100%;
-            padding-top: 0;
-        }
-
-        .right-two.serach {
-            height: 100%;
-            border: 3px solid red;
-            float: left;
-            width: 50%;
-        }
-
-        .right-two-serach-input {
-            height: 80%;
-            width: 80%;
-        }
-
-        .right-two-serach-button {
-            height: 100%;
-            width: 18%;
-            background: red;
-            margin-right: 0px;
-
-        }
-
-        .right-two.noe.car {
-            height: 100%;
-            width: 18%;
-            border: 3px solid gray;
-            float: left;
-            margin-top: 0px;
-            margin-left: 20px;
-        }
-
-
-        .dog {
-            float: right;
-        }
-
-        .font-color {
-            color: #999;
-        }
-
-
-        .three-div {
-            width: 100%;
-            height: 45px;
-            /*border: #0000FF solid 3px;*/
-            border-bottom: red 4px solid;
-        }
-
-        .left {
-            width: 10%;
-            margin-left: 2%;
-            background: red;
-            padding-top: 15px;
-            height: 30px;
-            float: left;
-        }
-
-        .three-div-span {
-            color: white;
-            margin-left: 40px;
-        }
-
-        .right {
-            float: left;
-        }
-
-        .three-div-right-li {
-            list-style: none;
-            float: left;
-            margin-right: 60px;
-        }
-
-        .three-div-right-li-span {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .crumbs {
-            /*border: #00F7DE 3px solid;*/
-            height: 30px;
-            width: 100%;
-            margin-top: 20px;
-
-        }
-
-        .crumbs-left {
-            height: 30px;
-            width: 20%;
-            /*border: #00F7DE 3px solid;*/
-
-        }
-
-        .four-contain {
-            width: 90%;
-            margin-left: 4%;
-        }
-
-        .crumbs-left-a {
-            color: #666;
-            float: left;
-        }
-
-        .crumbs-left-i {
-            float: left;
-            margin-right: 5px;
-            font-family: "Helvetica Neue", "Hiragino Sans GB", SimSun, serif;
-            font-style: normal;
-            margin-left: 3px;
-            margin-right: 6px;
-        }
-
-        .crumbs-left-span {
-            font-weight: bold;
-            color: #6a666e;
-        }
-
-        .selector {
-            height: 262px;
-            /*border: #00F7DE solid 3px;*/
-            width: 100%;
-        }
-
-        .selector-one {
-            height: 120px;
-            /*border: #00F7DE solid 3px;*/
-            width: 100%;
-        }
-
-        .selector-two {
-            height: 35px;
-            /*border: #00F7DE solid 3px;*/
-            width: 100%;
-            float: left;
-        }
-
-        .selector-three {
-            height: 36px;
-            /*border: #00F7DE solid 3px;*/
-            width: 100%;
-            margin-top: 100px;
-        }
-
-
-        .selector-one-left {
-            height: 120px;
-            /*border: #00F7DE solid 3px;*/
-            width: 10%;
-            background: #f3f3f3;
-            float: left;
-            margin-top: -10px;
-        }
-
-        .selector-two-left {
-            height: 35px;
-            /*border: #00F7DE solid 3px;*/
-            width: 10%;
-            background: #f3f3f3;
-            margin-top: -10px;
-        }
-
-        .selector-one-left-span {
-            font-weight: bold;
-            color: #6a666e;
-        }
-
-        .valueList-li {
-            float: left;
-            list-style: none;
-            margin-top: -10px;
-            border: 1px #ddd solid;
-            padding-top: 2px;
-            padding-left: 6px;
-            padding-right: 6px;
-        }
-
-
-        .valueList {
-            width: 1200px;
-        }
-
-        .valueList-li-img {
-            margin-top: 5px;
-            width: 150px;
-
-        }
-
-        .valueList-two-li {
-            list-style: none;
-            margin-right: 2%;
-            float: left;
-        }
-
-        .valueList-two {
-            width: 90%;
-            margin-top: -2%;
-            margin-left: 10%;
-        }
-
-        .selector-two-li {
-        }
-
-        .three-li {
-            float: left;
-            margin-right: 50px;
-        }
-
-        .three-ul {
-            margin-left: 126px;
-            margin-top: -50px;
-        }
-
-        .product {
-            height: 400px;
-            width: 274px;
-            border: 1px solid red;
-            float: left;
-
-
-        }
-
-        .product-ul {
-            margin-left: 240px;
-            margin-top: 300px;
-
-        }
-    </style>
+    <title>ProductList</title>
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/productList.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/productList.js" rel="script"></script>
 </head>
 <body>
-<div class="nav">
-    <div class="navleft" id="diming">
-        <p>福建</p>
-    </div>
-    <div class="navright" id="menu">
-        <ul>
-            <li class="li">
-                <a class="font-color" href="#">你好亲登录</a>
-            </li>
-            <li class="li">
-                <a class="font-color" href="#">我的订单</a>
-            </li>
-            <li class="li">
-                <a class="font-color" href="#">我的京东</a>
-            </li>
-            <li class="li">
-                <a class="font-color" href="#">京东会员</a>
-            </li>
-            <li class="li">
-                <a style="color: red" href="#">企业采购</a>
-            </li>
-            <li class="li">
-                <a class="font-color" href="#">客户服务</a>
-            </li>
-            <li class="li">
-                <a class="font-color" href="#">网站导航</a>
-            </li>
-            <li class="li">
-                <a class="font-color" href="#">手机京东</a>
-            </li>
+<div id="menu">
+    <div id="menu_content">
+        <ul id="m_left">
+            <li class="iconfont red font14"></li>
+            <li><a>北京</a></li>
+        </ul>
+        <ul id="m_right">
+            <li id="m_right_first"><a href="login.html"><span class="red">你好，请登录 &nbsp;</span></a><a href="Login_1.html">免费注册</a></li>
+            <li class="spacer"></li>
+            <li class="dt"><a href="order.html" target="_blank">我的订单</a></li>
+            <li class="spacer"></li>
+            <li class="dt1"><a>我的京东</a><i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt"><a>京东会员</a></li>
+            <li class="spacer"></li>
+            <li class="dt1"><span class="red">企业采购</span><i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt1">客户服务<i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt1">网站导航<i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt">手机京东</li>
         </ul>
     </div>
 </div>
-<div class="two">
-    <div class="left-two">
-        <img class="dog" src="img/dog.png" alt="没图片">
-    </div>
-    <div class="right-two">
-        <div class="right-two noe">
-            <div class="right-two serach">
-                <input class="right-two-serach-input" type="请输入搜索内容">
-                <button class="right-two-serach-button">搜索
-                </button>
-
+<div id="header">
+    <div id="header_coutent">
+        <div id="logo"></div>
+        <div id="search">
+            <div id="search_top">
+                <div id="search_top_left">
+                    <input type="text" id="keyword" placeholder="手机" style="outline: none">
+                    <button id="search_btn">搜索</button>
+                </div>
+                <div id="search_top_center" class="red">
+                    <a href="cart.html" style="color: #e1251b">我的购物车</a>
+                    <i class="iconfont font16"></i><i class="ci-count">0</i>
+                </div>
+                <div id="search_bottom">
+                    <ul>
+                        <li><a>0元试用</a></li><li class="spacer"></li>
+                        <li><a>红魔</a></li><li class="spacer"></li>
+                        <li><a>百元空调</a></li><li class="spacer"></li>
+                        <li><a>凉鞋清仓</a></li><li class="spacer"></li>
+                        <li><a>卫浴一元</a></li><li class="spacer"></li>
+                        <li><a>满90减50</a></li><li class="spacer"></li>
+                        <li><a>0元试用</a></li><li class="spacer"></li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="right-two noe car">
-                <img src="img/car.png" alt="没图片" style="float: left;">
-                <p style="color: red; float: left;font-size: 15px; margin-top: 10px;margin-left: 15%" ;>我的购物车</p>
-            </div>
-        </div>
-        <div class="right-two two">
-            <ul style="margin-top: 4px;padding-left: 0px">
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a style="color: red" href="#">优惠300元</a>
-                </li>
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a class="font-color" href="#">正品好药</a>
-                </li>
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a class="font-color" href="#">空调钜惠</a>
-                </li>
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a class="font-color" href="#">开关五折</a>
-                </li>
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a class="font-color" href="#">美妆新品</a>
-                </li>
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a class="font-color" href="#">鞋靴清仓</a>
-                </li>
-                <li style="list-style: none; float: left; margin-right: 5px">
-                    <a class="font-color" href="#">每100-50</a>
-                </li>
-
-            </ul>
-        </div>
-        <div class="right-two three">
-            <ul style="margin-top: 0px;margin-left: 0px;padding-left: 0px;padding-top: 5px">
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: red">秒杀</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: black">优惠券</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: red">PLUS会员</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: black">品牌闪购</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: red">拍卖</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: black">京东时尚</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: red">京东超市</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: black">京东生鲜</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: red">海囤全球</a>
-                </li>
-                <li style="list-style: none;float: left;margin-left: 30px;">
-                    <a href="#" style=" font-size: 20px;color: black">京东金融</a>
-                </li>
-
-            </ul>
         </div>
     </div>
 </div>
+
 <div class="three-div">
     <div class="left">
-        <span class="three-div-span">全部商品分类</span>
+        <a><span class="three-div-span">全部商品分类</span></a>
     </div>
     <div class="right">
         <ul>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">京东时尚</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">美妆馆</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">超市</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">生鲜</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">海豚全球</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">闪购</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">拍卖</span>
-            </li>
-            <li class="three-div-right-li">
-                <span class="three-div-right-li-span">金融</span>
-            </li>
+            <li><b><a>京东时尚</a></b></li>
+            <li><a><b>美妆馆</b></a></li>
+            <li><a><b>超市</b></a></li>
+            <li><a><b>生鲜</b></a></li>
+            <li><a><b>海豚全球</b></a></li>
+            <li><a><b>闪购</b></a></li>
+            <li><a><b>拍卖</b></a></li>
+            <li><a><b>金融</b></a></li>
         </ul>
-
     </div>
 </div>
+
 <div class="four-contain">
     <div class="crumbs">
         <div class="crumbs-left">
-            <a href="#" class="crumbs-left-a">全部结果</a>
+            <a href="#" class="allResult">全部结果</a>
             <i class="crumbs-left-i"> > </i>
             <span class="crumbs-left-span">“油烟机灶具套装”</span>
         </div>
@@ -608,6 +232,10 @@
             </li>
         </ul>
     </div>
+</div>
+
+<div id="footer">
+    <iframe id="footerFrame" name="footerFrame" src="footer.html" width="990" height="400" frameborder="0" scrolling="no"></iframe>
 </div>
 </body>
 </html>
