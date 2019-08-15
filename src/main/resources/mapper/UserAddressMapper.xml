@@ -90,4 +90,12 @@
       user_id = #{userId,jdbcType=INTEGER}
     where user_address_id = #{userAddressId,jdbcType=INTEGER}
   </update>
+
+  <!-- Add -->
+  <!-- 根据用户id查询出改用户所有的地址 -->
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from tb_user_address
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -17,6 +17,9 @@ public interface ProductService {
     //根据商家id和商品名称模糊查询
     Result selectByProductNameBack(Product product);
 
-    //多表连接模糊查询
+    //多表连接模糊查询->商品首页搜索栏
     Result fuzzyQueryProduct(String name);
+
+    //商品详情页面
+    Result productItem(int userId, int productId);
 }

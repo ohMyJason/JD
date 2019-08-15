@@ -1,8 +1,8 @@
 package com.lanqiao.jd.service.impl;
 
 import com.lanqiao.jd.dao.ProductMapper;
-import com.lanqiao.jd.entity.ProdBusiComm;
-import com.lanqiao.jd.entity.Product;
+import com.lanqiao.jd.dao.UserAddressMapper;
+import com.lanqiao.jd.entity.*;
 import com.lanqiao.jd.service.ProductService;
 import com.lanqiao.jd.util.FileUtil;
 import com.lanqiao.jd.util.Result;
@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -20,6 +22,9 @@ public class ProductServiceImpl implements ProductService {
     ProductMapper productMapper;
     @Autowired
     FileUtil fileUtil;
+
+    @Autowired
+    UserAddressMapper userAddressMapper;
 
 
     //添加product
@@ -89,7 +94,8 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    //多表连接模糊查询
+
+    //多表连接模糊查询->主页搜索栏搜索商品
     @Override
     public Result fuzzyQueryProduct(String name) {
         try{
@@ -99,4 +105,26 @@ public class ProductServiceImpl implements ProductService {
             return Result.createByFailure("出现错误，联系管理员");
         }
     }
+
+    //商品想详情页
+    @Override
+    public Result productItem(int userId, int productId) {
+        List<Object> list = new ArrayList<Object>();
+        try{
+            //多表联合查询->新建一个类
+            DetailsPageSelect detailsPageSelect = productMapper.detailPage(productId);
+            list.add(detailsPageSelect);
+            //查询imgList
+            List<String> imgUrlList = productMapper.selectImgUrl(productId);
+            list.add(imgUrlList);
+            //查询userAddress
+            List<UserAddress> addressList = userAddressMapper.selectByUserId(userId);
+            list.add(addressList);
+            return Result.createSuccessResult(list);
+        }catch (Exception e){
+            return Result.createByFailure("程序出错，联系管理员");
+        }
+
+    }
+
 }
