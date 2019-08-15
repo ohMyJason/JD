@@ -124,16 +124,8 @@
 
   <!-- 主页->模糊查询 -->
   <select id="fuzzyQueryProduct" resultType="com.lanqiao.jd.entity.ProdBusiComm" parameterType="java.lang.String" >
-  select a.product_id,product_name, product_price ,product_img_url ,business_name ,ifnull(comment_count,0)as comment_count from
-  (select p.product_id,p.product_name,p.product_price,p.product_img_url,b.business_name
-  from tb_product p NATURAL join tb_business b) as a
-left join
-  (select p.product_id, count(*) as comment_count
-  from tb_comment c,tb_product p,tb_product_item pi
-  where c.product_item_id = pi.product_item_id and pi.product_id = p.product_id
-  GROUP BY p.product_id
-  ) as b
-on a.product_id = b.product_id
+  select product_id,product_name, product_price ,product_img_url ,business_name ,ifnull(comment_count,0)as comment_count
+  from baseSelect
   where product_name LIKE concat(concat("%",#{name,jdbcType=VARCHAR}),"%")
   </select>
 </mapper>
