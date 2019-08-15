@@ -67,9 +67,32 @@
                 }
 
             })
+            //确认注册信息是否全部正确
             $(".step_next_1").click(function () {
                 if(first==1&&second==1&&third==1&&fourth==1){
-                    $(location).attr('href','login.html')
+                    var phone=require('phoneNumber');
+                    $.ajax({
+                        url:"/user/register",
+                        type:"post",
+                        datatype:JSON,
+                        data:{
+                            userName:$("input[name='user']").val(),
+                            password:$("input[name='pass']").val(),
+                            phoneNumber:phone
+                        },
+                        success:function (result) {
+                            if(result.code==0){
+                                alert("5555");
+                                $.cookie("userName",$("input[name='user']").val(),{ expires:1,path:'/'});
+                                $.cookie("password",$("input[name='pass']").val(),{ expires:1,path:'/'});
+                                window.location.href="http://localhost:8080/user/login.html";
+                            }
+                        },
+                        error:function (result) {
+                            alert("5555");
+
+                        }
+                    })
                 }else{
                     alert("请完成以上内容")
                 }
