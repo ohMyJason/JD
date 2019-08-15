@@ -7,10 +7,13 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional-methods.min.js"></script>
-
+    <script src="js/jquery-cookie.js"></script>
 
     <script>
+      var phoneNumber=$.cookie("phoneNumber");
+      alert(phoneNumber);
         $(function () {
+
             $(".field").click(function () {
                 this.placeholder='';
             })
