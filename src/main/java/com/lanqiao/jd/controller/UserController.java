@@ -29,6 +29,13 @@ public class UserController {
     @Autowired
     ProductService productService;
 
+    //注册验证手机号是否存在
+    @PostMapping("/verifyPhoneNumber")
+    public Result verifyPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber){
+        return userService.verifyPhoneNumber(phoneNumber);
+    }
+
+
     //注册功能->向数据库中插入一条user记录
     //need:userName password  phoneNumber
     @PostMapping("/register")

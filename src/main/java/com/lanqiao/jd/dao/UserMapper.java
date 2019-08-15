@@ -23,4 +23,6 @@ public interface UserMapper {
     User selectUserByUserNameAndPassword(User record);
 
     User selectByUserName(User user);
+
+    User selectByPhoneNumber(String phoneNumber);
 }
