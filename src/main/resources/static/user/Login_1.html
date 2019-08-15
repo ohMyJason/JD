@@ -32,6 +32,22 @@
                 }
 
             })
+
+
+
+            $.ajax({
+                url:"/register",
+                type:"post",
+                data:{phoneNumber:$("input[name='input-phone']").val(),
+                },
+                datatype:JSON,
+                success:function (data) {
+
+
+                }
+
+
+            })
         })
     </script>
     <style>

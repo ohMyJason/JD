@@ -14,36 +14,65 @@
             $(".field").click(function () {
                 this.placeholder='';
             })
-            $(".register-form input[name='user']").blur(function () {
-                if(this.val()==''){
-                    $(".register-form  input[name='input_2']").val("用户名不能为空");
-                }else if(this.length<6){
-                    $(".register-form  input[name='input_2']").val("用户名至少为6位");
+            var first=-1;
+            var second=-1;
+            var third=-1;
+            var fourth=-1;
+
+            $("input[name='user']").blur(function () {
+                var psw=$("input[name='user']").val();
+                if(psw==""){
+                    $("input[name='input_2']").val("用户名不能为空");
+                }else if(psw.length<6){
+                    $("input[name='input_2']").val("用户名至少为6位");
+                }else {
+                    first=1;
+                    $("input[name='input_2']").hide();
                 }
             })
-            $(".register-form input[name='pass']").blur(function () {
-                if(this.val()==''){
+            $("input[name='pass']").blur(function () {
+                var psw=$("input[name='pass']").val();
+                if(psw==""){
                     $("input[name='input_3']").val("请输入密码");
-                }else if(this.length<6){
+                }else if(psw.length<6){
                     $("input[name='input_3']").val("密码至少为6位");
+                }else {
+                    second=1;
+                    $("input[name='input_3']").hide();
                 }
             })
-            $(".register-form input[name='repass']").blur(function () {
-                if(!this.val==$(".register-form input[name='pass']").val())
+            $("input[name='repass']").blur(function () {
+                var psw=$("input[name='repass']").val();
+                var pss=$("input[name='pass']").val();
+                if(psw!==pss)
                 {
                     $("input[name='input_4']").val("密码与上一次输入不同");
+                }else {
+                    third=1
+                    $("input[name='input_4']").hide();
                 }
             })
-            $(".register-form input[name='email']").blur(function () {
+            $("input[name='email']").blur(function () {
+                var psw=$("input[name='email']").val();
                 var reg=/^[_a-z0-9-\.]+@([-a-z0-9]+\.)+[a-z]{2,}$/;
-                if(this.val()==''){
-                    $("input[name='input_5']").val("请输入密码");
+                if(psw==""){
+                    $("input[name='input_5']").val("请输入邮箱");
                 }
-                else if(!reg.test(this.val()))
+                else if(!reg.test(psw))
                 {
                     $("input[name='input_5']").val("邮箱格式错误");
+                }else {
+                    fourth=1;
+                    $("input[name='input_5']").hide();
                 }
 
+            })
+            $(".step_next_1").click(function () {
+                if(first==1&&second==1&&third==1&&fourth==1){
+                    $(location).attr('href','login.html')
+                }else{
+                    alert("请完成以上内容")
+                }
             })
 
 
@@ -165,8 +194,9 @@
                     <input name="input_5" value="" type="text" class="input_1" >
                 </div>
                 <div class="item_3">
-                    <div class="step_next">
-                        立即注册
+                    <div class="step_next_1">
+                        <a href="#">立即注册</a>
+
                     </div>
                 </div>
                 <div class="other">
