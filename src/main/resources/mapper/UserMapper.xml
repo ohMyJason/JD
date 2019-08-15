@@ -27,7 +27,7 @@
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{balance,jdbcType=DECIMAL}, #{phoneNumber,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lanqiao.jd.entity.User" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userId"  parameterType="com.lanqiao.jd.entity.User" >
     insert into tb_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >

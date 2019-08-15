@@ -6,8 +6,8 @@ import com.lanqiao.jd.util.Result;
 public interface CommentService {
 
     //插入评论
-    public Result insertComment(Comment comment);
+    Result insertComment(Comment comment);
 
     //展示评论
-    public Result showCommentByItemID(int productItemId);
+    Result showCommentByItemID(int productItemId);
 }

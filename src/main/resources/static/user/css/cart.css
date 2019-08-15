@@ -237,7 +237,7 @@ ui-area-text-wrap b {
     right: 4px;
     width: 17px;
     height: 17px;
-    background: url("../images/cart3.png") no-repeat 3px 5px;
+    background: url("../images/cart/cart3.png") no-repeat 3px 5px;
     overflow: hidden;
 }
 /*购物车主体*/
@@ -291,4 +291,30 @@ ui-area-text-wrap b {
 }
 t-action {
     width: 75px;
+}
+
+.shop {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 11px;
+    font-weight: 700;
+}
+
+.jdcheckbox {
+    float: left;
+    position: relative;
+    z-index: 5;
+    vertical-align: middle;
+    margin: 0 3px 0 0;
+    padding: 0;
+}
+.cart-checkbox {
+    position: relative;
+    z-index: 3;
+    float: left;
+    margin-right: 5px;
+}
+.shop-txt {
+    float: left;
+    width: 42%;
 }
