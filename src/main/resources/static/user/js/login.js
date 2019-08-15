@@ -22,48 +22,43 @@
     });
 
     //点击登录按钮
-    $(".login_btn").click(function () {
-        var user = new Object();
-        user.name = $("#user_text").val();
-        user.pass = $("#pwd").val();
+    $("#login_btn").click(function () {
+        var name = $("#user_text").val();
+        var pass = $("#pwd").val();
 
         //非空验证
-        if((user.name==""||user.name==null)&&(user.pass==""||user.pass==null)){
+        if((name ==""||name==null)&&(pass==""||pass==null)){
             showCSS();
             $(".msg-error b").html("请输入账户名和密码");
-        }else if(user.pass==""||user.pass==null){
+        }else if(pass==""||pass==null){
             showCSS();
             $(".msg-error b").html("请输入密码");
-        }else if(user.name==""||user.name==null){
+        }else if(name==""||name==null){
             showCSS();
             $(".msg-error b").html("请输入账户名");
         }else{
             $(".msg-error b").html("");
-            //提交
+
             $.ajax({
-                url:"/login.html",
+                url:"/user/login",
                 type:"post",
-                dataType:"html",
-                data:{user:JSON.stringify(user)},
-                timeout:1000,
-                success:function (result) {
-                    if(result!=""&&result=="success"){
-                        window.location.href="/index.html";
-                    }else if(result=="failed"){
-                        showCSS();
-                        $(".msg-error b").html("登录失败，请重试！");
-                        $("#user_text").val('');
-                        $("#pwd").val('');
-                    }else if(result=="nologincode"){
-                        showCSS();
-                        $(".msg-error b").html("登录账号不存在，请重试！");
-                    }else if(result=="pwderror"){
-                        showCSS();
-                        $(".msg-error b").html("登录密码错误，请重试！");
-                    }else if(result=="nodata"){
-                        showCSS();
-                        $(".msg-error b").html("请先注册！");
+                dataType:"json",
+                data:{
+                    userName:$("#user_text").val(),
+                    password:$("#pwd").val()
+                },
+                success:function (result){
+                    alert($("#pwd").val());
+                    alert(result.code);
+                    if(result[0] == 0){
+                        alert('一致');
+                        window.location.href="http://localhost:8080/user/index.html";
+                    }else{
+                        alert("error");
                     }
+                },
+                error:function () {
+                    alert("失败")
                 }
             })
         }

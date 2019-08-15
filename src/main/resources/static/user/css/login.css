@@ -378,7 +378,7 @@ body{
     height: 40px;
     margin-top:6px;
     text-align: center;
-    background-color: #F1251b;
+    /*background-color: #F1251b;*/
 }
 
 .item4 a:hover{
@@ -423,10 +423,14 @@ body{
     outline:none;
 }
 
-.login_btn{
+#login_btn{
     width: 306px;
     line-height: 38px;
     color: #fff;
     font-size: 20px;
-    font-family: 'Microsoft YaHei'
+    font-family: 'Microsoft YaHei';
+    border: none;
+    outline: none;
+    background-color: #F1251b;
+    cursor: pointer;
 }
