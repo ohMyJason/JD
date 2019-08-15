@@ -2,13 +2,12 @@ package com.lanqiao.jd.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lanqiao.jd.annotations.UserLoginToken;
+import com.lanqiao.jd.entity.CartItem;
 import com.lanqiao.jd.entity.Comment;
 import com.lanqiao.jd.entity.Product;
 import com.lanqiao.jd.entity.User;
-import com.lanqiao.jd.service.CommentService;
-import com.lanqiao.jd.service.TokenService;
-import com.lanqiao.jd.service.ProductService;
-import com.lanqiao.jd.service.UserService;
+import com.lanqiao.jd.service.*;
+import com.lanqiao.jd.service.impl.CartItemServiceImpl;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,8 @@ public class UserController {
     CommentService commentService;
     @Autowired
     TokenService tokenService;
-
+    @Autowired
+    CartItemService cartItemService;
     @Autowired
     ProductService productService;
 
@@ -97,4 +97,17 @@ public class UserController {
     public Result fuzzyQueryProduct(String name){
         return productService.fuzzyQueryProduct(name);
     }
+
+    //购物车相关
+    //插入一条信息 参数：userId ，cartItem
+    @PostMapping("/insertCartItem")
+    public Result insertCartItem(@RequestParam(name = "userId") int userId, CartItem cartItem){
+        return cartItemService.insertCartItem(userId,cartItem);
+    }
+    //删除信息 参数：user，producId
+    @PostMapping("/deleteCartItem")
+    public  Result deleteCartItem(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
+        return cartItemService.deleteCartItem(userId,productId);
+    }
+
 }
