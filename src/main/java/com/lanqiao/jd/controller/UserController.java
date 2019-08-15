@@ -153,4 +153,10 @@ public class UserController {
             return Result.createByFailure();
         }
     }
+
+    //商品详情页
+    @PostMapping("/detailPage")
+    public Result detailPage(int userId, int productId){
+        return productService.productItem(userId,productId);
+    }
 }
