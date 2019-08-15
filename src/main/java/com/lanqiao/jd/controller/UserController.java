@@ -1,6 +1,7 @@
 package com.lanqiao.jd.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.lanqiao.jd.annotations.UserLoginToken;
 import com.lanqiao.jd.entity.CartItem;
 import com.lanqiao.jd.entity.Comment;
@@ -8,12 +9,17 @@ import com.lanqiao.jd.entity.Product;
 import com.lanqiao.jd.entity.User;
 import com.lanqiao.jd.service.*;
 import com.lanqiao.jd.service.impl.CartItemServiceImpl;
+import com.lanqiao.jd.util.CodeUtil;
 import com.lanqiao.jd.util.Result;
+import com.lanqiao.jd.util.SmsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lanqiao.jd.util.CodeUtil.getNewcode;
+import static com.lanqiao.jd.util.CodeUtil.setNewcode;
 
 @RestController
 @RequestMapping("/user")
@@ -28,6 +34,12 @@ public class UserController {
     CartItemService cartItemService;
     @Autowired
     ProductService productService;
+    @Autowired
+    SmsUtils smsUtils;
+
+    @Autowired
+    CodeUtil codeUtil;
+
 
     //注册功能->向数据库中插入一条user记录
     //need:userName password  phoneNumber
@@ -110,4 +122,23 @@ public class UserController {
         return cartItemService.deleteCartItem(userId,productId);
     }
 
+
+    //发送手机验证码
+    @PostMapping("/sendMsg")
+    //need:phoneNumber
+    public Result sendMsg(@RequestParam(name = "phoneNumber") String phoneNumber){
+        setNewcode();
+        String code = Integer.toString(getNewcode());
+        try{
+            SendSmsResponse sendSms =smsUtils.sendSms(phoneNumber,code);//填写你需要测试的手机号码
+            System.out.println("短信接口返回的数据----------------");
+            System.out.println("Code=" + sendSms.getCode());
+            System.out.println("Message=" + sendSms.getMessage());
+            System.out.println("RequestId=" + sendSms.getRequestId());
+            System.out.println("BizId=" + sendSms.getBizId());
+            return Result.createSuccessResult();
+        }catch(Exception e){
+            return Result.createByFailure();
+        }
+    }
 }
