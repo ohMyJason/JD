@@ -98,6 +98,5 @@ public class ProductServiceImpl implements ProductService {
         }catch (Exception e){
             return Result.createByFailure("出现错误，联系管理员");
         }
-
     }
 }
