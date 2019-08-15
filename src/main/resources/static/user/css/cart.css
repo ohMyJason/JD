@@ -293,28 +293,102 @@ t-action {
     width: 75px;
 }
 
-.shop {
-    height: 30px;
-    line-height: 30px;
-    padding-left: 11px;
-    font-weight: 700;
+.cart-item-list{
+    width: 990px;
+    height: 150px;
+    position: center;
+    background-color: #FFF4E8;
+    margin-bottom: 20px;
 }
 
-.jdcheckbox {
-    float: left;
-    position: relative;
-    z-index: 5;
-    vertical-align: middle;
-    margin: 0 3px 0 0;
-    padding: 0;
+.shop{
+    width: 990px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff;
+    border-bottom: 2px solid #999999;
 }
-.cart-checkbox {
-    position: relative;
-    z-index: 3;
+
+.list-checkbox{
     float: left;
-    margin-right: 5px;
+    margin: 10px 12px;
 }
-.shop-txt {
+
+.shop-name{
+    border: none;
+    background-color: #e1251b;
+    border-radius: 3px;
+    text-align: center;
+    color: white;
+    margin-left: -5px;
+    padding: 2px 3px;
+}
+.list-check{
     float: left;
-    width: 42%;
+    margin-top: 20px;
+    margin-left: -24px;
+}
+
+.product-item{
+    width: 948px;
+    height: 80px;
+    margin-top: 15px;
+    background-color: #FFF4E8;
+    float: right;
+}
+
+.pro-img{
+    float: left;
+    width: 80px;
+    height: 80px;
+}
+
+.pro-name,.pro-detail{
+    float: left;
+    width: 205px;
+    margin-left: 15px;
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+    background-color: transparent;
+    border: none;
+    /*resize: none;  !* 多行文本框右下角的扩展按钮消除 *!*/
+}
+
+.pro-price{
+    float: left;
+    width: 25px;
+    height: 20px;
+    margin-left: 30px;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    color: black;
+}
+
+.pro-num{
+    float: left;
+    margin-left: 50px;
+}
+
+#add-btn,#sub-btn{
+    width: 15px;
+    height: 20px;
+    text-align: center;
+    background-color: white;
+    border: #999999 0.5px solid;
+}
+
+#number{
+    width: 45px;
+    height: 20px;
+    text-align: center;
+    background-color: white;
+    border: #999999 0.5px solid;
+}
+
+.total-price{
+    margin-left: 50px;
+}
+
+#delete,#move{
+    margin-left: 77px;
 }
