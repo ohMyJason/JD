@@ -1,32 +1,46 @@
 package com.lanqiao.jd.service.impl;
 
+import com.lanqiao.jd.dao.ShopCartMapper;
 import com.lanqiao.jd.dao.UserMapper;
+import com.lanqiao.jd.entity.ShopCart;
 import com.lanqiao.jd.entity.User;
 import com.lanqiao.jd.service.UserService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-    //实现注册功能
+    @Autowired
+    ShopCartMapper shopCartMapper;
+
+    //实现注册功能  用户表中插入记录&购物车表中插入记录
     @Override
+    @Transactional
     public Result register(User user) {
-        try{
-            int col =  userMapper.insertSelective(user);
-            if(col>0){
+        //向用户表中插入记录
+        int col =  userMapper.insertSelective(user);
+        if(col>0){
+            int userId = user.getUserId();
+            System.out.println(userId + " ");
+            //向购物车中插入记录
+            ShopCart shopCart = new ShopCart();
+            shopCart.setUserId(userId);
+            int ret = shopCartMapper.insert(shopCart);
+            if(ret > 0){
                 return Result.createSuccessResult();
             }
-            else {
+            else{
                 return Result.createByFailure("数据库错误");
             }
-        }catch(Exception e){
-            return Result.createByFailure("出现错误，可能是用户已存在或手机号已经被注册");
         }
-
+        else {
+            return Result.createByFailure("数据库错误");
+        }
     }
 
     //登录

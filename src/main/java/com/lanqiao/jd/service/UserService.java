@@ -5,6 +5,7 @@ import com.lanqiao.jd.util.Result;
 
 public interface UserService {
     //注册用户->向User表中插入数据
+    //同时在购物车表中新建一个用户与购物车的一对一记录
     Result register(User user);
 
     //登录用户->检查用户名密码是否有匹配值
