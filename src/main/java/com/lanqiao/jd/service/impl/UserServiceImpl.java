@@ -18,6 +18,19 @@ public class UserServiceImpl implements UserService {
     @Autowired
     ShopCartMapper shopCartMapper;
 
+    @Override
+    public Result verifyPhoneNumber(String phoneNumber) {
+        try{
+            if(userMapper.selectByPhoneNumber(phoneNumber) != null){
+                return Result.createByFailure("该手机号已注册，请直接登录！");
+            }else {
+                return Result.createSuccessResult();
+            }
+        }catch (Exception e){
+            return Result.createByFailure("出现错误，联系管理员");
+        }
+    }
+
     //实现注册功能  用户表中插入记录&购物车表中插入记录
     @Override
     @Transactional
