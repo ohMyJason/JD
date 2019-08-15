@@ -3,6 +3,7 @@ package com.lanqiao.jd.service.impl;
 import com.lanqiao.jd.dao.CartItemMapper;
 import com.lanqiao.jd.dao.ShopCartMapper;
 import com.lanqiao.jd.entity.CartItem;
+import com.lanqiao.jd.entity.Cart_Product_Business;
 import com.lanqiao.jd.service.CartItemService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,16 @@ public class CartItemServiceImpl implements CartItemService {
                 return Result.createByFailure("删除失败！");
             }
 
+        }catch (Exception e){
+            return Result.createByFailure("出现错误，联系管理员！");
+        }
+    }
+
+    @Override
+    public Result showCartItem(int userId) {
+        try{
+            List<Cart_Product_Business> cart_product_businessList = cartItemMapper.selectCartItemByuserId(userId);
+            return Result.createSuccessResult(cart_product_businessList.size(),cart_product_businessList);
         }catch (Exception e){
             return Result.createByFailure("出现错误，联系管理员！");
         }

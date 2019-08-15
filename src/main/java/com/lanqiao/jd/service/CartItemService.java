@@ -8,4 +8,6 @@ public interface CartItemService {
     public Result insertCartItem(int userId, CartItem cartItem);
     //删除一条信息
     public Result deleteCartItem(int userId, int productId);
+    //展示购物车信息
+    public Result showCartItem(int userId);
 }
