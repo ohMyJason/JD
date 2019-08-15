@@ -1,6 +1,7 @@
 package com.lanqiao.jd.dao;
 
 import com.lanqiao.jd.entity.CartItem;
+import com.lanqiao.jd.entity.Cart_Product_Business;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,6 @@ public interface CartItemMapper {
     CartItem selectByProductId(@Param("shopCartId") Integer shopCartId,@Param("productId")  Integer productId);
 
     List<CartItem> selectByShopCartId(Integer cartItemId);
+
+    List<Cart_Product_Business> selectCartItemByuserId(Integer userId);
 }

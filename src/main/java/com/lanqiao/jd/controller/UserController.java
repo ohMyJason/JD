@@ -123,10 +123,15 @@ public class UserController {
     public Result insertCartItem(@RequestParam(name = "userId") int userId, CartItem cartItem){
         return cartItemService.insertCartItem(userId,cartItem);
     }
-    //删除信息 参数：user，producId
+    //删除信息 参数：userId，producId
     @PostMapping("/deleteCartItem")
     public  Result deleteCartItem(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
         return cartItemService.deleteCartItem(userId,productId);
+    }
+    //查看购物车信息
+    @PostMapping("/showCartItem")
+    public Result showCartItem(@RequestParam(name = "userId") int userId){
+        return cartItemService.showCartItem(userId);
     }
 
 
