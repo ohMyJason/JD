@@ -2,8 +2,10 @@ package com.lanqiao.jd.controller;
 
 import com.lanqiao.jd.entity.ProductImgList;
 import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.util.CodeUtil;
 import com.lanqiao.jd.util.FileUtil;
 import com.lanqiao.jd.util.Result;
+import com.lanqiao.jd.util.SmsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
@@ -40,4 +42,5 @@ public class TestController {
 //        productImgList.setImgUrl(relaPath);
         return  Result.createSuccessResult(absoPath);
     }
+
 }
