@@ -3,8 +3,6 @@ package com.lanqiao.jd.entity;
 public class DetailsPageSelect {
     private Integer productId;
 
-    private Integer productItemId;
-
     private String productName;
 
     private Integer productPrice;
@@ -31,14 +29,6 @@ public class DetailsPageSelect {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
-    }
-
-    public Integer getProductItemId() {
-        return productItemId;
-    }
-
-    public void setProductItemId(Integer productItemId) {
-        this.productItemId = productItemId;
     }
 
     public String getProductName() {
