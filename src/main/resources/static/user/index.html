@@ -15,7 +15,7 @@
                     alert("搜索信息不能为空");
                 }else {
                     $.ajax({
-                        url: "http://localhost:8080/user/fuzzyQueryProduct",
+                        url: "/user/fuzzyQueryProduct",
                         type: "post",
                         datatype: "json",
                         data: {
@@ -23,9 +23,9 @@
                         },
                         success: function (result) {
                             if (result.code==0) {
-                                for(var i=0;i<result.data.length;i++){
-                                             alert(result.data[i].productName)
-                                            }
+                                window.location.href="http://localhost:8080/user/productList.html"
+                            }else{
+                                alert("error");
                             }
                         }
 
