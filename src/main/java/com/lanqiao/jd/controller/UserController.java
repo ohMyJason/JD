@@ -1,14 +1,10 @@
 package com.lanqiao.jd.controller;
-
-import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.lanqiao.jd.annotations.UserLoginToken;
 import com.lanqiao.jd.entity.CartItem;
 import com.lanqiao.jd.entity.Comment;
-import com.lanqiao.jd.entity.Product;
 import com.lanqiao.jd.entity.User;
 import com.lanqiao.jd.service.*;
-import com.lanqiao.jd.service.impl.CartItemServiceImpl;
 import com.lanqiao.jd.util.CodeUtil;
 import com.lanqiao.jd.util.Result;
 import com.lanqiao.jd.util.SmsUtils;
