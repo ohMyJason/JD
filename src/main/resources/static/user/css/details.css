@@ -184,13 +184,16 @@
 
     display: none;
 
+    position: relative;
+
+    z-index: 4;
 }
 .wrap{
     width: 590px;
 
     float: left;
 
-    margin-left: 402px;
+    margin-left: 450px;
 
     height: 418px;
 
