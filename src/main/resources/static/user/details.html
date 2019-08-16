@@ -95,21 +95,22 @@
             });
             $("input[type='submit']").click(function () {
                 $.ajax({
-                    url:"/insertComment",
-                    type:"post",
-                    data:{
-                        comment:$("textarea[name='message']").val(),
+                    url: "/insertComment",
+                    type: "post",
+                    data: {
+                        comment: $("textarea[name='message']").val(),
                     },
-                    datatype:"json",
+                    datatype: "json",
                     success: function (data) {
-                        if(data==1){
+                        if (data == 1) {
                             alert("插入成功")
                             location.reload();
-                        }else {
+                        } else {
                             alert("插入失败")
                         }
                     }
                 })
+            })
         })
     </script>
 </head>
