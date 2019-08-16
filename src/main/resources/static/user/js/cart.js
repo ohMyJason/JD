@@ -1,8 +1,8 @@
 ($(function () {
         show();
 
-        $("#add-btn").click(function () {
-            alert(1);
+        // $("#add-btn").click(function () {
+        //     alert(1);
             // alert(this);
             // $.ajax({
             //     url:"/user/addCartItemNum",
@@ -16,17 +16,7 @@
             //         alert('success');
             //     }
             // })
-        });
-
-        //减少数量
-        $("#sub-btn").click(function () {
-            var num = parseInt($("#number").html());
-            if(num>1){
-                $("#number").val(num-1);
-            }else{
-                $("#number").val(1);
-            }
-        });
+        // });
 
         function show() {
             $.ajax({
@@ -52,7 +42,7 @@
                             $temp.eq(4).children().eq(1).val(result.data[i].num);
                             $temp.eq(5).html(result.data[i].productId);
                             $("#jd-cart").append($node);
-                            $node = $("#jd-cart").children().eq(1).clone();
+                            $node = $("#jd-cart").children().eq(1).clone(true);
                         }
                     }
                 },
@@ -62,6 +52,24 @@
             })
         }
 
+        //添加数量
+        $("#add-btn").click(function () {
+            var num = $(this).prev().val();
+            $(this).prev().val(parseInt(num)+1);
+            $("#number").trigger("input");
+            // alert($(this).parent().parent().eq(6).text());
+            // $(".total-price").text(parseInt($("#number").val())*parseInt($(".pro-price").val()));
+        });
+
+        //减少数量
+        $("#sub-btn").click(function () {
+            var num = parseInt($(this).next().val());
+            if(num>1){
+                $(this).next().val(num-1);
+            }else{
+                $(this).next().val(1);
+            }
+        });
 
 })
 )
