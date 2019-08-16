@@ -41,7 +41,6 @@
                         success:function (result) {
                             if(result.code==0){
                                 $.cookie("phoneNumber",$("input[name='input-phone']").val(),{path:'/'});
-                                // $(location).attr('href','Login_2.html');
                                 window.location.href="http://localhost:8080/user/Login_2.html";
                             }else{
                                 //手机号码已经存在，弹出提示信息

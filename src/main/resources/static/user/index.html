@@ -23,6 +23,7 @@
                         },
                         success: function (result) {
                             if (result.code==0) {
+                                alert(result.data[0].productId);
                                 window.location.href="http://localhost:8080/user/productList.html"
                             }else{
                                 alert("error");

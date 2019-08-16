@@ -479,3 +479,7 @@ t-action {
     border: none;
     outline: none;
 }
+
+#product-id{
+    display: none;
+}
