@@ -40,7 +40,7 @@
                         //对比数据库已经存在的手机号码，返回一个确认值
                         success:function (result) {
                             if(result.code==0){
-                                $.cookie("phoneNumber",$("input[name='input-phone']").val(),{ expires:1,path:'/'});
+                                $.cookie("phoneNumber",$("input[name='input-phone']").val(),{path:'/'});
                                 // $(location).attr('href','Login_2.html');
                                 window.location.href="http://localhost:8080/user/Login_2.html";
                             }else{
