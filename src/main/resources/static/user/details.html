@@ -6,14 +6,15 @@
     <link href="css/details.css" rel="stylesheet">
     <link href="css/layui.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/layui.js"></script>
     <script>
         $(function() {
             var $yin = $(".yin");
-            $(".Ul li img").mouseover(function() {
+            $(".Ul li img").mouseover(function () {
                 $(this).parent().addClass("li").siblings().removeClass("li");
                 $("#pian").attr("src", $(this).attr("src"));
                 $("#zhao").attr("src", $(this).attr("src"));
-            }).mouseout(function() {
+            }).mouseout(function () {
                 $(this).parent().removeClass("li");
             });
             var l = $(".shang").eq(0).offset().left;
@@ -23,21 +24,25 @@
             var maxL = $(".shang").width() - $yin.outerWidth();
             var maxT = $(".shang").height() - $yin.outerHeight();
             var bili = $("#zhao").width() / $("#pian").width();
-            $(".shang").mousemove(function(e) {
+            $(".shang").mousemove(function (e) {
                 var maskL = e.clientX - l - width1,
                     maskT = e.clientY - t - height1;
                 if (maskL < 0) {
                     maskL = 0
-                };
+                }
+                ;
                 if (maskT < 0) {
                     maskT = 0
-                };
+                }
+                ;
                 if (maskL > maxL) {
                     maskL = maxL
-                };
+                }
+                ;
                 if (maskT > maxT) {
                     maskT = maxT
-                };
+                }
+                ;
                 $yin.css({
                     "left": maskL,
                     "top": maskT
@@ -49,67 +54,73 @@
                     "margin-top": -maskT * bili
                 });
             });
-            $(".shang").mouseleave(function() {
+            $(".shang").mouseleave(function () {
                 $(".xia").hide();
                 $(".yin").hide();
             });
             var marginLeft = 0;
-            $(".you").click(function() {
+            $(".you").click(function () {
                 marginLeft = marginLeft - 64;
                 if (marginLeft < -64) {
                     marginLeft = -64
-                };
+                }
+                ;
                 $(".tab ul").stop().animate({
                         "margin-left": marginLeft
                     },
                     "fast");
             });
-            $(".zuo").click(function() {
+            $(".zuo").click(function () {
                 marginLeft = marginLeft + 64;
                 if (marginLeft > 0) {
                     marginLeft = 0
-                };
+                }
+                ;
                 $(".tab ul").stop().animate({
                         "margin-left": marginLeft
                     },
                     "fast");
             });
-            $(".lie li").click(function() {
+            $(".lie li").click(function () {
                 var index = $(this).index();
                 $(this).addClass("ll").siblings().removeClass("ll");
                 $(".bao1>div").eq(index).show().siblings().hide();
             });
-            $("input[value='+']").click(function(){
+            $("input[value='+']").click(function () {
                 $(this).prev().val(parseInt($(this).prev().val()) + 1);
                 $("input[name='num']").trigger("input");
             });
-            $("input[value='-']").click(function(){
+            $("input[value='-']").click(function () {
                 var $num = parseInt($(this).next().val());
-                if($num>1) {
+                if ($num > 1) {
                     $(this).next().val($num - 1);
                     $("input[name='num']").trigger("input");
-                }
-                else {
+                } else {
                     $(this).closest("ul").find("span").click();
                 }
             });
             $("input[type='submit']").click(function () {
                 $.ajax({
-                    url:"/insertComment",
-                    type:"post",
-                    data:{
-                        comment:$("textarea[name='message']").val(),
+                    url: "/user/insertComment",
+                    type: "post",
+                    data: {
+                        commentDetail: $("textarea[name='message']").val(),
+                        commentLevel: $("input[name='level']").val(),
+                        productItemId:$("input[name='productid']").val(),
+                        userId:$("input[name='userid']").val(),
+
                     },
-                    datatype:"json",
-                    success: function (data) {
-                        if(data==1){
+                    datatype: "json",
+                    success: function (result) {
+                        if (result.code==0) {
                             alert("插入成功")
-                            location.reload();
-                        }else {
+                            // location.reload();
+                        } else {
                             alert("插入失败")
                         }
                     }
                 })
+            })
         })
     </script>
 </head>
@@ -215,6 +226,9 @@
                         <form>
                             <div class="msg">
                                 <textarea name="message" rows="5" cols="72"></textarea>
+                                <input name="level" value="1">
+                                <input name="userid" value="qwe">
+                                <input name="productid" value="2">
                             </div>
                             <div align="center"><input type="reset" value="清除"/> <input type="submit" value="发表"/></div>
                         </form>
