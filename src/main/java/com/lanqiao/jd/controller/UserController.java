@@ -12,6 +12,7 @@ import com.lanqiao.jd.util.SmsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,9 @@ public class UserController {
 
     @Autowired
     CodeUtil codeUtil;
+
+    @Autowired
+    OrderService orderService;
 
 
     //注册验证手机号是否存在
@@ -170,6 +174,34 @@ public class UserController {
         return productService.productItem(userId,productId);
     }
 
+
+    //提交订单(先向订单表中插入订单信息，获取到orderId，然后下向)
+    //need:userId userAddressId totalPrice
+    //need:OrderItem(productId, num)
+    @PostMapping("/order")
+    public Result insertOrder( ){
+//        OrderVo orderVo
+//        for(OrderItem orderItem:orderVo.getOrderItem()){
+//            System.out.println(orderItem.toString());
+//        }
+//        System.out.println(orderVo.getUserId() + " " + orderVo.getUserAddressId() + " " + orderVo.getTotalPrice() + " ");
+//        return Result.createSuccessResult();
+
+        OrderVo orderVo = new OrderVo();
+        List<OrderItem> list = new ArrayList<>();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setNum(2);
+        orderItem.setProductId(3);
+        list.add(orderItem);
+        orderVo.setOrderItem(list);
+        orderVo.setUserId(3);
+        orderVo.setUserAddressId(2);
+        BigDecimal a = new BigDecimal("253");
+        orderVo.setTotalPrice(a);
+        return orderService.insertOrder(orderVo);
+    }
+
+
 //    @PostMapping("/order")
 ////    @ResponseBody
 //    public Result insertOrder(@RequestBody List<OrderItem> orderItems,@RequestParam(name = "userId")int userId,@RequestParam(name = "userAddressId") int userAddressId,@RequestParam(name = "totalPrice") BigDecimal totalPrice ){
@@ -182,13 +214,5 @@ public class UserController {
 //        return Result.createSuccessResult();
 //    }
 
-    //别给我删了
-//    @PostMapping("/order")
-////    @ResponseBody
-//    public Result insertOrder(@RequestBody List<OrderItem> orderItems ){
-//        for(OrderItem orderItem:orderItems){
-//            System.out.println(orderItem.toString());
-//        }
-//        return Result.createSuccessResult();
-//    }
+
 }
