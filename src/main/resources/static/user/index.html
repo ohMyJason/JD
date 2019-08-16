@@ -7,6 +7,33 @@
     <link href="css/index.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/index.js" rel="script"></script>
+    <script>
+        $(function () {
+            $(".button").click(function () {
+                var keyword = $("input[name='keyword']").val();
+                if (keyword==null||keyword==''){
+                    alert("搜索信息不能为空");
+                }else {
+                    $.ajax({
+                        url: "/user/fuzzyQueryProduct",
+                        type: "post",
+                        datatype: "json",
+                        data: {
+                             name:$("#keyword").val()
+                        },
+                        success: function (result) {
+                            if (result.code==0) {
+                                window.location.href="http://localhost:8080/user/productList.html"
+                            }else{
+                                alert("error");
+                            }
+                        }
+
+                    })
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 <div id="menu">
@@ -40,7 +67,7 @@
         <div id="search">
             <div id="search_top">
                 <div id="search_top_left">
-                    <input type="text" id="keyword" placeholder="手机" style="outline: none">
+                    <input type="text" id="keyword" name="keyword" placeholder="手机" style="outline: none">
                     <button class="button">
                         <img src="images/index/kuo.png">
                     </button>

@@ -97,8 +97,17 @@
   <select id="selectCartItemByuserId" resultType="com.lanqiao.jd.entity.Cart_Product_Business" parameterType="java.lang.Integer" >
     select x.business_name,x.product_id,x.product_name,x.product_img_url, i.detail_1, x.product_price,c.num
     from baseSelect x, tb_cart_item c,tb_product_item i,tb_shop_cart s
-    where s.user_id = #{UserId,jdbcType=INTEGER} and c.shop_cart_id = (select shop_cart_id from tb_shop_cart where user_id = #{UserId,jdbcType=INTEGER})
+    where s.user_id = #{userId,jdbcType=INTEGER} and c.shop_cart_id = (select shop_cart_id from tb_shop_cart where user_id = #{userId,jdbcType=INTEGER})
     and i.product_id = x.product_id and c.product_id = x.product_id
   </select>
+
+  <select id="selectByUserIdAndProductId" resultMap="BaseResultMap" >
+    select
+    c.*
+    from tb_cart_item c,tb_shop_cart s
+    where s.user_id = #{userId} and c.product_id = #{productId} and c.shop_cart_id = s.shop_cart_id
+  </select>
+
+
 
 </mapper>

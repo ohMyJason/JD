@@ -101,9 +101,9 @@ public class UserController {
     @PostMapping("/insertComment")
     public Result insertComment(Comment comment){return commentService.insertComment(comment);}
     //展示某个商品的评论
-    @PostMapping("/showCommentByItemId")
-    public Result showCommentByItemId(@RequestParam(name = "productItemId") int productItemId){
-        return commentService.showCommentByItemID(productItemId);
+    @PostMapping("/showCommentByProductId")
+    public Result showCommentByItemId(@RequestParam(name = "productId") int productId){
+        return commentService.showCommentByItemID(productId);
     }
 
 
@@ -130,6 +130,19 @@ public class UserController {
     public Result showCartItem(@RequestParam(name = "userId") int userId){
         return cartItemService.showCartItem(userId);
     }
+    //数量+1
+    @PostMapping("/addCartItemNum")
+    public Result addCartItemNum(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
+        return cartItemService.addCartItemNum(userId,productId);
+    }
+    //数量-1
+    @PostMapping("/subCartItemNum")
+    public Result subCartItemNum(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
+        return cartItemService.subCartItemNum(userId,productId);
+    }
+
+
+
 
 
     //发送手机验证码

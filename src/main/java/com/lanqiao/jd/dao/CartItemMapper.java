@@ -28,4 +28,6 @@ public interface CartItemMapper {
     List<CartItem> selectByShopCartId(Integer cartItemId);
 
     List<Cart_Product_Business> selectCartItemByuserId(Integer userId);
+
+    CartItem selectByUserIdAndProductId(@Param("userId") Integer userId,@Param("productId")  Integer productId);
 }

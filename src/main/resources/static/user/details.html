@@ -93,18 +93,36 @@
                     $(this).closest("ul").find("span").click();
                 }
             });
-        });
+            $("input[type='submit']").click(function () {
+                $.ajax({
+                    url:"/insertComment",
+                    type:"post",
+                    data:{
+                        comment:$("textarea[name='message']").val(),
+                    },
+                    datatype:"json",
+                    success: function (data) {
+                        if(data==1){
+                            alert("插入成功")
+                            location.reload();
+                        }else {
+                            alert("插入失败")
+                        }
+                    }
+                })
+        })
     </script>
 </head>
 <body>
 <div>
-    <div class="da">
+    <div class="da ">
 
         <div class="shang">
 
             <img src="images/details/details1.jpg" height="350" width="350" id="pian" />
 
             <div class="yin"></div>
+
         </div>
 
         <div class="bao">
@@ -135,17 +153,19 @@
             <div class="summary">
                 <div class="dt">京东价</div>
                 <div class="dd">
-                    <span class="price">
-                        <span>￥</span>
-                        <span>29.90</span>
-                    </span>
+                                <span class="price">
+                                    <span>￥</span>
+                                    <span>29.90</span>
+                                </span>
                 </div>
                 <div class="btns">
                     <ul>
                         <li class="num"><input type="button" value="-" style="width: 20px"> <input name="num" type="text" value="1" size="5px"> <input type="button" value="+" style="width: 20px">
+                            <button class="layui-btn layui-btn-warm"><a href="cart.html">加入购物车</a></button>
                         </li>
+
                     </ul>
-                    <button class="layui-btn layui-btn-warm">加入购物车</button>
+
                 </div>
             </div>
         </div>
@@ -155,7 +175,7 @@
 
                 <li class="ll">图文介绍</li>
 
-                <li>评论（1）</li>
+                <li>评论</li>
 
             </ul>
 
@@ -177,13 +197,34 @@
 
                 <div class="down">
 
-                    <img src="images/details/details1.jpg" height="300" width="1329" />
-
+                    <div class="article">
+                        <div class="author">用户:张三<span>12#</span></div>
+                        <div class="content">测试一下</div>
+                        <div class="time page">发表于:2019-02-09 13:12:23</div>
+                    </div>
+                    <div class="article">
+                        <div class="author">用户:张三<span>12#</span></div>
+                        <div class="content">测试一下</div>
+                        <div class="time page">发表于:2019-02-09 13:12:23</div>
+                    </div>
+<!--                    <div class="page">-->
+<!--                        <input class="btn1" type="button" value="上一页" onClick="">-->
+<!--                        <input class="btn1" type="button" value="下一页" onClick="">-->
+<!--                    </div><br>-->
+                    <div>
+                        <form>
+                            <div class="msg">
+                                <textarea name="message" rows="5" cols="72"></textarea>
+                            </div>
+                            <div align="center"><input type="reset" value="清除"/> <input type="submit" value="发表"/></div>
+                        </form>
+                    </div>
                 </div>
-
             </div>
 
         </div>
+
+    </div>
 
     <div class="xia">
 
@@ -191,5 +232,6 @@
 
     </div>
 
-</div> </body>
+</div>
+</body>
 </html>
