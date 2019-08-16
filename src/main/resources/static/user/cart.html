@@ -7,11 +7,7 @@
     <link href="css/base.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
-    <script>
-        $(function () {
-
-        })
-    </script>
+    <script src="js/cart.js"></script>
 </head>
 <body>
     <div id="cart-top">
@@ -113,7 +109,7 @@
                 <div class="cart-thead">
                     <div class="column t-checkbox">
                         <div class="cart-checkbox">
-                            <input type="checkbox" name="toggle-checkboxes">全选
+                            <input type="checkbox" name="toggle-checkboxes">&nbsp;&nbsp;全选
                         </div>
                     </div>
                     <div class="column t-goods">商品</div>
@@ -124,16 +120,24 @@
                     <div class="column t-action">操作</div>
                 </div>
                 <div class="cart-item-list">
-                    <div class="cart-tbody">
-                        <div class="shop">
-                            <div class="cart-checkbox">
-                                <input type="checkbox" name="checkShop" class="jdcheckbox">
-                            </div>
-                            <span class="shop-txt">慕藤服装专营店</span>
+                    <div class="shop">
+                        <input class="list-checkbox" type="checkbox">
+                        <a class="shop-name"><span class="shop_name">京东自营</span></a>
+                    </div>
+                    <input class="list-check" type="checkbox">
+                    <div class="product-item">
+                        <img class="pro-img">
+                        <span class="pro-name">哈哈哈哈哈</span>
+                        <span class="pro-detail">啊啊啊</span>
+                        <p class="pro-price">&yen;240</p>
+                        <div class="pro-num">
+                            <input id="sub-btn" type="button" value="-"><input id="number" type="text" value="1"><input id="add-btn" type="button" value="+">
                         </div>
+                        <b class="total-price pro-price">&yen;249</b>
+                        <a><span id="delete">删除</span></a><br>
+                        <a><span id="move">移到我的关注</span></a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -81,4 +81,34 @@ public class CartItemServiceImpl implements CartItemService {
             return Result.createByFailure("出现错误，联系管理员！");
         }
     }
+
+    @Override
+    public Result addCartItemNum(int userId, int productId) {
+        try {
+            CartItem cartItem = cartItemMapper.selectByUserIdAndProductId(userId,productId);
+            cartItem.setNum(cartItem.getNum()+1);
+            if(cartItemMapper.updateByPrimaryKeySelective(cartItem) > 0){
+                return Result.createSuccessResult();
+            }else {
+                return Result.createByFailure("增加数量失败!");
+            }
+        } catch (Exception e) {
+            return Result.createByFailure("出现错误，联系管理员！");
+        }
+    }
+
+    @Override
+    public Result subCartItemNum(int userId, int productId) {
+        try {
+            CartItem cartItem = cartItemMapper.selectByUserIdAndProductId(userId,productId);
+            cartItem.setNum(cartItem.getNum()-1);
+            if(cartItemMapper.updateByPrimaryKeySelective(cartItem) > 0){
+                return Result.createSuccessResult();
+            }else {
+                return Result.createByFailure("增加数量失败!");
+            }
+        } catch (Exception e) {
+            return Result.createByFailure("出现错误，联系管理员！");
+        }
+    }
 }
