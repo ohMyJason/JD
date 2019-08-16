@@ -104,9 +104,9 @@ public class UserController {
     @PostMapping("/insertComment")
     public Result insertComment(Comment comment){return commentService.insertComment(comment);}
     //展示某个商品的评论
-    @PostMapping("/showCommentByItemId")
-    public Result showCommentByItemId(@RequestParam(name = "productItemId") int productItemId){
-        return commentService.showCommentByItemID(productItemId);
+    @PostMapping("/showCommentByProductId")
+    public Result showCommentByItemId(@RequestParam(name = "productId") int productId){
+        return commentService.showCommentByItemID(productId);
     }
 
 

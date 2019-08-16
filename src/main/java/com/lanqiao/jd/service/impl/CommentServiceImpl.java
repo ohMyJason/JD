@@ -2,6 +2,7 @@ package com.lanqiao.jd.service.impl;
 
 
 import com.lanqiao.jd.dao.CommentMapper;
+import com.lanqiao.jd.dao.ProductItemMapper;
 import com.lanqiao.jd.entity.Comment;
 import com.lanqiao.jd.service.CommentService;
 import com.lanqiao.jd.util.Result;
@@ -16,6 +17,8 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentMapper commentMapper;
+    @Autowired
+    ProductItemMapper productItemMapper;
     @Override
     public Result insertComment(Comment comment) {
         try{
@@ -34,8 +37,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Result showCommentByItemID(int productItemId) {
+    public Result showCommentByItemID(int productId) {
         try{
+            int productItemId = productItemMapper.selectByProductId(productId).getProductItemId();
             List<Comment> commentList = commentMapper.selectByProductItemId(productItemId);
             return Result.createSuccessResult(commentList.size(),commentList);
         }catch (Exception e){
