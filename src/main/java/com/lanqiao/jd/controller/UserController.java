@@ -3,10 +3,7 @@ package com.lanqiao.jd.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.lanqiao.jd.annotations.UserLoginToken;
-import com.lanqiao.jd.entity.CartItem;
-import com.lanqiao.jd.entity.Comment;
-import com.lanqiao.jd.entity.Product;
-import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.entity.*;
 import com.lanqiao.jd.service.*;
 import com.lanqiao.jd.service.impl.CartItemServiceImpl;
 import com.lanqiao.jd.util.CodeUtil;
@@ -159,4 +156,26 @@ public class UserController {
     public Result detailPage(int userId, int productId){
         return productService.productItem(userId,productId);
     }
+
+//    @PostMapping("/order")
+////    @ResponseBody
+//    public Result insertOrder(@RequestBody List<OrderItem> orderItems,@RequestParam(name = "userId")int userId,@RequestParam(name = "userAddressId") int userAddressId,@RequestParam(name = "totalPrice") BigDecimal totalPrice ){
+//
+//        for(OrderItem orderItem:orderItems){
+//            System.out.println(orderItem.toString());
+//        }
+//        System.out.println(userId + " " + userAddressId + " " + totalPrice);
+////        return orderService.insertOrder(orderItems,userId,userAddressId, totalPrice);
+//        return Result.createSuccessResult();
+//    }
+
+    //别给我删了
+//    @PostMapping("/order")
+////    @ResponseBody
+//    public Result insertOrder(@RequestBody List<OrderItem> orderItems ){
+//        for(OrderItem orderItem:orderItems){
+//            System.out.println(orderItem.toString());
+//        }
+//        return Result.createSuccessResult();
+//    }
 }

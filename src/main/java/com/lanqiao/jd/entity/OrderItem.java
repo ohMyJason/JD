@@ -1,9 +1,23 @@
 package com.lanqiao.jd.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class OrderItem {
     private Integer orderItemId;
 
     private Integer orderId;
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "orderItemId=" + orderItemId +
+                ", orderId=" + orderId +
+                ", productId=" + productId +
+                ", num=" + num +
+                ", trafficNumber=" + trafficNumber +
+                '}';
+    }
 
     private Integer productId;
 

@@ -1,7 +1,11 @@
 package com.lanqiao.jd.dao;
 
 import com.lanqiao.jd.entity.Order;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer orderId);
 
