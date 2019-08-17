@@ -15,7 +15,7 @@
             <ul class="fleft">
                 <li id="cart-top-1">
                     <i class="iconfont"></i>
-                    <a href="//www.jd.com/" target="_blank">京东首页</a>
+                    <a href="index.html" target="_blank">京东首页</a>
                 </li>
                 <li id="cart-top-2">
                     <i class="iconfont"></i>
@@ -32,7 +32,7 @@
                 </li>
                 <li class="spacer"></li>
                 <li class="fr-2">
-                    <a target="_blank" href="//order.jd.com/center/list.action">我的订单</a>
+                    <a target="_blank" href="order.html">我的订单</a>
                 </li>
                 <li class="spacer"></li>
                 <li class="fr-3">
@@ -69,23 +69,23 @@
     </div>
     <div id="boo">
         <div class="w header clearfix">
-        <div id="logo-2014">
-            <a href="http://localhost:63342/jdsc/index.html?_ijt=gslvtcec734galimpnt0uchkni" class="logo"></a>
+            <div id="logo-2014">
+            <a href="index.html" class="logo"></a>
             <a href="#none" class="link2"></a>
         </div>
-        <div class="cart-search">
+            <div class="cart-search">
             <div>
-                <input id="key" type="text" class="itxt" autocomplete="off" accesskey="s" style="color: rgb(153, 153, 153);">
+                <input id="key" type="text" class="itxt" autocomplete="off" accesskey="s" style="color: rgb(153, 153, 153);" placeholder="自营">
                 <input type="button" class="button" value="搜索" >
             </div>
         </div>
-    </div>
+        </div>
         <div class="w">
         <div class="mb10"></div>
         <div class="cart-filter-bar">
             <ul class="switch-cart">
                 <li class="switch-cart-item curr">
-                    <a href="//cart.jd.com/cart.action">
+                    <a href="#">
                         <em>全部商品</em>
                         <span class="number">1</span>
                     </a>
@@ -98,8 +98,7 @@
                 <div id="jdarea">
                     <div class="ui-area-text-wrap">
                         <div class="ui-area-text" data-id="16-1315-46764-46796" title="福建厦门市集美区灌口镇">福建厦门市集美区灌口镇</div>
-                        <b>
-                        </b>
+                        <b></b>
                     </div>
                 </div>
             </div>
@@ -124,23 +123,45 @@
                         <input class="list-checkbox" type="checkbox">
                         <a class="shop-name"><span class="shop_name">京东自营</span></a>
                     </div>
-                    <input class="list-check" type="checkbox">
+                    <input class="list-checkbox list-check" type="checkbox">
                     <div class="product-item">
                         <img class="pro-img">
                         <span class="pro-name">哈哈哈哈哈</span>
                         <span class="pro-detail">啊啊啊</span>
-                        <p class="pro-price">&yen;240</p>
+                        <p class="pro-price">240</p>
                         <div class="pro-num">
                             <input id="sub-btn" type="button" value="-"><input id="number" type="text" value="1"><input id="add-btn" type="button" value="+">
                         </div>
-                        <b class="total-price pro-price">&yen;249</b>
+                        <span id="product-id">11</span>
+                        <b class="total-price">249</b>
                         <a><span id="delete">删除</span></a><br>
                         <a><span id="move">移到我的关注</span></a>
                     </div>
                 </div>
             </div>
+            <div class="account_box">
+                <div class="column t-checkbox">
+                    <div class="cart-checkbox">
+                        <input type="checkbox" name="toggle-checkboxes">&nbsp;&nbsp;全选
+                    </div>
+                </div>
+                <ul>
+                    <li><a>删除选中商品</a></li>
+                    <li><a>移到关注</a></li>
+                    <li><a><b>清理购物车</b></a></li>
+                </ul>
+                <a class="account_btn" href="order.html">去京东结算</a>
+                <!--<input type="button" class="account_btn" value="去京东结算" onclick=""/>-->
+                <div class="price-num">
+                    <span>总价：</span><b class="account-price">249</b>
+                    <p>促销：-&yen;100.00</p>
+                </div>
+                <div class="selected-num">
+                    <p>已选择</p><input id="selected-pro-num" type="text" value="7"/><p>件商品</p>
+                </div>
+            </div>
         </div>
-    </div>
+        </div>
     </div>
     <div id="footer">
         <iframe id="footerFrame" name="footerFrame" src="footer.html" width="990" height="400" frameborder="0" scrolling="no"></iframe>

@@ -1,64 +1,115 @@
 ($(function () {
-
-    $.ajax({
-        url:"http://localhost:8080/user/showCartItem",
-        type:"post",
-        dataType:"json",
-        data:{
-            userId:3
-        },
-        success:function (result){
-            if(result.code == 0){
-                // alert(result.data[0].businessName);
-                // alert(result.data[0].productImgUrl);
-                // alert(result.data[0].productName);
-                // alert(result.data[0].detail1);
-                // alert(result.data[0].productPrice);
-                // $(".shop_name").html(result.data[0].businessName);
-                // $(".pro-img").src("../"+result.data[0].productImgUrl);
-                // $(".pro-name").html(result.data[0].productName);
-                // $(".pro-detail").html(result.data[0].detail1);
-                // $(".pro-price").html(result.data[0].productPrice);
-                for(var i=0;i<result.count;i++){
-                    var $product = $("<div class=\"cart-item-list\"> <div class=\"shop\">"+
-                        "<input class=\"list-checkbox\" type=\"checkbox\">"+
-                        "<a class=\"shop-name\"><span class=\"shop_name\">"+result.data[i].businessName+"</span></a> </div>"+
-                    "<input class=\"list-check\" type=\"checkbox\">"+
-                        "<div class=\"product-item\"> <img class=\"pro-img\" src='result.data[i].productImgUrl'>"+
-                        "<span class=\"pro-name\">"+result.data[i].productName+"</span>"+
-                        "<span class=\"pro-detail\">"+result.data[i].detail1+"</span>"+
-                        "<p class=\"pro-price\">&yen;"+result.data[0].productPrice+"</p>"+
-                    "<div class=\"pro-num\">"+
-                        "<input id=\"sub-btn\" type=\"button\" value=\"-\"><input id=\"number\" type=\"text\" value=\"1\"><input id=\"add-btn\" type=\"button\" value=\"+\"></div>"+
-                        "<b class=\"total-price pro-price\">&yen;"+result.data[0].productPrice*$("#number").val()+"</b>"+
-                    "<a><span id=\"delete\">删除</span></a><br>"+
-                    "<a><span id=\"move\">移到我的关注</span></a> </div> </div>");
-                    $("#jd-cart").append($product);
-                }
-            }else{
-                alert("error");
-            }
-            },
-        error:function () {
-            // alert("失败");
-        }
-    });
+        show();
 
         //添加数量
         $("#add-btn").click(function () {
-            $("#number").val(parseInt($("#number").val())+1);
-            $("#number").trigger("input");
-            $(".total-price").val(parseInt($("#number").val())*parseInt($(".pro-price").val()));
+            $.ajax({
+                url:"/user/addCartItemNum",
+                dataType:"json",
+                type:"post",
+                data: {
+                    userId:3,
+                    productId: $(this).parent().next().html()
+                },
+                success:function (result) {
+                    if(result.code == -100){
+                        alert("出现意外");
+                        window.location.reload();
+                    }
+                },error:function () {
+                    alert("error");
+                    window.location.reload();
+                }
+            });
+            var num = $(this).prev().val();
+            $(this).prev().val(parseInt(num)+1);
+            //计算小计
+            var singlePrice = parseInt($(this).parent().parent().find("p").html());
+            var little = $(this).parent().parent().find("b");
+            little.html((parseInt(num)+1)*singlePrice);
         });
 
         //减少数量
         $("#sub-btn").click(function () {
-            var num = parseInt($("#number").val());
+            $.ajax({
+                url:"/user/addCartItemNum",
+                dataType:"json",
+                type:"post",
+                data:{
+                    userId:3,
+                    productId: $(this).parent().next().html()
+                },
+                success:function (result) {
+                    if(result.code == -100){
+                        alert("出现意外");
+                        window.location.reload();
+                    }
+                },error:function () {
+                    alert("error");
+                    window.location.reload();
+                }
+            });
+            var num = parseInt($(this).next().val());
             if(num>1){
-                $("#number").val(num-1);
+                $(this).next().val(num-1);
             }else{
-                $("#number").val(1);
+                $(this).next().val(1);
             }
-        })
+            //计算小计
+            var singlePrice = parseInt($(this).parent().parent().find("p").html());
+            var little = $(this).parent().parent().find("b");
+            little.html((parseInt(num)-1)*singlePrice);
+        });
+
+        //全选
+        $("input[name='toggle-checkboxes']").click(function () {
+            if($(this).is(":checked")){
+                $(".list-checkbox").prop("checked",true);
+            }else{
+                $(".list-checkbox").prop("checked",false);
+            }
+        });
+
+        //删除
+        $("#delete").click(function () {
+            if(window.confirm("是否删除该产品？"))
+                $(this).parents(".cart-item-list").remove();
+        });
+
+        function show() {
+            $.ajax({
+                url: "http://localhost:8080/user/showCartItem",
+                type: "post",
+                dataType: "json",
+                data: {
+                    userId: 3
+                },
+                success: function (result) {
+                    if(result.code == 0) {
+                        var $node = $(".cart-item-list").clone(true);
+                        $(".cart-item-list").detach();
+                        for (var i = 0; i < result.count; i++) {
+                            // var $node = $(".cart-item-list").detach();
+                            $node.children().eq(0).find("a").children().html(result.data[i].businessName);
+                            var imgsrc = ".." + result.data[i].productImgUrl;
+                            var $temp = $node.children().eq(2).children();
+                            $temp.eq(0).attr("src", imgsrc);
+                            $temp.eq(1).html(result.data[i].productName);
+                            $temp.eq(2).html(result.data[i].detail1);
+                            $temp.eq(3).html(result.data[i].productPrice);
+                            $temp.eq(4).children().eq(1).val(result.data[i].num);
+                            $temp.eq(5).html(result.data[i].productId);
+                            $temp.eq(6).html(result.data[i].productPrice);
+                            $("#jd-cart").append($node);
+                            $node = $("#jd-cart").children().eq(1).clone(true);
+                        }
+                    }
+                },
+                error: function () {
+                    alert("失败");
+                }
+            })
+        }
 })
 )
+

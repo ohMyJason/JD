@@ -1,16 +1,18 @@
 package com.lanqiao.jd.controller;
+
+import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.lanqiao.jd.annotations.UserLoginToken;
-import com.lanqiao.jd.entity.CartItem;
-import com.lanqiao.jd.entity.Comment;
-import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.entity.*;
 import com.lanqiao.jd.service.*;
+import com.lanqiao.jd.service.impl.CartItemServiceImpl;
 import com.lanqiao.jd.util.CodeUtil;
 import com.lanqiao.jd.util.Result;
 import com.lanqiao.jd.util.SmsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,9 @@ public class UserController {
 
     @Autowired
     CodeUtil codeUtil;
+
+    @Autowired
+    OrderService orderService;
 
 
     //注册验证手机号是否存在
@@ -168,4 +173,51 @@ public class UserController {
     public Result detailPage(int userId, int productId){
         return productService.productItem(userId,productId);
     }
+
+
+    //提交订单(先向订单表中插入订单信息，获取到orderId，然后下向)
+    //need:userId userAddressId totalPrice
+    //need:OrderItem(productId, num)
+    @PostMapping("/order")
+    public Result insertOrder( ){
+//        OrderVo orderVo
+//        for(OrderItem orderItem:orderVo.getOrderItem()){
+//            System.out.println(orderItem.toString());
+//        }
+//        System.out.println(orderVo.getUserId() + " " + orderVo.getUserAddressId() + " " + orderVo.getTotalPrice() + " ");
+//        return Result.createSuccessResult();
+
+        OrderVo orderVo = new OrderVo();
+        List<OrderItem> list = new ArrayList<>();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setNum(2);
+        orderItem.setProductId(3);
+        list.add(orderItem);
+        orderVo.setOrderItem(list);
+        orderVo.setUserId(3);
+        orderVo.setUserAddressId(2);
+        BigDecimal a = new BigDecimal("253");
+        orderVo.setTotalPrice(a);
+        return orderService.insertOrder(orderVo);
+    }
+
+    @PostMapping("/pay")
+    //need:userId  orderId
+    public Result pay(Order order){
+       return orderService.pay(order);
+    }
+
+    //余额充值
+    @PostMapping("/addBalance")
+    //need:balance userId password
+    public Result addBalance(User user){
+        return userService.addBalance(user);
+    }
+
+    @PostMapping("/getNameById")
+    public Result getNameById(int userId){
+        User user =  userService.findUserById(userId);
+        return Result.createSuccessResult(user.getUserName());
+    }
+
 }

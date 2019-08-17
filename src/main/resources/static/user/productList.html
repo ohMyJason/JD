@@ -5,8 +5,10 @@
     <title>ProductList</title>
     <link href="css/base.css" rel="stylesheet">
     <link href="css/productList.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/productList.js" rel="script"></script>
+    <script src="js/jquery-cookie.js"></script>
 </head>
 <body>
 <div id="menu">
@@ -82,153 +84,23 @@
 </div>
 
 <div class="four-contain">
-    <div class="crumbs">
-        <div class="crumbs-left">
-            <a href="#" class="allResult">全部结果</a>
-            <i class="crumbs-left-i"> > </i>
-            <span class="crumbs-left-span">“油烟机灶具套装”</span>
-        </div>
-
-        <div class="selector">
-            <div class="selector-one">
-                <div class="selector-one-left">
-                    <span class="selector-one-left-span">品牌：</span>
-                </div>
-                <div class="valueList">
-                    <ul>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo1.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo2.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo3.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo1.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo2.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo3.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo1.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo2.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo3.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo1.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo2.jpg" alt="">
-                        </li>
-                        <li class="valueList-li">
-                            <img class="valueList-li-img" src="img/logo3.jpg" alt="">
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-            <div class="selector-two">
-                <div class="selector-one">
-                    <div class="selector-two-left">
-                        <span class="selector-one-left-span">厨卫大电：</span>
-                    </div>
-                    <div class="valueList-two">
-                        <ul style="margin-top: -50px">
-                            <li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li><li class="valueList-two-li">
-                                <a   href="#">油烟机</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="selector-two">
-                <div class="selector-one">
-                    <div class="selector-two-left">
-                        <span class="selector-one-left-span">产品类型：</span>
-                    </div>
-                    <div class="selector-two-li">
-                        <ul class="three-ul">
-                            <li class="three-li">
-                                <a href="#">烟灶套装</a>
-                            </li><li class="three-li">
-                                <a href="#">油烟机</a>
-                            </li><li class="three-li">
-                                <a href="#">油烟机</a>
-                            </li><li class="three-li">
-                                <a href="#">油烟机</a>
-                            </li><li class="three-li">
-                                <a href="#">油烟机</a>
-                            </li><li class="three-li">
-                                <a href="#">油烟机</a>
-                            </li><li class="three-li">
-                                <a href="#">油烟机</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="selector-two">
-                <div class="selector-one">
-                    <div class="selector-two-left">
-                        <span class="selector-one-left-span">烟机款式：</span>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="selector-three">
-                <div class="selector-one">
-                    <div class="selector-two-left">
-                        <span class="selector-one-left-span">高级选项：</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
     <div >
         <ul class="product-ul">
             <li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
-            </li><li class="product">
-
+                <a class= "proitemlist" href="#">
+                    <div class="pro-img">
+                        <img src="../img/20190814105006_fc2.png">
+                    </div>
+                    <div class="p-price">
+                        <em>¥</em>
+                        <i>2888.0</i>
+                    </div>
+                    <ul class="p-item">
+                        <span>联想笔记本</span><br>
+                        <span>4条评论</span><br>
+                        <span>大商家</span>
+                    </ul>
+                </a>
             </li>
         </ul>
     </div>

@@ -30,7 +30,7 @@
       #{creatTime,jdbcType=VARCHAR}, #{userAddressId,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lanqiao.jd.entity.Order" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="orderId"  parameterType="com.lanqiao.jd.entity.Order" >
     insert into tb_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderId != null" >

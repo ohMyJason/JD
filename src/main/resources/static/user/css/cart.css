@@ -386,9 +386,102 @@ t-action {
 }
 
 .total-price{
-    margin-left: 50px;
+    float: left;
+    width: 25px;
+    height: 20px;
+    margin-left: 60px;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    color: black;
 }
 
 #delete,#move{
     margin-left: 77px;
+}
+
+/* 底部结算 */
+.account_box{
+    clear:both;
+    width: 990px;
+    height: 52px;
+    position: center;
+    background-color:#F3F3F3;
+    border: 1px solid #ccc;
+}
+
+.account_box ul{
+    float: left;
+    margin-top: 8px;
+    margin-left: -80px;
+}
+
+.account_box li{
+    float: left;
+    margin-left: 10px;
+    font-family: "Microsoft YaHei";
+}
+
+.price-num{
+    float: right;
+    width: 171px;
+    height: 43px;
+    margin-right: 5px;
+}
+
+.account_btn{
+    float: right;
+    width: 129px;
+    height: 52px;
+    border: none;
+    background-color: #e1251b;
+    font-weight: bold;
+    color: white;
+    line-height: 52px;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+}
+
+.price-num span{
+    float: left;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.price-num p{
+    clear: both;
+    margin-left: 10px;
+}
+
+.account-price{
+    float: left;
+    color: #e1251b;
+    font-size: 17px;
+}
+
+.selected-num{
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.selected-num p{
+    float: left;
+    margin-left: 5px;
+}
+
+#selected-pro-num{
+    float: left;
+    width: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #e1251b;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+#product-id{
+    display: none;
 }
