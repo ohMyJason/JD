@@ -81,4 +81,17 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(User user) {
         return userMapper.selectByUserName(user);
     }
+
+    //更新用户余额
+    @Override
+    public Result addBalance(User user) {
+        //查询user
+        user.setBalance(user.getBalance().add(userMapper.selectByPrimaryKey(user.getUserId()).getBalance()));
+        int col = userMapper.updateByPrimaryKeySelective(user);
+       if(col>0){
+           return  Result.createSuccessResult();
+       }else{
+           return Result.createByFailure("出现错误");
+       }
+    }
 }

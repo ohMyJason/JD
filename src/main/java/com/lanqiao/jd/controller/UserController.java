@@ -65,22 +65,14 @@ public class UserController {
     //登录 -> 检查用户名密码与数据库中的记录是否匹配
     @PostMapping("/login")
     public Result login(User user) {
-//        JSONObject jsonObject = new JSONObject();
         User userForBase = userService.findByUsername(user);
         if (userForBase == null) {
-//            jsonObject.put("message", "登录失败,用户不存在");
-//            return jsonObject;
             return Result.createByFailure("登录失败,用户不存在");
         } else {
             if (!userForBase.getPassword().equals(user.getPassword())) {
-//                jsonObject.put("message", "登录失败,密码错误");
-//                return jsonObject;
                 return Result.createByFailure("登录失败,密码错误");
             } else {
                 String token = tokenService.getToken(userForBase);
-//                jsonObject.put("token", token);
-//                jsonObject.put("user", userForBase);
-//                return jsonObject;
                 List listObject = new ArrayList();
                 listObject.add(userForBase);
                 listObject.add("token:"+token);
@@ -201,18 +193,23 @@ public class UserController {
         return orderService.insertOrder(orderVo);
     }
 
+    @PostMapping("/pay")
+    //need:userId  orderId
+    public Result pay(Order order){
+       return orderService.pay(order);
+    }
 
-//    @PostMapping("/order")
-////    @ResponseBody
-//    public Result insertOrder(@RequestBody List<OrderItem> orderItems,@RequestParam(name = "userId")int userId,@RequestParam(name = "userAddressId") int userAddressId,@RequestParam(name = "totalPrice") BigDecimal totalPrice ){
-//
-//        for(OrderItem orderItem:orderItems){
-//            System.out.println(orderItem.toString());
-//        }
-//        System.out.println(userId + " " + userAddressId + " " + totalPrice);
-////        return orderService.insertOrder(orderItems,userId,userAddressId, totalPrice);
-//        return Result.createSuccessResult();
-//    }
+    //余额充值
+    @PostMapping("/addBalance")
+    //need:balance userId password
+    public Result addBalance(User user){
+        return userService.addBalance(user);
+    }
 
+    @PostMapping("/getNameById")
+    public Result getNameById(int userId){
+        User user =  userService.findUserById(userId);
+        return Result.createSuccessResult(user.getUserName());
+    }
 
 }
