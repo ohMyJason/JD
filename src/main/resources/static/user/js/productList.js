@@ -17,7 +17,7 @@
                         $node.eq(0).children().eq(0).attr("src",url);
                         $node.eq(1).children().eq(1).html(result.data[i].productPrice);
                         $node.eq(2).children().eq(0).html(result.data[i].productName);
-                        $node.eq(2).children().eq(2).html(result.data[i].commentCount + "条记录");
+                        $node.eq(2).children().eq(2).html(result.data[i].commentCount + "条评论");
                         $node.eq(2).children().eq(4).html(result.data[i].businessName);
                         $(".product-ul").append($modle);
                         $modle = $(".product").eq(0).clone(true);

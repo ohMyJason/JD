@@ -95,12 +95,13 @@
         });
 
         //已选中几件商品
-        $(".list-checkbox").click(function () {
+        $("input[name = 'choose']").click(function () {
+            var num = $(this).next().children().eq(4).children().eq(1).val();
             if( $(this).is(':checked') ){
-                var pronum = parseInt($("#number").val()) + parseInt($("#selected-pro-num").val());
+                var pronum = parseInt(num) + parseInt($("#selected-pro-num").val());
             }
             else {
-                var pronum = parseInt($("#selected-pro-num").val())- parseInt($("#number").val());
+                var pronum = parseInt($("#selected-pro-num").val())- parseInt(num);
             }
             $("#selected-pro-num").val(pronum);
         });

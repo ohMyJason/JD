@@ -485,3 +485,8 @@ t-action {
 #product-id,#cart-item-id{
     display: none;
 }
+
+#setOrder :hover
+{
+    color: white;
+}
