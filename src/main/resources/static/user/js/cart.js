@@ -1,13 +1,14 @@
 ($(function () {
         show();
 
+        //添加数量
         $("#add-btn").click(function () {
             $.ajax({
                 url:"/user/addCartItemNum",
                 dataType:"json",
                 type:"post",
                 data: {
-                    userId:1000,
+                    userId:3,
                     productId: $(this).parent().next().html()
                 },
                 success:function (result) {
@@ -16,12 +17,63 @@
                         window.location.reload();
                     }
                 },error:function () {
-                    alert("出现意外");
+                    alert("error");
                     window.location.reload();
                 }
-            })
+            });
             var num = $(this).prev().val();
-                $(this).prev().val(parseInt(num)+1);
+            $(this).prev().val(parseInt(num)+1);
+            //计算小计
+            var singlePrice = parseInt($(this).parent().parent().find("p").html());
+            var little = $(this).parent().parent().find("b");
+            little.html((parseInt(num)+1)*singlePrice);
+        });
+
+        //减少数量
+        $("#sub-btn").click(function () {
+            $.ajax({
+                url:"/user/addCartItemNum",
+                dataType:"json",
+                type:"post",
+                data:{
+                    userId:3,
+                    productId: $(this).parent().next().html()
+                },
+                success:function (result) {
+                    if(result.code == -100){
+                        alert("出现意外");
+                        window.location.reload();
+                    }
+                },error:function () {
+                    alert("error");
+                    window.location.reload();
+                }
+            });
+            var num = parseInt($(this).next().val());
+            if(num>1){
+                $(this).next().val(num-1);
+            }else{
+                $(this).next().val(1);
+            }
+            //计算小计
+            var singlePrice = parseInt($(this).parent().parent().find("p").html());
+            var little = $(this).parent().parent().find("b");
+            little.html((parseInt(num)-1)*singlePrice);
+        });
+
+        //全选
+        $("input[name='toggle-checkboxes']").click(function () {
+            if($(this).is(":checked")){
+                $(".list-checkbox").prop("checked",true);
+            }else{
+                $(".list-checkbox").prop("checked",false);
+            }
+        });
+
+        //删除
+        $("#delete").click(function () {
+            if(window.confirm("是否删除该产品？"))
+                $(this).parents(".cart-item-list").remove();
         });
 
         function show() {
@@ -47,6 +99,7 @@
                             $temp.eq(3).html(result.data[i].productPrice);
                             $temp.eq(4).children().eq(1).val(result.data[i].num);
                             $temp.eq(5).html(result.data[i].productId);
+                            $temp.eq(6).html(result.data[i].productPrice);
                             $("#jd-cart").append($node);
                             $node = $("#jd-cart").children().eq(1).clone(true);
                         }
@@ -57,26 +110,6 @@
                 }
             })
         }
-
-        // //添加数量
-        // $("#add-btn").click(function () {
-        //     var num = $(this).prev().val();
-        //     $(this).prev().val(parseInt(num)+1);
-        //     $("#number").trigger("input");
-        //     // alert($(this).parent().parent().eq(6).text());
-        //     // $(".total-price").text(parseInt($("#number").val())*parseInt($(".pro-price").val()));
-        // });
-
-        //减少数量
-        $("#sub-btn").click(function () {
-            var num = parseInt($(this).next().val());
-            if(num>1){
-                $(this).next().val(num-1);
-            }else{
-                $(this).next().val(1);
-            }
-        });
-
 })
 )
 
