@@ -6,8 +6,8 @@
             type:"post",
             dataType:"json",
             data:{
-                userId:3, //TODO
-                orderId:5, //TODO
+                userId: $.cookie('userId'),//TODO
+                orderId:6, //TODO
             },
             success:function (result){
                 //余额不够
@@ -44,7 +44,7 @@
             dataType:"json",
             data:{
                 balance:$("#money").val(),
-                userId:3, //TODO
+                userId: $.cookie('userId'), //TODO
                 password:$("#pwd").val()
             },
             success:function (result){
@@ -67,14 +67,20 @@
     $.ajax({
         url:"http://localhost:8080/user/getNameById",
         type:"post",
-        dataType:"json",
+        dataType:"json",headers:{'token':$.cookie("token")
+        },
         data:{
-            userId:3, //TODO
+            userId:$.cookie('userId'), //TODO
         },
         success:function (result) {
-            name = result.data;
-            //更改用户名
-            $("#name").html(name);
+            if (result.code==0) {
+                name = result.data;
+                //更改用户名
+                $("#name").html(name);
+            }else {
+                alert("请先登录!");
+                window.location.href="/user/login.html";
+            }
         }
     })
 

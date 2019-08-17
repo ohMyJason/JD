@@ -28,6 +28,11 @@
                             $("#jd-cart").append($node);
                             $node = $("#jd-cart").children().eq(1).clone(true);
                         }
+                        var num =0;
+                        $(".cart-item-list").each(function () {
+                            num++;
+                        })
+                        $("#allNum").html(num);
                     }else {
                         window.location.href="/user/login.html";
                     }
@@ -113,26 +118,30 @@
 
         //删除
         $(".delete").click(function () {
-            $.ajax({
-                url:"/user/addCartItemNum",
-                dataType:"json",
-                type:"post",
-                data:{
-                    userId:3,
-                    cartItemId: $(this).parent().prev().html()
-                },
-                success:function (result) {
-                    if(result.code == -100){
-                        alert("出现意外");
+            if(window.confirm("是否删除该产品？")){
+                $.ajax({
+                    url:"/user/deleteCartItem",
+                    dataType:"json",
+                    type:"post",
+                    data:{
+                        userId:3,
+                        productId: $(this).parent().prev().prev().prev().html()
+                    },
+                    success:function (result) {
+                        if(result.code == -100){
+                            alert("出现意外");
+                            window.location.reload();
+                        }
+                        else if(result.code == 0){
+                            $(this).parents(".cart-item-list").remove();
+                            window.location.reload();
+                        }
+                    },error:function () {
+                        alert("error");
                         window.location.reload();
                     }
-                },error:function () {
-                    alert("error");
-                    window.location.reload();
-                }
-            });
-            if(window.confirm("是否删除该产品？"))
-                $(this).parents(".cart-item-list").remove();
+                });          }
+
         });
 
         //计算总价
@@ -149,7 +158,9 @@
             })
         }
 
-        //计算总商品数量
+
+        
+        //计算总的选中的商品数量
         function countNum(){
             var pronum =0;
             $(".cart-item-list").each(function () {
@@ -176,46 +187,49 @@
         });
 
 
-        
-        function show() {
-            $.ajax({
-                url: "http://localhost:8080/user/showCartItem",
-                type: "post",
-                dataType: "json",
-                headers:{'token':$.cookie("token")
-                },
-                data: {
-                    userId: 3
-                },
-                success: function (result) {
-                    if(result.code == 0) {
-                        var $node = $(".cart-item-list").clone(true);
-                        $(".cart-item-list").detach();
-                        for (var i = 0; i < result.count; i++) {
-                            // var $node = $(".cart-item-list").detach();
-                            $node.children().eq(0).find("a").children().html(result.data[i].businessName);
-                            var imgsrc = ".." + result.data[i].productImgUrl;
-                            var $temp = $node.children().eq(2).children();
-                            $temp.eq(0).attr("src", imgsrc);
-                            $temp.eq(1).html(result.data[i].productName);
-                            $temp.eq(2).html(result.data[i].detail1);
-                            $temp.eq(3).html(result.data[i].productPrice);
-                            $temp.eq(4).children().eq(1).val(result.data[i].num);
-                            $temp.eq(5).html(result.data[i].productId);
-                            $temp.eq(6).html(result.data[i].productPrice * result.data[i].num);
-                            $temp.eq(7).html(result.data[i].cartItemId);
-                            $("#jd-cart").append($node);
-                            $node = $("#jd-cart").children().eq(1).clone(true);
-                        }
-                    }else {
-                        window.location.href="/user/login.html";
-                    }
-                },
-                error: function () {
-                    alert("失败");
-                }
-            })
-        }
+
+        // function show() {
+        //     $.ajax({
+        //         url: "http://localhost:8080/user/showCartItem",
+        //         type: "post",
+        //         dataType: "json",
+        //         headers:{'token':$.cookie("token")
+        //         },
+        //         data: {
+        //             userId: 3
+        //         },
+        //         success: function (result) {
+        //             if(result.code == 0) {
+        //                 var $node = $(".cart-item-list").clone(true);
+        //                 $(".cart-item-list").detach();
+        //                 for (var i = 0; i < result.count; i++) {
+        //                     // var $node = $(".cart-item-list").detach();
+        //                     $node.children().eq(0).find("a").children().html(result.data[i].businessName);
+        //                     var imgsrc = ".." + result.data[i].productImgUrl;
+        //                     var $temp = $node.children().eq(2).children();
+        //                     $temp.eq(0).attr("src", imgsrc);
+        //                     $temp.eq(1).html(result.data[i].productName);
+        //                     $temp.eq(2).html(result.data[i].detail1);
+        //                     $temp.eq(3).html(result.data[i].productPrice);
+        //                     $temp.eq(4).children().eq(1).val(result.data[i].num);
+        //                     $temp.eq(5).html(result.data[i].productId);
+        //                     $temp.eq(6).html(result.data[i].productPrice * result.data[i].num);
+        //                     $temp.eq(7).html(result.data[i].cartItemId);
+        //                     $("#jd-cart").append($node);
+        //                     $node = $("#jd-cart").children().eq(1).clone(true);
+        //                 }
+        //                 alert(12);
+        //             }else {
+        //                 window.location.href="/user/login.html";
+        //             }
+        //
+        //         },
+        //         error: function () {
+        //             alert("失败");
+        //         }
+        //     })
+        // }
+
 })
 )
 

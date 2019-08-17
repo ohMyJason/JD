@@ -1,0 +1,70 @@
+#left-item{
+    float: left;
+    width: 150px;
+    height: 500px;
+    background-color:#f3f3f3;
+    margin-top: 40px;
+
+}
+.left-1{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 100px;
+    height: 50px;
+}
+a{
+    color:#eb7350;
+    text-decoration: none;
+}
+a:hover{
+    color: #f30213;
+}
+#right-item{
+    float: right;
+    width: 1050px;
+    height: 500px;
+    background-color:#f3f3f3;
+    margin-top: 40px;
+}
+
+li {
+    float: left;
+    width: 100px;
+    height: 24px;
+    line-height: 24px;
+    list-style: none;
+    border: solid 1px;
+    text-align: center;
+}
+.right-1{
+    width: 800px;
+    height: 300px;
+    margin-top: 70px;
+    margin-left: 102px;
+}
+.num input {
+    width: 30px;
+    text-align: center;
+}
+
+ul {
+    background-color: cornflowerblue;
+    overflow:hidden;
+    display:inline-block;
+    white-space:nowrap
+
+}
+
+
+.num {
+    width: 150px;
+}
+.all{
+    background-color: #eb7350;
+    color:red;
+}
+.find{
+    margin-right: 30px;
+    float: right;
+
+}
