@@ -152,9 +152,15 @@
                             // var $name = result.data[0].productName;
                             $("div[class='name']").text(result.data[0].productName);
                             $("div[class='address']").append(result.data[2][0].address);
-                            $(".price span").eq(1).html(result.data[0].productPrice);
+                            $(".price span").eq(1).text(result.data[0].productPrice);
                             $("div[class='business']").text("由"+result.data[0].businessName+"配送");
-                            $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")")
+                            $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")");
+                            $("div[class='up']").html(result.data[0].detail1+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail2+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail3+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail4+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail5+ "<br/>");
+                            $("div[class='up']").append("商家:"+result.data[0].businessName);
                             //下面是图片路径
                             // alert(result.data[1][0]);
                             // $img = result.data[1][0]
@@ -163,6 +169,7 @@
                             // $("#zhao").attr("src", $img);
                         }
                 })
+
         })
     </script>
 </head>
@@ -253,11 +260,16 @@
                 <div class="down">
 
                     <div class="article">
-                        <div class="author">用户:张三<span>12#</span></div>
-                        <div class="content">测试一下</div>
-                        <div class="leval">星级:2</div>
-                        <div class="time page">发表于:2019-02-09 13:12:23</div>
-                        <div class="pid">1</div>
+<!--                        <div class="author">用户:张三<span>12#</span></div>-->
+<!--                        <div class="content">测试一下</div>-->
+<!--                        <div class="leval">星级:2</div>-->
+<!--                        <div class="time page">发表于:2019-02-09 13:12:23</div>-->
+<!--                        <div class="pid">1</div>-->
+                        <div class="author"><span></span></div>
+                        <div class="content"></div>
+                        <div class="leval"></div>
+                        <div class="time page"></div>
+                        <div class="pid"></div>
                     </div>
                     <div>
                         <form>
