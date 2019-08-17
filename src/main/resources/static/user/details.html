@@ -121,6 +121,55 @@
                     }
                 })
             })
+            $.ajax({
+                url:"/user/showCommentByProductId",
+                type:"post",
+                datatype:"json",
+                scriptCharset:"utf-8",
+                data:{productId:"1"},
+                success:function (result) {
+                    for(var i=0;i<result.data.length;i++){
+                        var $node = $("div[class='article']:eq(0)").clone(true);
+                        $node.children().eq(0).text("用户："+result.data[i].userId);
+                        $node.children().eq(1).text("评论："+result.data[i].commentDetail);
+                        // $node.children().eq(0).children().text("评论："+"#");
+                        $node.children().eq(2).text("星级："+result.data[i].commentLevel);
+                        $node.children().eq(4).text("商品："+result.data[i].productItemId);
+                        $("div[class='down']").prepend($node);
+                    }
+                }
+            })
+                $.ajax({
+                    url:"/user/detailPage",
+                        type:"post",
+                        datatype:"json",
+                        scriptCharset:"utf-8",
+                        data:{
+                            userId:"3",
+                            productId:"1"
+                        },
+                        success:function (result) {
+                            // var $name = result.data[0].productName;
+                            $("div[class='name']").text(result.data[0].productName);
+                            $("div[class='address']").append(result.data[2][0].address);
+                            $(".price span").eq(1).text(result.data[0].productPrice);
+                            $("div[class='business']").text("由"+result.data[0].businessName+"配送");
+                            $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")");
+                            $("div[class='up']").html(result.data[0].detail1+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail2+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail3+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail4+ "<br/>");
+                            $("div[class='up']").append(result.data[0].detail5+ "<br/>");
+                            $("div[class='up']").append("商家:"+result.data[0].businessName);
+                            //下面是图片路径
+                            // alert(result.data[1][0]);
+                            // $img = result.data[1][0]
+                            // $("#pian").attr("src", $img);
+                            // $(".UL  li img").attr("src", $img);
+                            // $("#zhao").attr("src", $img);
+                        }
+                })
+
         })
     </script>
 </head>
@@ -169,6 +218,8 @@
                                     <span>29.90</span>
                                 </span>
                 </div>
+                <div class="address">配送至：</div>
+                <div class="business"></div>
                 <div class="btns">
                     <ul>
                         <li class="num"><input type="button" value="-" style="width: 20px"> <input name="num" type="text" value="1" size="5px"> <input type="button" value="+" style="width: 20px">
@@ -209,31 +260,34 @@
                 <div class="down">
 
                     <div class="article">
-                        <div class="author">用户:张三<span>12#</span></div>
-                        <div class="content">测试一下</div>
-                        <div class="time page">发表于:2019-02-09 13:12:23</div>
+<!--                        <div class="author">用户:张三<span>12#</span></div>-->
+<!--                        <div class="content">测试一下</div>-->
+<!--                        <div class="leval">星级:2</div>-->
+<!--                        <div class="time page">发表于:2019-02-09 13:12:23</div>-->
+<!--                        <div class="pid">1</div>-->
+                        <div class="author"><span></span></div>
+                        <div class="content"></div>
+                        <div class="leval"></div>
+                        <div class="time page"></div>
+                        <div class="pid"></div>
                     </div>
-                    <div class="article">
-                        <div class="author">用户:张三<span>12#</span></div>
-                        <div class="content">测试一下</div>
-                        <div class="time page">发表于:2019-02-09 13:12:23</div>
-                    </div>
-<!--                    <div class="page">-->
-<!--                        <input class="btn1" type="button" value="上一页" onClick="">-->
-<!--                        <input class="btn1" type="button" value="下一页" onClick="">-->
-<!--                    </div><br>-->
                     <div>
                         <form>
                             <div class="msg">
                                 <textarea name="message" rows="5" cols="72"></textarea>
                                 <input name="level" value="1">
-                                <input name="userid" value="qwe">
+                                <input name="userid" value="3">
                                 <input name="productid" value="2">
                             </div>
                             <div align="center"><input type="reset" value="清除"/> <input type="submit" value="发表"/></div>
                         </form>
                     </div>
                 </div>
+<!--                    <div class="page">-->
+<!--                        <input class="btn1" type="button" value="上一页" onClick="">-->
+<!--                        <input class="btn1" type="button" value="下一页" onClick="">-->
+<!--                    </div><br>-->
+
             </div>
 
         </div>
@@ -245,7 +299,7 @@
         <img src="images/details/details1.jpg" height="600" width="600" id="zhao" />
 
     </div>
-
+    <div id="test"></div>
 </div>
 </body>
 </html>

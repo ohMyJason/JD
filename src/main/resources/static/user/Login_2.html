@@ -11,6 +11,7 @@
 
     <script>
       var phoneNumber=$.cookie("phoneNumber");
+      alert(phoneNumber);
         $(function () {
 
             $(".field").click(function () {
@@ -72,6 +73,7 @@
             //确认注册信息是否全部正确
             $(".step_next_1").click(function () {
                 if(first==1&&second==1&&third==1&&fourth==1){
+                    var phone=require('phoneNumber');
                     $.ajax({
                         url:"/user/register",
                         type:"post",
@@ -79,17 +81,18 @@
                         data:{
                             userName:$("input[name='user']").val(),
                             password:$("input[name='pass']").val(),
-                            phoneNumber: phoneNumber
+                            phoneNumber:phone
                         },
                         success:function (result) {
                             if(result.code==0){
-                                alert("注册成功！");
-                                $.cookie("phoneNumber",null,{path:'/'});
+                                alert("5555");
+                                $.cookie("userName",$("input[name='user']").val(),{ expires:1,path:'/'});
+                                $.cookie("password",$("input[name='pass']").val(),{ expires:1,path:'/'});
                                 window.location.href="http://localhost:8080/user/login.html";
                             }
                         },
-                        error:function () {
-                            alert("用户名已存在，请重新注册");
+                        error:function (result) {
+                            alert("5555");
 
                         }
                     })
@@ -255,4 +258,3 @@
     <div>
         Copyright©2004-2019 &nbsp;&nbsp;京东JD.com &nbsp;版权所有
     </div>
-</div>

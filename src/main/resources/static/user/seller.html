@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 商品管理</title>
+    <link type="text/css" rel="stylesheet" href="css/login_css.css">
+    <link type="text/css" rel="stylesheet" href="css/seller.css">
+    <link type="text/css" rel="stylesheet" href="css/layui.css">
+    <script src="js/layui.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/jquery-cookie.js"></script>
+    <script>
+        $(function () {
+
+
+
+            $.ajax({
+                url:"",
+                datatype:JSON,
+                type:"post",
+                data:{
+
+                },
+                success:{
+
+                }
+
+
+            })
+
+        })
+    </script>
+
+</head>
+<body>
+<div id="header">
+    <div class="w">
+        <a href="www.jd.com" class="logo">
+        </a>
+        <div class="logo_title">商品管理</div>
+    </div>
+</div>
+<div id="left-item">
+    <div class="left-1">
+        <label>
+            <a href="#"> 我的店铺</a>
+        </label>
+    </div>
+    <div class="left-1">
+        <label>
+            <a href="#">商品管理</a>
+        </label>
+    </div>
+    <div class="left-1">
+        <label>
+            <a href="#"> 订单管理</a>
+        </label>
+    </div>
+    <div class="left-1">
+        <label>
+           <a href="#"> 我的配送</a>
+        </label>
+    </div>
+
+</div>
+<div id="right-item">
+    <div class="right-1">
+        <div>
+            <button name="add">添加商品</button>
+            <div class="find">
+                <input name="find" type="text" placeholder="查找商品">
+            </div>
+        </div>
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>商品图片</th>
+                    <th>商品名称</th>
+                    <th>商品编码</th>
+                    <th>价格</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+<!--        <ul>-->
+<!--            <li><input name="all" type="checkbox">全选</li>-->
+<!--            <li>商品图片</li>-->
+<!--            <li>产品名称</li>-->
+<!--            <li>价格</li>-->
+<!--            <li class="num">数量</li>-->
+
+<!--            <li>操作</li>-->
+<!--        </ul>-->
+<!--        <ul>-->
+<!--            <li><input name="one" type="checkbox"></li>-->
+<!--            <li></li>-->
+<!--            <li></li>-->
+<!--            <li class="num"><input type="button" value="-" @click="changeDel(index)"> <input name="num" type="text"-->
+<!--                                                                                             v-model="product.num">-->
+<!--                <input type="button" value="+" @click="changeAdd(index)">-->
+<!--            </li>-->
+<!--            <li></li>-->
+<!--            <li><span @click="del">删除</span></li>-->
+<!--        </ul>-->
+
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
