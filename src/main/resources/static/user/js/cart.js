@@ -27,6 +27,8 @@
             var singlePrice = parseInt($(this).parent().parent().find("p").html());
             var little = $(this).parent().parent().find("b");
             little.html((parseInt(num)+1)*singlePrice);
+            totalPrice();
+            countNum()
         });
 
         //减少数量
@@ -59,6 +61,8 @@
             var singlePrice = parseInt($(this).parent().parent().find("p").html());
             var little = $(this).parent().parent().find("b");
             little.html((parseInt(num)-1)*singlePrice);
+            totalPrice();
+            countNum()
         });
 
         //全选
@@ -68,6 +72,8 @@
             }else{
                 $(".list-checkbox").prop("checked",false);
             }
+            totalPrice();
+            countNum()
         });
 
         //删除
@@ -94,18 +100,48 @@
                 $(this).parents(".cart-item-list").remove();
         });
 
+        //计算总价
+        function totalPrice() {
+            var price = 0;
+            $(".cart-item-list").each(function () {
+                if($(this).find("input[name = 'choose']").is(':checked')){
+                    var num = $(this).children().eq(2).children().eq(3).html();
+                    var priceA =  $(this).children().eq(2).children().eq(4).children().eq(1).val();
+                    var priceB = parseFloat(num) * parseFloat(priceA);
+                    price += priceB;
+                }
+                $("#totalPrice").html(price);
+            })
+        }
+
+        //计算总商品数量
+        function countNum(){
+            var pronum =0;
+            $(".cart-item-list").each(function () {
+                var num =$(this).children().eq(2).children().eq(4).children().eq(1).val();
+                if( $(this).children().eq(1).is(':checked') ){
+                    pronum += parseInt(num);
+                }
+            })
+            $("#selected-pro-num").val(pronum);
+        }
+
         //已选中几件商品
         $("input[name = 'choose']").click(function () {
-            var num = $(this).next().children().eq(4).children().eq(1).val();
-            if( $(this).is(':checked') ){
-                var pronum = parseInt(num) + parseInt($("#selected-pro-num").val());
-            }
-            else {
-                var pronum = parseInt($("#selected-pro-num").val())- parseInt(num);
-            }
-            $("#selected-pro-num").val(pronum);
+            // var num = $(this).next().children().eq(4).children().eq(1).val();
+            // if( $(this).is(':checked') ){
+            //     var pronum = parseInt(num) + parseInt($("#selected-pro-num").val());
+            // }
+            // else {
+            //     var pronum = parseInt($("#selected-pro-num").val())- parseInt(num);
+            // }
+            // $("#selected-pro-num").val(pronum);
+            countNum();
+            totalPrice();
         });
 
+
+        
         function show() {
             $.ajax({
                 url: "http://localhost:8080/user/showCartItem",
