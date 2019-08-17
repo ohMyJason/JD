@@ -254,6 +254,12 @@
     margin-left: 20px;
 }
 
+.address{
+    height: 30px;
+
+    margin-top: 30px;
+}
+
 .btns{
     margin-bottom: 20px;
 
@@ -425,4 +431,7 @@
 /*}*/
 .msg{
     text-align: center;
+}
+#test{
+    height: 300px;
 }
