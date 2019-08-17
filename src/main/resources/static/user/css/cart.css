@@ -436,6 +436,8 @@ t-action {
     background-color: #e1251b;
     font-weight: bold;
     color: white;
+    line-height: 52px;
+    text-align: center;
     font-size: 18px;
     font-family: "Microsoft YaHei";
 }
