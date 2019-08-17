@@ -34,6 +34,7 @@
                         })
                         $("#allNum").html(num);
                     }else {
+                        alert("请先登录!");
                         window.location.href="/user/login.html";
                     }
                 },
@@ -41,6 +42,20 @@
                     alert("失败");
                 }
         })
+        $.ajax({
+            url:"/user/getNameById",
+            type:"post",
+            dataType: "json",
+            headers:{'token':$.cookie("token")
+            },
+            data:{
+                userId: $.cookie('userId')
+            },success:function (result) {
+                $(".nickname").html(result.data);
+            }
+        })
+
+
         //添加数量
         $("#add-btn").click(function () {
             $.ajax({

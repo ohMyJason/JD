@@ -131,7 +131,7 @@
 
   <!-- 商品详情页1 -->
   <select id="detailPage" resultType="com.lanqiao.jd.entity.DetailsPageSelect" parameterType="java.lang.Integer" >
-  select b.product_id,b.product_name,b.product_price,b.business_name,b.comment_count ,pi.detail_1,pi.detail_2,pi.detail_3,pi.detail_4,pi.detail_5,pi.detail_6
+  select b.product_id,b.product_name,b.product_price,b.business_name,b.comment_count ,pi.detail_1,pi.detail_2,pi.detail_3,pi.detail_4,pi.detail_5,pi.detail_6,pi.product_item_id
   from baseSelect b left join tb_product_item pi
   on b.product_id = pi.product_id
   where b.product_id = #{productId,jdbcType=INTEGER}
