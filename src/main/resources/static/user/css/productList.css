@@ -1,4 +1,8 @@
 /*常用短样式*/
+body{
+    background-color: #ffffff
+}
+
 .red {
     color: #F1251b
 }
@@ -219,171 +223,42 @@
     width: 90%;
     margin-left: 80px;
 }
-
-.crumbs {
-    height: 30px;
-    width: 100%;
-    margin-top: 20px;
-
-}
-
-.crumbs-left {
-    height: 30px;
-    width: 20%;
-}
-
-.allResult {
-    color: #666;
+.product {
+    height: 400px;
+    width: 274px;
+    border: 1px;
     float: left;
-}
-
-.crumbs-left-i {
-    float: left;
-    margin-right: 6px;
-    margin-left: 3px;
-    font-family: "Helvetica Neue", "Hiragino Sans GB", SimSun, serif;
-    font-style: normal;
-}
-
-.crumbs-left-span {
-    font-weight: bold;
-    color: #6a666e;
-}
-
-.selector {
-    width: 100%;
-    height: 143px;
-    background-color: #00FF00;
-}
-
-.selector-one {
-    height: 120px;
-    border: #00F7DE solid 3px;
-    width: 100%;
-}
-
-.selector-two {
-    height: 35px;
-    border: #eb7350 solid 3px;
-    width: 100%;
-    float: left;
-}
-
-.selector-three {
-    height: 36px;
-    /*border: #00F7DE solid 3px;*/
-    width: 100%;
-    margin-top: 100px;
-}
 
 
-.selector-one-left {
-    height: 120px;
-    /*border: #00F7DE solid 3px;*/
-    width: 10%;
-    background: #f3f3f3;
-    float: left;
-    margin-top: -10px;
-}
-
-.selector-two-left {
-    height: 35px;
-    /*border: #00F7DE solid 3px;*/
-    width: 10%;
-    background: #f3f3f3;
-    margin-top: -10px;
-}
-
-.selector-one-left-span {
-    font-weight: bold;
-    color: #6a666e;
-}
-
-.valueList-li {
-    float: left;
-    list-style: none;
-    margin-top: -10px;
-    border: 1px #ddd solid;
-    padding-top: 2px;
-    padding-left: 6px;
-    padding-right: 6px;
-}
-
-
-.valueList {
-    width: 1200px;
-}
-
-.valueList-li-img {
-    margin-top: 5px;
-    width: 150px;
-
-}
-
-.valueList-two-li {
-    list-style: none;
-    margin-right: 2%;
-    float: left;
-}
-
-.valueList-two {
-    width: 90%;
-    margin-top: -2%;
-    margin-left: 10%;
-}
-
-.selector-two-li {
-}
-
-.three-li {
-    float: left;
-    margin-right: 50px;
-}
-
-.three-ul {
-    margin-left: 126px;
-    margin-top: -50px;
-}
-
-#product-list{
-    width: 990px;
-    height: auto;
-    margin-top: 400px;
-    margin-left: 110px;
 }
 
 .product-ul {
-    width: 990px;
+    margin-top: 10px;
+    margin-left: 240px;
 }
 
-#product-list li{
-    float: left;
-    width: 240px;
-    height: 350px;
-    border: 1px solid red;
-}
-.product-img{
+.pro-img{
     width: 220px;
     height: 220px;
-    margin: 10px 10px;
-    background-color: darksalmon;
+    padding: 0;
+    margin: 20px 27px 15px 27px;
+    position: relative;
+}
+.pro-img img{
+    width: 220px;
+    height: 220px;
 }
 
-.product-price{
-    float: left;
-    font-size: 18px;
-    color: #e1251b;
-    margin-left: 10px;
-    font-family: "Microsoft YaHei";
+.p-price {
+    position: relative;
+    line-height: 22px;
+    margin: 10px 0 8px 27px;
+    color: #e4393c;
+    font-size: 20px;
 }
 
-.product-name,.shop-name{
-    clear: both;
-    margin-left: 10px;
-    color: black;
-}
-
-/*底部*/
-#footer {
-    margin-left: 180px;
-}
+.p-item{
+    font-size: 14px;
+}.p-item span{
+     margin: 3px 27px;
+ }
