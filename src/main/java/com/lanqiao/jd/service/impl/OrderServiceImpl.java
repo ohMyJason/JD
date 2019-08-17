@@ -93,11 +93,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Result showItem(List<Object> list) {
+    public Result showItem(int []cartItemIdArray) {
         try{
             List<Cart_Product_Business> cart_product_businessList = new ArrayList<>();
-            for (Object test:list) {
-                cart_product_businessList.add(orderMapper.showItem(Integer.parseInt(test.toString())));
+            for (int cartItemId: cartItemIdArray) {
+                Cart_Product_Business cart_product_business = new Cart_Product_Business();
+                cart_product_business = orderMapper.showItem(cartItemId);
+                if (cart_product_business != null) {
+                    cart_product_businessList.add(cart_product_business);
+                }
             }
             return Result.createSuccessResult(cart_product_businessList.size(),cart_product_businessList);
         }catch (Exception e){

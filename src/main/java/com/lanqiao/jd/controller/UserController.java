@@ -140,8 +140,13 @@ public class UserController {
 
     //购物车到订单过度页面展示
     @PostMapping("showItem")
-    public Result showItem(@RequestBody List<Object> objects){
-        return orderService.showItem(objects);
+    public Result showItem(@RequestParam(name = "IdArry" )String IdArry){
+        String[] split = IdArry.split(",");
+        int []test = new int[split.length];
+        for (int i = 0; i < split.length; i++){
+            test[i] = Integer.parseInt(split[i]);
+        }
+        return Result.createSuccessResult(orderService.showItem(test));
     }
 
 
