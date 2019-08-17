@@ -15,5 +15,5 @@ public interface OrderService {
     Result pay(Order order);
 
     //过度页面
-    public Result showItem(List<Object> list);
+    public Result showItem(int []cartItemIdArray);
 }

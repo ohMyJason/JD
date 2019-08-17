@@ -48,7 +48,7 @@
                 dataType:"json",
                 type:"post",
                 data: {
-                    userId:3,
+                    userId:$.cookie('userId'),
                     productId: $(this).parent().next().html()
                 },
                 success:function (result) {
@@ -78,7 +78,7 @@
                 dataType:"json",
                 type:"post",
                 data:{
-                    userId:3,
+                    userId:$.cookie('userId'),
                     productId: $(this).parent().next().html()
                 },
                 success:function (result) {
@@ -124,7 +124,7 @@
                     dataType:"json",
                     type:"post",
                     data:{
-                        userId:3,
+                        userId:$.cookie('userId'),
                         productId: $(this).parent().prev().prev().prev().html()
                     },
                     success:function (result) {
