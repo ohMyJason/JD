@@ -27,6 +27,7 @@
                 else if (result.code == 0){
                     // alert("支付成功,即将跳转到主页");
                     $(".w").hide();
+                    $("#success").hide();
                     $("#payButton").hide();
                     $("#paySuccess").show();
                     // window.location.href = "http://localhost:8080/user/index.html"
