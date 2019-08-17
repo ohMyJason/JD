@@ -201,18 +201,23 @@ public class UserController {
         return orderService.insertOrder(orderVo);
     }
 
+    @PostMapping("/pay")
+    //need:userId  orderId
+    public Result pay(Order order){
+       return orderService.pay(order);
+    }
 
-//    @PostMapping("/order")
-////    @ResponseBody
-//    public Result insertOrder(@RequestBody List<OrderItem> orderItems,@RequestParam(name = "userId")int userId,@RequestParam(name = "userAddressId") int userAddressId,@RequestParam(name = "totalPrice") BigDecimal totalPrice ){
-//
-//        for(OrderItem orderItem:orderItems){
-//            System.out.println(orderItem.toString());
-//        }
-//        System.out.println(userId + " " + userAddressId + " " + totalPrice);
-////        return orderService.insertOrder(orderItems,userId,userAddressId, totalPrice);
-//        return Result.createSuccessResult();
-//    }
+    //余额充值
+    @PostMapping("/addBalance")
+    //need:balance userId password
+    public Result addBalance(User user){
+        return userService.addBalance(user);
+    }
 
+    @PostMapping("/getNameById")
+    public Result getNameById(int userId){
+        User user =  userService.findUserById(userId);
+        return Result.createSuccessResult(user.getUserName());
+    }
 
 }
