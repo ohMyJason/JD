@@ -138,8 +138,11 @@ public class UserController {
         return cartItemService.subCartItemNum(userId,productId);
     }
 
-
-
+    //购物车到订单过度页面展示
+    @PostMapping("showItem")
+    public Result showItem(@RequestBody List<Object> objects){
+        return orderService.showItem(objects);
+    }
 
 
     //发送手机验证码

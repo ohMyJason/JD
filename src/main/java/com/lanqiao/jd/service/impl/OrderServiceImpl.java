@@ -3,10 +3,7 @@ package com.lanqiao.jd.service.impl;
 import com.lanqiao.jd.dao.OrderItemMapper;
 import com.lanqiao.jd.dao.OrderMapper;
 import com.lanqiao.jd.dao.UserMapper;
-import com.lanqiao.jd.entity.Order;
-import com.lanqiao.jd.entity.OrderItem;
-import com.lanqiao.jd.entity.OrderVo;
-import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.entity.*;
 import com.lanqiao.jd.service.OrderService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -90,6 +89,19 @@ public class OrderServiceImpl implements OrderService {
         }
         else{
             return Result.createByFailure("余额不足，请充值");
+        }
+    }
+
+    @Override
+    public Result showItem(List<Object> list) {
+        try{
+            List<Cart_Product_Business> cart_product_businessList = new ArrayList<>();
+            for (Object test:list) {
+                cart_product_businessList.add(orderMapper.showItem(Integer.parseInt(test.toString())));
+            }
+            return Result.createSuccessResult(cart_product_businessList.size(),cart_product_businessList);
+        }catch (Exception e){
+            return Result.createByFailure("数据库错误，联系管理员");
         }
     }
 }

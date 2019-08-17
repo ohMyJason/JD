@@ -103,4 +103,14 @@
       total_price = #{totalPrice,jdbcType=DECIMAL}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
+
+  <select id="showItem" resultType="com.lanqiao.jd.entity.Cart_Product_Business" parameterType="java.lang.Integer" >
+    select y.business_name,y.product_id,y.product_name,y.product_img_url,y.product_price,y.detail_1,c.num
+		from
+		(select x.business_name,x.product_id,x.product_name,x.product_img_url,x.product_price,i.detail_1
+		from baseSelect x left JOIN tb_product_item i
+		on x.product_id = i.product_id) y,tb_cart_item c
+		where y.product_id = c.product_id and cart_item_id = #{CartItemId,jdbcType=INTEGER}
+  </select>
+
 </mapper>
