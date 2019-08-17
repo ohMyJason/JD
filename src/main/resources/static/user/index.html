@@ -10,6 +10,21 @@
     <script src="js/jquery-cookie.js"></script>
     <script>
         $(function () {
+
+            $.ajax({
+                url:"/testGetUserId",
+                type:"post",
+                headers:{'token':$.cookie("token")
+                },
+                dataType: "json",
+                success: function (result) {
+                    if(result.code==0) {
+                        $.cookie("userId", result.data, {path: '/'});
+                    }
+                }
+            })
+
+
             $.cookie("name",null,{path:'/'});
             $(".button").click(function () {
                 var keyword = $("input[name='keyword']").val();
@@ -36,26 +51,19 @@
                 }
             })
             $.ajax({
-                url:"/testGetUserId",
-                type:"post",
-                headers:{'token':$.cookie("token")
-                },
-                dataType: "json",
-                success: function (result) {
-                    $.cookie("userId",result.data,{path:'/'});
-                }
-            })
-
-            $.ajax({
                 url:"/user/getNameById",
                 type:"post",
                 dataType: "json",
+                headers:{'token':$.cookie("token")
+                },
                 data:{
                     userId: $.cookie('userId')
                 },
                 success: function (result) {
-                    $("#m_right_first").find("span").html(result.data);
-                    $("#m_right_first").children().eq(1).html("");
+                    if (result.code==0) {
+                        $("#m_right_first").find("span").html(result.data);
+                        $("#m_right_first").children().eq(1).html("");
+                    }
                 }
             })
         })

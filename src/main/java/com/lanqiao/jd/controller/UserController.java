@@ -207,6 +207,8 @@ public class UserController {
         return userService.addBalance(user);
     }
 
+
+    @UserLoginToken
     @PostMapping("/getNameById")
     public Result getNameById(@RequestParam(name = "userId")int userId){
         User user =  userService.findUserById(userId);
