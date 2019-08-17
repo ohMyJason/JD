@@ -96,7 +96,12 @@
 
         //已选中几件商品
         $(".list-checkbox").click(function () {
-            var pronum = $("#number").val();
+            if( $(this).is(':checked') ){
+                var pronum = parseInt($("#number").val()) + parseInt($("#selected-pro-num").val());
+            }
+            else {
+                var pronum = parseInt($("#selected-pro-num").val())- parseInt($("#number").val());
+            }
             $("#selected-pro-num").val(pronum);
         });
 
