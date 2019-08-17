@@ -395,7 +395,7 @@ t-action {
     color: black;
 }
 
-#delete,#move{
+.delete,#move{
     margin-left: 77px;
 }
 
@@ -436,6 +436,8 @@ t-action {
     background-color: #e1251b;
     font-weight: bold;
     color: white;
+    line-height: 52px;
+    text-align: center;
     font-size: 18px;
     font-family: "Microsoft YaHei";
 }
@@ -470,7 +472,7 @@ t-action {
 
 #selected-pro-num{
     float: left;
-    width: 10px;
+    width: 20px;
     font-size: 14px;
     font-weight: bold;
     color: #e1251b;
@@ -480,6 +482,11 @@ t-action {
     outline: none;
 }
 
-#product-id{
+#product-id,#cart-item-id{
     display: none;
+}
+
+#setOrder :hover
+{
+    color: white;
 }

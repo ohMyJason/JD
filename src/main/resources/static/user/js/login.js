@@ -48,10 +48,8 @@
                     password:$("#pwd").val()
                 },
                 success:function (result){
-                    // alert($("#pwd").val());
-                    // alert(result.code);
                     if(result.code == 0){
-                        // alert('一致');
+                        $.cookie("token",result.data[1].split(":")[1],{ expires:1,path:'/'});
                         window.location.href="http://localhost:8080/user/index.html";
                     }else{
                         alert("error");

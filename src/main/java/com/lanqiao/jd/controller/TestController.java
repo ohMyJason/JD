@@ -1,5 +1,7 @@
 package com.lanqiao.jd.controller;
 
+import com.auth0.jwt.JWT;
+import com.lanqiao.jd.annotations.UserLoginToken;
 import com.lanqiao.jd.entity.ProductImgList;
 import com.lanqiao.jd.entity.User;
 import com.lanqiao.jd.util.CodeUtil;
@@ -11,6 +13,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -43,4 +46,11 @@ public class TestController {
         return  Result.createSuccessResult(absoPath);
     }
 
+    @UserLoginToken
+    @PostMapping("testGetUserId")
+    public Result testGetUserId(HttpServletRequest httpServletRequest){
+        String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
+        String userId = JWT.decode(token).getAudience().get(0);
+        return Result.createSuccessResult(userId);
+    }
 }
