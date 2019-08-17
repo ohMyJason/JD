@@ -15,6 +15,8 @@ public class Cart_Product_Business {
 
     private Integer num;
 
+    private Integer cartItemId;
+
     public String getBusinessName() {
         return businessName;
     }
@@ -69,5 +71,13 @@ public class Cart_Product_Business {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getCartItemId() {
+        return cartItemId;
+    }
+
+    public void setCartItemId(Integer cartItemId) {
+        this.cartItemId = cartItemId;
     }
 }
