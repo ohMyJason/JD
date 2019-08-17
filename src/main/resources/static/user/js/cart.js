@@ -71,9 +71,33 @@
         });
 
         //删除
-        $("#delete").click(function () {
+        $(".delete").click(function () {
+            $.ajax({
+                url:"/user/addCartItemNum",
+                dataType:"json",
+                type:"post",
+                data:{
+                    userId:3,
+                    cartItemId: $(this).parent().prev().html()
+                },
+                success:function (result) {
+                    if(result.code == -100){
+                        alert("出现意外");
+                        window.location.reload();
+                    }
+                },error:function () {
+                    alert("error");
+                    window.location.reload();
+                }
+            });
             if(window.confirm("是否删除该产品？"))
                 $(this).parents(".cart-item-list").remove();
+        });
+
+        //已选中几件商品
+        $(".list-checkbox").click(function () {
+            var pronum = $("#number").val();
+            $("#selected-pro-num").val(pronum);
         });
 
         function show() {
@@ -99,7 +123,8 @@
                             $temp.eq(3).html(result.data[i].productPrice);
                             $temp.eq(4).children().eq(1).val(result.data[i].num);
                             $temp.eq(5).html(result.data[i].productId);
-                            $temp.eq(6).html(result.data[i].productPrice);
+                            $temp.eq(6).html(result.data[i].productPrice * result.data[i].num);
+                            $temp.eq(7).html(result.data[i].cartItemId);
                             $("#jd-cart").append($node);
                             $node = $("#jd-cart").children().eq(1).clone(true);
                         }
