@@ -7,8 +7,10 @@
     <link href="css/index.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/index.js" rel="script"></script>
+    <script src="js/jquery-cookie.js"></script>
     <script>
         $(function () {
+            $.cookie("name",null,{path:'/'});
             $(".button").click(function () {
                 var keyword = $("input[name='keyword']").val();
                 if (keyword==null||keyword==''){
@@ -23,7 +25,7 @@
                         },
                         success: function (result) {
                             if (result.code==0) {
-                                alert(result.data[0].productId);
+                                $.cookie("name",encodeURI(encodeURI($("#keyword").val())),{path:'/'});
                                 window.location.href="http://localhost:8080/user/productList.html"
                             }else{
                                 alert("error");
