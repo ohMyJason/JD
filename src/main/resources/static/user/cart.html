@@ -123,7 +123,7 @@
                         <input class="list-checkbox" type="checkbox">
                         <a class="shop-name"><span class="shop_name">京东自营</span></a>
                     </div>
-                    <input class="list-checkbox list-check" type="checkbox">
+                    <input class="list-checkbox list-check" name = "choose" type="checkbox">
                     <div class="product-item">
                         <img class="pro-img">
                         <span class="pro-name">哈哈哈哈哈</span>
@@ -134,7 +134,8 @@
                         </div>
                         <span id="product-id">11</span>
                         <b class="total-price">249</b>
-                        <a><span id="delete">删除</span></a><br>
+                        <span id="cart-item-id">1</span>
+                        <a><span class="delete">删除</span></a><br>
                         <a><span id="move">移到我的关注</span></a>
                     </div>
                 </div>
@@ -146,18 +147,18 @@
                     </div>
                 </div>
                 <ul>
-                    <li><a>删除选中商品</a></li>
+                    <li class="delete"><a>删除选中商品</a></li>
                     <li><a>移到关注</a></li>
                     <li><a><b>清理购物车</b></a></li>
                 </ul>
-                <a class="account_btn" href="order.html">去京东结算</a>
-                <!--<input type="button" class="account_btn" value="去京东结算" onclick=""/>-->
+<!--                <a class="account_btn" href="order.html" id = "setOrder">去京东结算</a>-->
+                <input type="button" id = "setOrder" class="account_btn" value="去京东结算" onclick=""/>
                 <div class="price-num">
                     <span>总价：</span><b class="account-price">249</b>
                     <p>促销：-&yen;100.00</p>
                 </div>
                 <div class="selected-num">
-                    <p>已选择</p><input id="selected-pro-num" type="text" value="7"/><p>件商品</p>
+                    <p>已选择</p><input id="selected-pro-num" type="text" value="0"/><p>件商品</p>
                 </div>
             </div>
         </div>

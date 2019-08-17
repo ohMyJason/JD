@@ -395,7 +395,7 @@ t-action {
     color: black;
 }
 
-#delete,#move{
+.delete,#move{
     margin-left: 77px;
 }
 
@@ -472,7 +472,7 @@ t-action {
 
 #selected-pro-num{
     float: left;
-    width: 10px;
+    width: 20px;
     font-size: 14px;
     font-weight: bold;
     color: #e1251b;
@@ -482,6 +482,11 @@ t-action {
     outline: none;
 }
 
-#product-id{
+#product-id,#cart-item-id{
     display: none;
+}
+
+#setOrder :hover
+{
+    color: white;
 }
