@@ -1,6 +1,9 @@
 ($(function () {
         show();
 
+        //小计值一
+        var littlePrice1 = 0;
+        var littlePrice2 = 0;
         //添加数量
         $("#add-btn").click(function () {
             $.ajax({
@@ -26,9 +29,8 @@
             //计算小计
             var singlePrice = parseInt($(this).parent().parent().find("p").html());
             var little = $(this).parent().parent().find("b");
-            little.html((parseInt(num)+1)*singlePrice);
-            totalPrice();
-            countNum()
+            little.text((parseInt(num)+1)*singlePrice);
+            littlePrice1.val(parseInt(little.text()));
         });
 
         //减少数量
@@ -60,20 +62,18 @@
             //计算小计
             var singlePrice = parseInt($(this).parent().parent().find("p").html());
             var little = $(this).parent().parent().find("b");
-            little.html((parseInt(num)-1)*singlePrice);
-            totalPrice();
-            countNum()
+            little.text((parseInt(num)-1)*singlePrice);
         });
 
         //全选
         $("input[name='toggle-checkboxes']").click(function () {
             if($(this).is(":checked")){
                 $(".list-checkbox").prop("checked",true);
+                var littlePrice = parseInt($(this).parents(".cart-thead").next().children('.product-item').children().eq(6).text()); //小计值
+                alert(littlePrice);
             }else{
                 $(".list-checkbox").prop("checked",false);
             }
-            totalPrice();
-            countNum()
         });
 
         //删除
@@ -100,48 +100,21 @@
                 $(this).parents(".cart-item-list").remove();
         });
 
-        //计算总价
-        function totalPrice() {
-            var price = 0;
-            $(".cart-item-list").each(function () {
-                if($(this).find("input[name = 'choose']").is(':checked')){
-                    var num = $(this).children().eq(2).children().eq(3).html();
-                    var priceA =  $(this).children().eq(2).children().eq(4).children().eq(1).val();
-                    var priceB = parseFloat(num) * parseFloat(priceA);
-                    price += priceB;
-                }
-                $("#totalPrice").html(price);
-            })
-        }
-
-        //计算总商品数量
-        function countNum(){
-            var pronum =0;
-            $(".cart-item-list").each(function () {
-                var num =$(this).children().eq(2).children().eq(4).children().eq(1).val();
-                if( $(this).children().eq(1).is(':checked') ){
-                    pronum += parseInt(num);
-                }
-            })
-            $("#selected-pro-num").val(pronum);
-        }
-
         //已选中几件商品
         $("input[name = 'choose']").click(function () {
-            // var num = $(this).next().children().eq(4).children().eq(1).val();
-            // if( $(this).is(':checked') ){
-            //     var pronum = parseInt(num) + parseInt($("#selected-pro-num").val());
-            // }
-            // else {
-            //     var pronum = parseInt($("#selected-pro-num").val())- parseInt(num);
-            // }
-            // $("#selected-pro-num").val(pronum);
-            countNum();
-            totalPrice();
+            var num = $(this).next().children().eq(4).children().eq(1).val();
+            var littlePrice = parseInt($(this).next().children().eq(6).text());     //从choose按钮找到小计值
+            if( $(this).is(':checked') ){
+                var pronum = parseInt(num) + parseInt($("#selected-pro-num").val());
+                $(".account-price").text(littlePrice);
+            }
+            else {
+                var pronum = parseInt($("#selected-pro-num").val())- parseInt(num);
+                $(".account-price").text('0');
+            }
+            $("#selected-pro-num").val(pronum);
         });
 
-
-        
         function show() {
             $.ajax({
                 url: "http://localhost:8080/user/showCartItem",
@@ -170,8 +143,6 @@
                             $("#jd-cart").append($node);
                             $node = $("#jd-cart").children().eq(1).clone(true);
                         }
-                    }else {
-                        window.location.href="/user/login.html";
                     }
                 },
                 error: function () {
