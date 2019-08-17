@@ -34,7 +34,7 @@ body{
 }
 
 pay-body{
-    background: url("static/user/images/pay/paybackground.jpg") no-repeat center -50px;
+    background: url("../images/pay/paybackground.png") no-repeat center -50px;
 }
 .order{
     position: relative;

@@ -11,10 +11,11 @@
             success:function (result) {
                 if(result.code==0){
                     var $modle = $(".product").clone(true);
-                    $(".product").eq(0).detach();
+                    // $(".product").eq(0).detach();
                     for(var i = 0; i <result.total; i++){
                         var $node = $modle.children().children();
                         var url = ".."+ result.data[i].productImgUrl;
+                        alert(url);
                         $node.eq(0).children().eq(0).attr("src",url);
                         $node.eq(1).children().eq(1).html(result.data[i].productPrice);
                         $node.eq(2).children().eq(0).html(result.data[i].productName);

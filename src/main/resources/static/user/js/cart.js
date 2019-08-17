@@ -1,22 +1,28 @@
 ($(function () {
         show();
 
-        // $("#add-btn").click(function () {
-        //     alert(1);
-            // alert(this);
-            // $.ajax({
-            //     url:"/user/addCartItemNum",
-            //     dataType:"json",
-            //     type:"post",
-            //     data: {
-            //         userId:3,
-            //         productId: this.parent().next().html()
-            //     },
-            //     success:function (result) {
-            //         alert('success');
-            //     }
-            // })
-        // });
+        $("#add-btn").click(function () {
+            $.ajax({
+                url:"/user/addCartItemNum",
+                dataType:"json",
+                type:"post",
+                data: {
+                    userId:1000,
+                    productId: $(this).parent().next().html()
+                },
+                success:function (result) {
+                    if(result.code == -100){
+                        alert("出现意外");
+                        window.location.reload();
+                    }
+                },error:function () {
+                    alert("出现意外");
+                    window.location.reload();
+                }
+            })
+            var num = $(this).prev().val();
+                $(this).prev().val(parseInt(num)+1);
+        });
 
         function show() {
             $.ajax({
@@ -52,14 +58,14 @@
             })
         }
 
-        //添加数量
-        $("#add-btn").click(function () {
-            var num = $(this).prev().val();
-            $(this).prev().val(parseInt(num)+1);
-            $("#number").trigger("input");
-            // alert($(this).parent().parent().eq(6).text());
-            // $(".total-price").text(parseInt($("#number").val())*parseInt($(".pro-price").val()));
-        });
+        // //添加数量
+        // $("#add-btn").click(function () {
+        //     var num = $(this).prev().val();
+        //     $(this).prev().val(parseInt(num)+1);
+        //     $("#number").trigger("input");
+        //     // alert($(this).parent().parent().eq(6).text());
+        //     // $(".total-price").text(parseInt($("#number").val())*parseInt($(".pro-price").val()));
+        // });
 
         //减少数量
         $("#sub-btn").click(function () {
