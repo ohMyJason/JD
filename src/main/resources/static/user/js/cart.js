@@ -103,6 +103,8 @@
                             $("#jd-cart").append($node);
                             $node = $("#jd-cart").children().eq(1).clone(true);
                         }
+                    }else {
+                        window.location.href="/user/login.html";
                     }
                 },
                 error: function () {

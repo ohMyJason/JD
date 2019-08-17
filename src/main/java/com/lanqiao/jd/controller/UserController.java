@@ -122,6 +122,7 @@ public class UserController {
         return cartItemService.deleteCartItem(userId,productId);
     }
     //查看购物车信息
+    @UserLoginToken
     @PostMapping("/showCartItem")
     public Result showCartItem(@RequestParam(name = "userId") int userId){
         return cartItemService.showCartItem(userId);
@@ -207,7 +208,7 @@ public class UserController {
     }
 
     @PostMapping("/getNameById")
-    public Result getNameById(int userId){
+    public Result getNameById(@RequestParam(name = "userId")int userId){
         User user =  userService.findUserById(userId);
         return Result.createSuccessResult(user.getUserName());
     }
