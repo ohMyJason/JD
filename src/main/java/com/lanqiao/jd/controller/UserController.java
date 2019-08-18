@@ -231,6 +231,7 @@ public class UserController {
     }
 
     //查询一个用户的所有的订单信息
+    @UserLoginToken
     @PostMapping("/getAllOrder")
     public Result getAllOrderByUserId(int userId){
         return orderService.getAllOrderByUserId(userId);
