@@ -259,6 +259,9 @@ body{
 
 .p-item{
     font-size: 14px;
-}.p-item span{
+}
+
+
+.p-item span{
      margin: 3px 27px;
  }

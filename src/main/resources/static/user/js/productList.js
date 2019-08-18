@@ -25,6 +25,8 @@
                         $(".product-ul").append($modle);
                         $modle = $(".product").eq(0).clone(true);
                     }
+                    //删除hover样式
+                    $(".p-item").css("pointer-events","none");
                 }else {
                     alert("服务器查询异常");
                 }
