@@ -37,6 +37,11 @@
                 // $node = $("#two").clone(true);
             });
 
+            $("input[name='del']").click(function () {
+                $(this).parent().parent().detach();
+            });
+
+
             //设置多个表格可编辑
             function EditTables(){
                 for(var i=0;i<arguments.length;i++){
@@ -162,7 +167,7 @@
                     <td>333</td>
                     <td>444</td>
                     <td>333</td>
-                    <td><button name="del">删除</button></input></td>
+                    <td><input name="del" type="button" value="删除"/></td>
                 </tr>
                 </tbody>
             </table>
@@ -197,11 +202,11 @@
 
     <!--输入框-->
     <div id="input_info">
-        商店名称：<input id="shop_name" type="text">
-        商品图片：<input id="pro_image" type="text">
-        商品名称：<input id="pro_name" type="text">
-        商品编码：<input id="pro_id" type="text">
-        价格：<input id="pro_price" type="text">
+        商店名称：<input id="shop_name" type="text"><br>
+        商品图片：<input id="pro_image" type="text"><br>
+        商品名称：<input id="pro_name" type="text"><br>
+        商品编码：<input id="pro_id" type="text"><br>
+        价格：<input id="pro_price" type="text"><br>
         <input id="sub_btn" type="submit" value="提交">
     </div>
 </div>
