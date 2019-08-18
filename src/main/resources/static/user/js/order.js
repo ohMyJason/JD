@@ -24,7 +24,7 @@
         $(".change_box").each(function () {
             var num = parseInt($(this).children().eq(1).find("#dcr_t_num").children().html());
             pronum += parseInt(num);
-        })
+        });
         $("#productNum").html(parseInt(pronum));
     }
 
@@ -33,10 +33,12 @@
         var totalPrice = 0;
         $(".change_box").each(function () {
             var num = parseInt($(this).children().eq(1).find("#dcr_t_num").children().html());
-            var price = parseInt($(this).children().eq(1).find("#dcr_t_mid").children().eq(0).html());
+            var price = parseInt($(this).children().eq(1).find("#dcr_t_mid").children().eq(0).val());
             var eachPrice = parseInt(num)*parseInt(price);
             totalPrice += parseInt(eachPrice);
         })
+
+        alert(totalPrice);
         $("#productPrice").html(parseInt(totalPrice));
         $("#realPay").html(parseInt(totalPrice)+8);
     }
