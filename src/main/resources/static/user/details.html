@@ -10,7 +10,7 @@
     <script src="js/jquery-cookie.js"></script>
     <script>
         $(function() {
-            $.cookie("productItemId",null,{path:'/'});
+            $.cookie("productItemId", null, {path: '/'});
             var $yin = $(".yin");
             $(".Ul li img").mouseover(function () {
                 $(this).parent().addClass("li").siblings().removeClass("li");
@@ -76,8 +76,7 @@
                 marginLeft = marginLeft + 64;
                 if (marginLeft > 0) {
                     marginLeft = 0
-                }
-                ;
+                };
                 $(".tab ul").stop().animate({
                         "margin-left": marginLeft
                     },
@@ -107,23 +106,24 @@
                 $.ajax({
                     url: "/user/insertComment",
                     type: "post",
-                    headers:{'token':$.cookie("token")
+                    headers: {
+                        'token': $.cookie("token")
                     },
                     data: {
                         commentDetail: $("textarea[name='message']").val(),
                         commentLevel: $("input[name='level']").val(),
-                        productItemId:$.cookie('productItemId'),
-                        userId:$.cookie('userId')
+                        productItemId: $.cookie('productItemId'),
+                        userId: $.cookie('userId')
 
                     },
                     datatype: "json",
                     success: function (result) {
-                        if (result.code==0) {
+                        if (result.code == 0) {
                             alert("插入成功");
                             // location.reload();
                         } else {
                             alert("请先登录！");
-                            window.location.href="/user/login.html";
+                            window.location.href = "/user/login.html";
                         }
                     }
                 })
@@ -146,40 +146,56 @@
                     }
                 }
             })
+            $.ajax({
+                url:"/user/detailPage",
+                    type:"post",
+                    datatype:"json",
+                    scriptCharset:"utf-8",
+                    data:{
+                        userId:"3",
+                        productId:$.cookie('productId')
+                    },
+                    success:function (result) {
+                        // var $name = result.data[0].productName;
+                        $("div[class='name']").text(result.data[0].productName);
+                        $("div[class='address']").append(result.data[2][0].address);
+                        $("div[class='test']").text(result.data[0].productItemId);
+                        $(".price span").eq(1).text(result.data[0].productPrice);
+                        $("div[class='business']").text("由"+result.data[0].businessName+"配送");
+                        $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")");
+                        $("div[class='up']").html(result.data[0].detail1+ "<br/>");
+                        $("div[class='up']").append(result.data[0].detail2+ "<br/>");
+                        $("div[class='up']").append(result.data[0].detail3+ "<br/>");
+                        $("div[class='up']").append(result.data[0].detail4+ "<br/>");
+                        $("div[class='up']").append(result.data[0].detail5+ "<br/>");
+                        $("div[class='up']").append("商家:"+result.data[0].businessName);
+                        var proitemid = result.data[0].productItemId;
+                        $.cookie("productItemId",proitemid,{path:'/'});
+                        //下面是图片路径
+                        // alert(result.data[1][0]);
+                        // $img = result.data[1][0]
+                        // $("#pian").attr("src", $img);
+                        // $(".UL  li img").attr("src", $img);
+                        // $("#zhao").attr("src", $img);
+                    }
+            })
+            $("button[name='shop']").click(function () {
                 $.ajax({
-                    url:"/user/detailPage",
-                        type:"post",
-                        datatype:"json",
-                        scriptCharset:"utf-8",
-                        data:{
-                            userId:"3",
-                            productId:$.cookie('productId')
-                        },
-                        success:function (result) {
-                            // var $name = result.data[0].productName;
-                            $("div[class='name']").text(result.data[0].productName);
-                            $("div[class='address']").append(result.data[2][0].address);
-                            $(".price span").eq(1).text(result.data[0].productPrice);
-                            $("div[class='business']").text("由"+result.data[0].businessName+"配送");
-                            $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")");
-                            $("div[class='up']").html(result.data[0].detail1+ "<br/>");
-                            $("div[class='up']").append(result.data[0].detail2+ "<br/>");
-                            $("div[class='up']").append(result.data[0].detail3+ "<br/>");
-                            $("div[class='up']").append(result.data[0].detail4+ "<br/>");
-                            $("div[class='up']").append(result.data[0].detail5+ "<br/>");
-                            $("div[class='up']").append("商家:"+result.data[0].businessName);
-                            var proitemid = result.data[0].productItemId;
-                            $.cookie("productItemId",proitemid,{path:'/'});
-                            //下面是图片路径
-                            // alert(result.data[1][0]);
-                            // $img = result.data[1][0]
-                            // $("#pian").attr("src", $img);
-                            // $(".UL  li img").attr("src", $img);
-                            // $("#zhao").attr("src", $img);
-                        }
+                    url: "/user/insertCartItem",
+                    type: "post",
+                    datatype: "json",
+                    scriptCharset: "utf-8",
+                    data: {
+                        userId: "3",
+                        productItemId:"3"
+                    },
+                    success: function (result) {
+                        window.location.href="http://localhost:8080/user/cart.html";
+                    }
                 })
-
+            })
         })
+
     </script>
 </head>
 <body>
@@ -232,7 +248,7 @@
                 <div class="btns">
                     <ul>
                         <li class="num"><input type="button" value="-" style="width: 20px"> <input name="num" type="text" value="1" size="5px"> <input type="button" value="+" style="width: 20px">
-                            <button class="layui-btn layui-btn-warm"><a href="cart.html">加入购物车</a></button>
+                            <button class="layui-btn layui-btn-warm" name="shop">加入购物车</button>
                         </li>
 
                     </ul>
@@ -308,5 +324,6 @@
     </div>
     <div id="test"></div>
 </div>
+
 </body>
 </html>
