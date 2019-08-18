@@ -45,7 +45,10 @@
                             var imgsrc = ".." + result.data[i].productImgUrl;
                             $node.children().eq(1).find("img").attr("src",imgsrc);
                             $node.children().eq(1).find("#dcr_t_left").children("ul").children("li").eq(0).html(result.data[i].productName);
-                            $node.children().eq(1).find("#dcr_t_mid").children().eq(0).html(productPrice);
+                            $node.children().eq(1).find("#dcr_t_mid").children().eq(0).html(result.data[i].productPrice);
+                            $node.children().eq(1).find("#dcr_t_mid").children().eq(1).html(result.data[i].detail1);
+                            $node.children().eq(1).find("#dcr_t_mid").children().eq(2).html(result.data[i].productId);
+                            $node.children().eq(1).find("#dcr_t_mid").children().eq(3).html(result.data[i].cartItemId);
                             $node.children().eq(1).find("#dcr_t_num").children().html("x" + result.data[i].num);
                             $("#deliver_cont_right").append($node);
                              $node = $("#change_box").eq(0).clone(true);
