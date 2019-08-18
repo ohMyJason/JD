@@ -170,13 +170,16 @@
                         $("div[class='up']").append(result.data[0].detail5+ "<br/>");
                         $("div[class='up']").append("商家:"+result.data[0].businessName);
                         var proitemid = result.data[0].productItemId;
-                        $.cookie("productItemId",proitemid,{path:'/'});
+                        $.cookie("productItemId",proitemid,{path:'/user/details.html'});
                         //下面是图片路径
-                        // alert(result.data[1][0]);
-                        // $img = result.data[1][0]
-                        // $("#pian").attr("src", $img);
-                        // $(".UL  li img").attr("src", $img);
-                        // $("#zhao").attr("src", $img);
+                        $img = result.data[1][0];
+                        $("#pian").attr("src", $img);
+                        var listImg=$(".Ul li img");
+                        for(var i=0;i<listImg.length;i++)
+                        {
+                            $(listImg[i]).attr("src",$img)
+                        }
+                        $("#zhao").attr("src", result.data[1][i]);
                     }
             })
             $("button[name='shop']").click(function () {
@@ -185,9 +188,12 @@
                     type: "post",
                     datatype: "json",
                     scriptCharset: "utf-8",
+                    headers:{'token':$.cookie("token")
+                    },
                     data: {
-                        userId: "3",
-                        productItemId:"3"
+                        userId: $.cookie('userId'),
+                        productId:$.cookie('productId'),
+                        num: $("input[name='num']").val()
                     },
                     success: function (result) {
                         window.location.href="http://localhost:8080/user/cart.html";

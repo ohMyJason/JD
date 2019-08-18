@@ -113,6 +113,7 @@ public class UserController {
 
     //购物车相关
     //插入一条信息 参数：userId ，cartItem
+    @UserLoginToken
     @PostMapping("/insertCartItem")
     public Result insertCartItem(@RequestParam(name = "userId") int userId, CartItem cartItem){
         return cartItemService.insertCartItem(userId,cartItem);
