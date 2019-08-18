@@ -1,17 +1,42 @@
 ($(function () {
+    //展示订单信息
     $.ajax({
         url:"http://localhost:8080/user/getAllOrder",
         type:"post",
         dataType:"json",
+        headers:{'token':$.cookie("token")
+        },
         data:{
-            userId:3
+            userId:$.cookie('userId')
         },
         success:function (result){
-            console.log((result.data));
             if(result.code == 0){
+                if (result.count==0){
+                    alert("该用户没有订单信息！");
+                } else{
+                    var $model = $(".orderBox").eq(0).clone(true);
+                    $(".orderBox").eq(0).detach();
+                    for (var i = 0; i < result.count; i++){
+                        $model.children().eq(0).children().eq(0).html(result.data[i].createTime);
+                        $model.children().eq(0).children().eq(1).html(result.data[i].orderId);
+                        var imgsrc = ".."+result.data[i].productImgUrl;
+                        $model.children().eq(1).children().eq(0).find("img").attr("src",imgsrc);
+                        $model.children().eq(1).children().eq(0).children().eq(0).children().eq(1).children().eq(0).html(result.data[i].productName);
+                        $model.children().eq(1).children().eq(0).children().eq(0).children().eq(2).children().eq(0).html(result.data[i].num);
+                        $model.children().eq(1).children().eq(1).find("span").html(result.data[i].receiveName);
+                        $model.children().eq(1).children().eq(2).find("span").html(result.data[i].totalPrice);
+                        $model.children().eq(1).children().eq(3).children().eq(0).html(result.data[i].orderStatus);
+                        $("#main_body").append($model);
+                        $model = $(".orderBox").eq(0).clone(true);
+                    }
 
+                }
+            }else {
+                alert("请先登录！");
+                window.location.href="/user/login.html";
             }
-
+        },error:function () {
+            alert("请求响应失效！");
         }
     })
 }))
