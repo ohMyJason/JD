@@ -15,5 +15,8 @@ public interface OrderService {
     Result pay(Order order);
 
     //过度页面
-    public Result showItem(int []cartItemIdArray);
+    Result showItem(int []cartItemIdArray);
+
+    //查询所有的订单信息
+    Result getAllOrderByUserId(int userId);
 }

@@ -113,4 +113,13 @@
 		where y.product_id = c.product_id and cart_item_id = #{CartItemId,jdbcType=INTEGER}
   </select>
 
+  <!-- Add -->
+  <!-- 查询一个用户的所有订单 -->
+  <select id="getAllOrderByUserId" resultType="com.lanqiao.jd.entity.SelectOrderInfoByUserId" parameterType="java.lang.Integer" >
+    select b.order_id,b.order_status,b.user_id,b.creat_time,b.product_id,b.product_name,b.product_img_url,b.total_price,b.num,ua.receive_name FROM
+(select a.order_id,a.order_status,a.user_id,a.creat_time,a.user_address_id,a.product_id,p.product_name,p.product_img_url,(p.product_price*a.num)as total_price,a.num
+from (select o.order_id,o.order_status,o.user_id,o.creat_time,o.user_address_id,oi.product_id,oi.num
+from tb_order o NATURAL join tb_order_item oi)as a NATURAL join tb_product p)as b NATURAL join tb_user_address ua
+where b.user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>
