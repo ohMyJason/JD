@@ -163,12 +163,20 @@
                         $(".price span").eq(1).text(result.data[0].productPrice);
                         $("div[class='business']").text("由"+result.data[0].businessName+"配送");
                         $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")");
-                        $("div[class='up']").html(result.data[0].detail1+ "<br/>");
-                        $("div[class='up']").append(result.data[0].detail2+ "<br/>");
-                        $("div[class='up']").append(result.data[0].detail3+ "<br/>");
-                        $("div[class='up']").append(result.data[0].detail4+ "<br/>");
-                        $("div[class='up']").append(result.data[0].detail5+ "<br/>");
-                        $("div[class='up']").append("商家:"+result.data[0].businessName);
+                        var up =$(".up ul li");
+                        $(up[0]).text(result.data[0].detail1);
+                        $(up[1]).text(result.data[0].detail2);
+                        $(up[2]).text(result.data[0].detail3);
+                        $(up[3]).text(result.data[0].detail4);
+                        $(up[4]).text(result.data[0].detail5);
+                        $(up[5]).text(result.data[0].detail6);
+                        $(up[6]).text("商家:"+result.data[0].businessName);
+                        // $("div[class='up']").html(result.data[0].detail1+ "<br/>");
+                        // $("div[class='up']").append(result.data[0].detail2+ "<br/>");
+                        // $("div[class='up']").append(result.data[0].detail3+ "<br/>");
+                        // $("div[class='up']").append(result.data[0].detail4+ "<br/>");
+                        // $("div[class='up']").append(result.data[0].detail5+ "<br/>");
+                        // $("div[class='up']").append("商家:"+result.data[0].businessName);
                         var proitemid = result.data[0].productItemId;
                         $.cookie("productItemId",proitemid,{path:'/user/details.html'});
                         //下面是图片路径
@@ -177,7 +185,7 @@
                         var listImg=$(".Ul li img");
                         for(var i=0;i<listImg.length;i++)
                         {
-                            $(listImg[i]).attr("src",$img)
+                            $(listImg[i]).attr("src",result.data[1][i])
                         }
                         $("#zhao").attr("src", result.data[1][i]);
                     }
@@ -280,11 +288,15 @@
 
                 <div class="up">
 
-                    <span>暂无好评！</span>
-
-                    <p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗</p>
-
-                    <p>来源：师徒课堂</p>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                    </ul>
 
                 </div>
 

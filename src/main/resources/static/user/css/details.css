@@ -372,18 +372,10 @@
 
 }
 
-.up span {
+.up ul li {
 
-    display: block;
-
-    padding: 10px 0 0 10px;
-
-    margin-bottom: 70px;
-
-}
-
-.up p {
-
+    float: left;
+    width: 443px;
     text-align: center;
 
     margin-top: 5px;
