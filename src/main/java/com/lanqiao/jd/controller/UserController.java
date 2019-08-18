@@ -1,12 +1,10 @@
 package com.lanqiao.jd.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.lanqiao.jd.annotations.UserLoginToken;
 import com.lanqiao.jd.dao.CartItemMapper;
 import com.lanqiao.jd.entity.*;
 import com.lanqiao.jd.service.*;
-import com.lanqiao.jd.service.impl.CartItemServiceImpl;
 import com.lanqiao.jd.util.CodeUtil;
 import com.lanqiao.jd.util.Result;
 import com.lanqiao.jd.util.SmsUtils;
@@ -35,16 +33,12 @@ public class UserController {
     ProductService productService;
     @Autowired
     SmsUtils smsUtils;
-
     @Autowired
     CodeUtil codeUtil;
-
     @Autowired
     OrderService orderService;
-
     @Autowired
     UserAddressService userAddressService;
-
     @Autowired
     CartItemMapper cartItemMapper;
 
@@ -80,7 +74,7 @@ public class UserController {
                 return Result.createByFailure("登录失败,密码错误");
             } else {
                 String token = tokenService.getToken(userForBase);
-                List listObject = new ArrayList();
+                List<Object> listObject = new ArrayList<>();
                 listObject.add(userForBase);
                 listObject.add("token:"+token);
                 return Result.createSuccessResult(2,listObject);
@@ -200,11 +194,11 @@ public class UserController {
 
         OrderVo orderVo = new OrderVo();
         List<OrderItem> list = new ArrayList<>();
-        OrderItem orderItem = new OrderItem();
-        CartItem cartItem = new CartItem();
+        CartItem cartItem;
         String[] split = IdArry.split(",");
         for (int i = 0; i < split.length; i++){
             cartItem = cartItemMapper.selectByPrimaryKey(Integer.parseInt(split[i]));
+            OrderItem orderItem = new OrderItem();
             orderItem.setNum(cartItem.getNum());
             orderItem.setProductId(cartItem.getProductId());
             list.add(orderItem);
@@ -241,7 +235,7 @@ public class UserController {
 
     @UserLoginToken
     @PostMapping("/getNameById")
-    public Result getNameById(@RequestParam(name = "userId")int userId){
+    public Result<String> getNameById(@RequestParam(name = "userId")int userId){
         User user =  userService.findUserById(userId);
         return Result.createSuccessResult(user.getUserName());
     }
