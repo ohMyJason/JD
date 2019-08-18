@@ -132,6 +132,11 @@
             }
         })
 
+        //提交订单
+        $("input[name='submitOrder']").click(function () {
+            
+        })
+
 
     })
 )
