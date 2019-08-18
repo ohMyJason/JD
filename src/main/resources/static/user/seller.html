@@ -11,12 +11,53 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional-methods.min.js"></script>
     <script src="js/jquery-cookie.js"></script>
+    <script language="javascript">
+        var tabProduct = document.getElementById("tabProduct");
+
+        // 设置表格可编辑
+        // 可一次设置多个，例如：EditTables(tb1,tb2,tb2,......)
+        EditTables(tabProduct);
+    </script>
     <script>
         $(function () {
+
             //点击添加商品
             $(".add").click(function () {
                 alert($(this).parent().next().children().eq(2).eq(0).text());
             });
+
+            //设置多个表格可编辑
+            function EditTables(){
+                for(var i=0;i<arguments.length;i++){
+                    SetTableCanEdit(arguments[i]);
+                }
+            }
+
+            //设置表格是可编辑的
+            function SetTableCanEdit(table){
+                for(var i=1; i<table.rows.length;i++){
+                    SetRowCanEdit(table.rows[i]);
+                }
+            }
+
+
+            //删除行
+            function DeleteRow(table, index){
+                for(var i=table.rows.length - 1; i>0;i--){
+                    var chkOrder = table.rows[i].cells[0].firstChild;
+                    if(chkOrder){
+                        if(chkOrder.type = "CHECKBOX"){
+                            if(chkOrder.checked){
+                                //执行删除
+                                table.deleteRow(i);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
 
             $.ajax({
                 url:"",
@@ -31,6 +72,12 @@
 
 
             })
+            function  add() {
+               document.getElementById("add-table").insertRow(0);
+
+
+
+            }
 
         })
     </script>
@@ -70,13 +117,17 @@
 <div id="right-item">
     <div class="right-1">
         <div>
-            <button class="add">添加商品</button>
+
+<!--            <button class="add">添加商品</button>-->
+
+            <button name="add" onclick="add()" class="layui-btn" >添加商品</button>
+
             <div class="find">
                 <input name="find" type="text" placeholder="查找商品">
             </div>
         </div>
         <div class="layui-form">
-            <table class="layui-table">
+            <table class="layui-table" id="add-table">
                 <colgroup>
                     <col width="150">
                     <col width="150">
@@ -85,11 +136,12 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>商品图片</th>
-                    <th>商品名称</th>
-                    <th>商品编码</th>
-                    <th>价格</th>
-                    <th>操作</th>
+                    <th EditType="shopName">商店名称</th>
+                    <th EditType="shopPhoto">商品图片</th>
+                    <th EditType="productName">商品名称</th>
+                    <th EditType="shopId">商品编码</th>
+                    <th EditType="price">价格</th>
+                    <th >操作</th>
                 </tr>
                 </thead>
                 <tbody id="first">
@@ -98,9 +150,8 @@
                     <td>222</td>
                     <td>333</td>
                     <td>444</td>
-                    <td><input type="button">删除</input></td>
-                </tr>
-
+                    <td>333</td>
+                    <td><button name="del">删除</button></input></td>
                 </tbody>
             </table>
         </div>
