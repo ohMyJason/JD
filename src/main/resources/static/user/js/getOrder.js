@@ -15,19 +15,36 @@
                     alert("该用户没有订单信息！");
                 } else{
                     var $model = $(".orderBox").eq(0).clone(true);
+                    var n = 0;
                     $(".orderBox").eq(0).detach();
                     for (var i = 0; i < result.count; i++){
-                        $model.children().eq(0).children().eq(0).html(result.data[i].createTime);
-                        $model.children().eq(0).children().eq(1).html(result.data[i].orderId);
-                        var imgsrc = ".."+result.data[i].productImgUrl;
-                        $model.children().eq(1).children().eq(0).find("img").attr("src",imgsrc);
-                        $model.children().eq(1).children().eq(0).children().eq(0).children().eq(1).children().eq(0).html(result.data[i].productName);
-                        $model.children().eq(1).children().eq(0).children().eq(0).children().eq(2).children().eq(0).html(result.data[i].num);
-                        $model.children().eq(1).children().eq(1).find("span").html(result.data[i].receiveName);
-                        $model.children().eq(1).children().eq(2).find("span").html(result.data[i].totalPrice);
-                        $model.children().eq(1).children().eq(3).children().eq(0).html(result.data[i].orderStatus);
-                        $("#main_body").append($model);
-                        $model = $(".orderBox").eq(0).clone(true);
+                        if(result.data.orderId == -1){
+                            n++;
+                        }else {
+                            $model.children().eq(0).children().eq(0).html(result.data[i].createTime);
+                            $model.children().eq(0).children().eq(1).html(result.data[i].orderId);
+                            var imgsrc = ".." + result.data[i].productImgUrl;
+                            $model.children().eq(1).children().eq(0).find("img").attr("src", imgsrc);
+                            $model.children().eq(1).children().eq(0).children().eq(0).children().eq(1).children().eq(0).html(result.data[i].productName);
+                            $model.children().eq(1).children().eq(0).children().eq(0).children().eq(2).children().eq(0).html(result.data[i].num);
+                            $model.children().eq(1).children().eq(1).find("span").html(result.data[i].receiveName);
+                            $model.children().eq(1).children().eq(2).find("span").html(result.data[i].totalPrice);
+                            $model.children().eq(1).children().eq(3).children().eq(0).html(result.data[i].orderStatus);
+                            $("#main_body").append($model);
+                            $model = $(".orderBox").eq(0).clone(true);
+                            // for (var j = i+1; j <result.count; j++){
+                            //     var $node = $(".orderitem").eq(0).clone(true);
+                            //     if(result.data[j].orderId == result.data[i].orderId){
+                            //         imgsrc = ".." + result.data[j].productImgUrl;
+                            //         $node.children().eq(0).attr("src",imgsrc);
+                            //         $node.children().eq(1).children().eq(0).html(result.data[j].productName);
+                            //         $node.children().eq(1).children().eq(0).html(result.data[j].num);
+                            //         result.data[j].orderId = -1;
+                            //         $(".part1").eq(i-n).append($node);
+                            //         $node = $(".orderitem").eq(0).clone(true);
+                            //     }
+                            // }
+                        }
                     }
 
                 }

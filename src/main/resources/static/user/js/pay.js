@@ -95,6 +95,7 @@
         },success:function (result) {
             if(result.code == 0){
                 $("#payMoney").html(result.data.totalPrice);
+                $(".o-title").children().eq(0).html(result.data.orderId);
             }else {
                 alert("查询订单异常！");
             }
