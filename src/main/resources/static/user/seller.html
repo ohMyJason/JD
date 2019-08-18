@@ -13,8 +13,10 @@
     <script src="js/jquery-cookie.js"></script>
     <script>
         $(function () {
-
-
+            //点击添加商品
+            $(".add").click(function () {
+                alert($(this).parent().next().children().eq(2).eq(0).text());
+            });
 
             $.ajax({
                 url:"",
@@ -68,7 +70,7 @@
 <div id="right-item">
     <div class="right-1">
         <div>
-            <button name="add">添加商品</button>
+            <button class="add">添加商品</button>
             <div class="find">
                 <input name="find" type="text" placeholder="查找商品">
             </div>
@@ -90,13 +92,13 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tbody id="first">
+                <tr id="two">
+                    <td>111</td>
+                    <td>222</td>
+                    <td>333</td>
+                    <td>444</td>
+                    <td><input type="button">删除</input></td>
                 </tr>
 
                 </tbody>

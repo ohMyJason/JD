@@ -649,7 +649,7 @@ body
 /*内容右边*/
 #deliver_cont_right {
     width: 584px;
-    height: 282px;
+    height: auto;
     padding: 10px;
     float: left;
     /*border: 1px solid black;*/
@@ -682,7 +682,8 @@ body
     float: left;
 }
 /*设置图片格式*/
-#dcr_imgBox img {height: 100%;}
+#dcr_imgBox img {height: 100%;
+    width: 100%;}
 
 /*文字部分*/
 #dcr_Text

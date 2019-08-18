@@ -7,6 +7,9 @@ import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserAddressServiceImpl implements UserAddressService {
     @Autowired
@@ -37,4 +40,15 @@ public class UserAddressServiceImpl implements UserAddressService {
             return Result.createByFailure("出现错误,联系管理员");
         }
     }
+
+    @Override
+    public Result getAddress(int userId) {
+        try{
+            List<UserAddress> userAddressList = userAddressMapper.selectByUserId(userId);
+            return Result.createSuccessResult(userAddressList.size(),userAddressList);
+        }catch (Exception e){
+            return Result.createByFailure("出现错误,联系管理员");
+        }
+    }
+
 }
