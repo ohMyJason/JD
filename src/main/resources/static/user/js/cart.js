@@ -91,7 +91,7 @@
         //减少数量
         $("#sub-btn").click(function () {
             $.ajax({
-                url:"/user/addCartItemNum",
+                url:"/user/subCartItemNum",
                 dataType:"json",
                 type:"post",
                 data:{
@@ -191,61 +191,11 @@
 
         //已选中几件商品
         $("input[name = 'choose']").click(function () {
-            // var num = $(this).next().children().eq(4).children().eq(1).val();
-            // if( $(this).is(':checked') ){
-            //     var pronum = parseInt(num) + parseInt($("#selected-pro-num").val());
-            // }
-            // else {
-            //     var pronum = parseInt($("#selected-pro-num").val())- parseInt(num);
-            // }
-            // $("#selected-pro-num").val(pronum);
             countNum();
             totalPrice();
         });
 
-
-
-        // function show() {
-        //     $.ajax({
-        //         url: "http://localhost:8080/user/showCartItem",
-        //         type: "post",
-        //         dataType: "json",
-        //         headers:{'token':$.cookie("token")
-        //         },
-        //         data: {
-        //             userId: 3
-        //         },
-        //         success: function (result) {
-        //             if(result.code == 0) {
-        //                 var $node = $(".cart-item-list").clone(true);
-        //                 $(".cart-item-list").detach();
-        //                 for (var i = 0; i < result.count; i++) {
-        //                     // var $node = $(".cart-item-list").detach();
-        //                     $node.children().eq(0).find("a").children().html(result.data[i].businessName);
-        //                     var imgsrc = ".." + result.data[i].productImgUrl;
-        //                     var $temp = $node.children().eq(2).children();
-        //                     $temp.eq(0).attr("src", imgsrc);
-        //                     $temp.eq(1).html(result.data[i].productName);
-        //                     $temp.eq(2).html(result.data[i].detail1);
-        //                     $temp.eq(3).html(result.data[i].productPrice);
-        //                     $temp.eq(4).children().eq(1).val(result.data[i].num);
-        //                     $temp.eq(5).html(result.data[i].productId);
-        //                     $temp.eq(6).html(result.data[i].productPrice * result.data[i].num);
-        //                     $temp.eq(7).html(result.data[i].cartItemId);
-        //                     $("#jd-cart").append($node);
-        //                     $node = $("#jd-cart").children().eq(1).clone(true);
-        //                 }
-        //                 alert(12);
-        //             }else {
-        //                 window.location.href="/user/login.html";
-        //             }
-        //
-        //         },
-        //         error: function () {
-        //             alert("失败");
-        //         }
-        //     })
-        // }
+        //结算按钮
         $("#setOrder").click(function () {
             var IdArry = "";
             $(".cart-item-list").each(function () {
@@ -254,11 +204,13 @@
                     IdArry = IdArry + id + ',';
                 }
             })
-            $.cookie("IdArry",IdArry,{path:'/user/order.html'});
-            window.location.href="/user/order.html";
+            if(IdArry == ""){
+                alert("请选择商品！");
+            }else {
+                $.cookie("IdArry", IdArry, {path: '/user/order.html'});
+                window.location.href = "/user/order.html";
+            }
         })
-
-
 })
 )
 
