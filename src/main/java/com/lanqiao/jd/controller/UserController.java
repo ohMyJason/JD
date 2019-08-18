@@ -236,6 +236,7 @@ public class UserController {
         return orderService.getAllOrderByUserId(userId);
     }
     //查询地址
+
     @PostMapping("/getAddress")
     public Result getAddress(@RequestParam(name = "userId") int userId){
         return userAddressService.getAddress(userId);
