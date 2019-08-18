@@ -19,4 +19,6 @@ public interface OrderService {
 
     //查询所有的订单信息
     Result getAllOrderByUserId(int userId);
+
+    public Result getOrderByOrderId(int orderId);
 }

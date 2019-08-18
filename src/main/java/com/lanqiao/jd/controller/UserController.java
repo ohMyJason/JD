@@ -3,6 +3,7 @@ package com.lanqiao.jd.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.lanqiao.jd.annotations.UserLoginToken;
+import com.lanqiao.jd.dao.CartItemMapper;
 import com.lanqiao.jd.entity.*;
 import com.lanqiao.jd.service.*;
 import com.lanqiao.jd.service.impl.CartItemServiceImpl;
@@ -43,6 +44,9 @@ public class UserController {
 
     @Autowired
     UserAddressService userAddressService;
+
+    @Autowired
+    CartItemMapper cartItemMapper;
 
 
     //注册验证手机号是否存在
@@ -186,7 +190,7 @@ public class UserController {
     //need:userId userAddressId totalPrice
     //need:OrderItem(productId, num)
     @PostMapping("/order")
-    public Result insertOrder( ){
+    public Result insertOrder(@RequestParam(name = "userId") int userId,@RequestParam(name = "userAddressId") int userAddressId,@RequestParam(name = "totalPrice") int totalPrice,@RequestParam(name = "IdArry" )String IdArry){
 //        OrderVo orderVo
 //        for(OrderItem orderItem:orderVo.getOrderItem()){
 //            System.out.println(orderItem.toString());
@@ -197,16 +201,28 @@ public class UserController {
         OrderVo orderVo = new OrderVo();
         List<OrderItem> list = new ArrayList<>();
         OrderItem orderItem = new OrderItem();
-        orderItem.setNum(2);
-        orderItem.setProductId(3);
-        list.add(orderItem);
+        CartItem cartItem = new CartItem();
+        String[] split = IdArry.split(",");
+        for (int i = 0; i < split.length; i++){
+            cartItem = cartItemMapper.selectByPrimaryKey(Integer.parseInt(split[i]));
+            orderItem.setNum(cartItem.getNum());
+            orderItem.setProductId(cartItem.getProductId());
+            list.add(orderItem);
+        }
         orderVo.setOrderItem(list);
-        orderVo.setUserId(3);
-        orderVo.setUserAddressId(2);
-        BigDecimal a = new BigDecimal("253");
+        orderVo.setUserId(userId);
+        orderVo.setUserAddressId(userAddressId);
+        BigDecimal a = new BigDecimal(totalPrice);
         orderVo.setTotalPrice(a);
         return orderService.insertOrder(orderVo);
     }
+
+    //得到订单价值 orderId
+    @PostMapping("/getOrderPrice")
+    public Result getOrderPrice(@RequestParam(name = "orderId") int orderId){
+        return orderService.getOrderByOrderId(orderId);
+    }
+
 
     //订单付款
     @PostMapping("/pay")

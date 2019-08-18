@@ -7,7 +7,7 @@
             dataType:"json",
             data:{
                 userId: $.cookie('userId'),//TODO
-                orderId:6, //TODO
+                orderId:$.cookie('orderId') //TODO
             },
             success:function (result){
                 //余额不够
@@ -17,7 +17,7 @@
 
                     if(msg == "您已支付，请勿重复支付"){
                         alert(msg + ",即将跳转到主页");
-                        window.location.href = "http://localhost:8080/user/index.html"
+                        window.location.href = "http://localhost:8080/user/order.html"
                     }
                     else if(msg == "余额不足，请充值")
                     {
@@ -86,7 +86,22 @@
 
 
     //更改支付金额
-    $("#payMoney").html(100);
+    $.ajax({
+        url:"/user/getOrderPrice",
+        type:"post",
+        dataType:"json",
+        data:{
+            orderId: $.cookie('orderId')
+        },success:function (result) {
+            if(result.code == 0){
+                $("#payMoney").html(result.data.totalPrice);
+            }else {
+                alert("查询订单异常！");
+            }
+        },error:function () {
+            alert("请求服务器响应失效");
+        }
+    })
 
 
 

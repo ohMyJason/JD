@@ -158,7 +158,26 @@
 
         //提交订单
         $("input[name='submitOrder']").click(function () {
-            
+            $.ajax({
+                url:"/user/order",
+                type:"post",
+                dataType:"json",
+                data:{
+                    userId: $.cookie('userId'),
+                    userAddressId: 1,
+                    totalPrice: $("#realPay").html(),
+                    IdArry: $.cookie('IdArry')
+                },success:function (result) {
+                    if (result.code == 0){
+                        $.cookie("orderId",result.data.orderId,{path:'/user/pay.html'});
+                        window.location.href = "/user/pay.html";
+                    } else {
+                        alert("向订单插入出错！")
+                    }
+                },error:function () {
+                    alert("向服务器请求失败！");
+                }
+            })
         })
 
 

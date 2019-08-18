@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
                 insetOrderItem.setNum(orderItem.getNum());
                 orderItemMapper.insertSelective(insetOrderItem);
             }
-            return Result.createSuccessResult();
+            return Result.createSuccessResult(order);
         }else{
             return Result.createByFailure("数据库错误，联系管理员");
         }
@@ -114,5 +114,15 @@ public class OrderServiceImpl implements OrderService {
     public Result getAllOrderByUserId(int userId) {
         List<SelectOrderInfoByUserId> selectOrderInfoByUserIdList = orderMapper.getAllOrderByUserId(userId);
         return Result.createSuccessResult(selectOrderInfoByUserIdList.size(), selectOrderInfoByUserIdList);
+    }
+
+    @Override
+    public Result getOrderByOrderId(int orderId) {
+        try{
+            Order order = orderMapper.selectByPrimaryKey(orderId);
+            return Result.createSuccessResult(order);
+        }catch (Exception e){
+            return Result.createByFailure("数据库错误，联系管理员");
+        }
     }
 }
