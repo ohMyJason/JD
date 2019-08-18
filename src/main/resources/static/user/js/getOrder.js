@@ -33,6 +33,7 @@
                 }
             }else {
                 alert("请先登录！");
+                window.location.href="/user/login.html";
             }
         },error:function () {
             alert("请求响应失效！");
