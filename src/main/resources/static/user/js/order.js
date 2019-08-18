@@ -24,7 +24,7 @@
         $(".change_box").each(function () {
             var num = parseInt($(this).children().eq(1).find("#dcr_t_num").children().html());
             pronum += parseInt(num);
-        })
+        });
         $("#productNum").html(parseInt(pronum));
     }
 
@@ -86,7 +86,7 @@
                             var imgsrc = ".." + result.data[i].productImgUrl;
                             $node.children().eq(1).find("img").attr("src",imgsrc);
                             $node.children().eq(1).find("#dcr_t_left").children("ul").children("li").eq(0).html(result.data[i].productName);
-                            $node.children().eq(1).find("#dcr_t_mid").children().eq(0).html("￥  " + result.data[i].productPrice);
+                            $node.children().eq(1).find("#dcr_t_mid").children().eq(0).html(result.data[i].productPrice);
                             $node.children().eq(1).find("#dcr_t_mid").children().eq(1).html(result.data[i].detail1);
                             $node.children().eq(1).find("#dcr_t_mid").children().eq(2).html(result.data[i].productId);
                             $node.children().eq(1).find("#dcr_t_mid").children().eq(3).html(result.data[i].cartItemId);
@@ -154,6 +154,11 @@
             },error:function () {
                 alert("请求失败！");
             }
+        })
+
+        //提交订单
+        $("input[name='submitOrder']").click(function () {
+            
         })
 
 
