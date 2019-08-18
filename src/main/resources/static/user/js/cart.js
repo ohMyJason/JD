@@ -1,4 +1,6 @@
 ($(function () {
+        $.cookie("IdArry",null,{path:'/'});
+
         $.ajax({
                 url: "http://localhost:8080/user/showCartItem",
                 type: "post",
@@ -244,6 +246,18 @@
         //         }
         //     })
         // }
+        $("#setOrder").click(function () {
+            var IdArry = "";
+            $(".cart-item-list").each(function () {
+                var id = $(this).children().eq(2).children().eq(7).html();
+                if ($(this).children().eq(1).is(':checked')) {
+                    IdArry = IdArry + id + ',';
+                }
+            })
+            $.cookie("IdArry",IdArry,{path:'/user/order.html'});
+            window.location.href="/user/order.html";
+        })
+
 
 })
 )
