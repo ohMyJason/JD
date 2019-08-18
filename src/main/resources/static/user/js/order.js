@@ -34,7 +34,7 @@
                 headers:{'token':$.cookie("token")
                 },
                 data: {
-                    IdArry: $.cookie('IdArry')
+                    IdArry: ['1','3','4','5','6']
                 },
                 success: function (result) {
                     if(result.code == 0){
