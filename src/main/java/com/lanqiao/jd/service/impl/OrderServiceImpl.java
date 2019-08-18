@@ -108,4 +108,11 @@ public class OrderServiceImpl implements OrderService {
             return Result.createByFailure("数据库错误，联系管理员");
         }
     }
+
+    //查询所有的订单信息
+    @Override
+    public Result getAllOrderByUserId(int userId) {
+        List<SelectOrderInfoByUserId> selectOrderInfoByUserIdList = orderMapper.getAllOrderByUserId(userId);
+        return Result.createSuccessResult(selectOrderInfoByUserIdList.size(), selectOrderInfoByUserIdList);
+    }
 }

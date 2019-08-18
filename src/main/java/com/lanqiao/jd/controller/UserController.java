@@ -203,6 +203,7 @@ public class UserController {
         return orderService.insertOrder(orderVo);
     }
 
+    //订单付款
     @PostMapping("/pay")
     //need:userId  orderId
     public Result pay(Order order){
@@ -222,6 +223,12 @@ public class UserController {
     public Result getNameById(@RequestParam(name = "userId")int userId){
         User user =  userService.findUserById(userId);
         return Result.createSuccessResult(user.getUserName());
+    }
+
+    //查询一个用户的所有的订单信息
+    @PostMapping("/getAllOrder")
+    public Result getAllOrderByUserId(int userId){
+        return orderService.getAllOrderByUserId(userId);
     }
 
 }
