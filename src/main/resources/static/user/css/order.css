@@ -965,6 +965,6 @@ body
     width: 1190px;
 }
 
-#cart-item-id,#product_id{
+#product_id,#cart-item-id{
     display: none;
 }
