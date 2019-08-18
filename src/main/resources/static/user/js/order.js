@@ -56,6 +56,30 @@
                 success: function (result) {
                     if(result.code == 0){
                         var $node = $(".change_box").clone(true);
+                        if(result.count>=2){
+                            for(var i = 1; i<result.count; i++){
+                                if(i > 1){
+                                    //最外：checkutStep
+                                    var h = $("#checkoutSteps").height();
+                                    h+=190;
+                                    $("#checkoutSteps").height(h);
+                                    //中间：deliver
+                                    h = $("#deliver").height();
+                                    h += 165;
+                                    $("#deliver").height(h);
+                                    //中下:deliver_cont
+                                    h = $("#deliver_cont").height();
+                                    h+=145;
+                                    $("#deliver_cont").height(h);
+                                }
+
+                                //最内:deliver_cont_right
+                                h = $("#deliver_cont_right").height();
+                                h+=145;
+                                $("#deliver_cont_right").height(h);
+                            }
+
+                        }
                         $(".change_box").detach();
                         for(var i=0; i < result.count; i++){
                             $node.children().eq(0).html(result.data[i].businessName);
