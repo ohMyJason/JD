@@ -11,6 +11,8 @@ public class DetailsPageSelect {
 
     private  Integer commentCount;
 
+    private Integer productItemId;
+
     private String detail1;
 
     private String detail2;
@@ -109,5 +111,13 @@ public class DetailsPageSelect {
 
     public void setDetail6(String detail6) {
         this.detail6 = detail6;
+    }
+
+    public Integer getProductItemId() {
+        return productItemId;
+    }
+
+    public void setProductItemId(Integer productItemId) {
+        this.productItemId = productItemId;
     }
 }

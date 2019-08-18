@@ -94,6 +94,7 @@ public class UserController {
 
 
     //评论相关
+    @UserLoginToken
     @PostMapping("/insertComment")
     public Result insertComment(Comment comment){return commentService.insertComment(comment);}
     //展示某个商品的评论

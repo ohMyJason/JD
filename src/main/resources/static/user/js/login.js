@@ -1,4 +1,8 @@
 ($(function () {
+
+    $.cookie("token",null,{path:'/'});
+    $.cookie("userId",null,{path:'/'});
+
     //设置错误信息样式
     function showCSS(){
         $(".msg-error b").css("color","red");
@@ -50,9 +54,11 @@
                 success:function (result){
                     if(result.code == 0){
                         $.cookie("token",result.data[1].split(":")[1],{ expires:1,path:'/'});
+
+
                         window.location.href="http://localhost:8080/user/index.html";
                     }else{
-                        alert("error");
+                        alert(result.msg);
                     }
                 },
                 error:function () {

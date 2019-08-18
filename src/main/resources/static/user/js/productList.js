@@ -1,5 +1,7 @@
 (
     $(function () {
+        $.cookie("productId",null,{path:"/"});
+
         $.ajax({
             url : "/user/fuzzyQueryProduct",
             type: "post",
@@ -19,6 +21,7 @@
                         $node.eq(2).children().eq(0).html(result.data[i].productName);
                         $node.eq(2).children().eq(2).html(result.data[i].commentCount + "条评论");
                         $node.eq(2).children().eq(4).html(result.data[i].businessName);
+                        $node.eq(2).children().eq(5).html(result.data[i].productId);
                         $(".product-ul").append($modle);
                         $modle = $(".product").eq(0).clone(true);
                     }
@@ -31,6 +34,10 @@
         })
         $.cookie("name",null,{path:'/'});
 
+        $(".proitemlist").click(function () {
+            var pro= $(this).children().eq(2).children().eq(5).html();
+            $.cookie("productId",pro,{path:"/"});
+            window.location.href="/user/details.html";
+        })
     })
-
 )

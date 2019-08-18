@@ -7,8 +7,10 @@
     <link href="css/layui.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/layui.js"></script>
+    <script src="js/jquery-cookie.js"></script>
     <script>
         $(function() {
+            $.cookie("productItemId",null,{path:'/'});
             var $yin = $(".yin");
             $(".Ul li img").mouseover(function () {
                 $(this).parent().addClass("li").siblings().removeClass("li");
@@ -99,24 +101,29 @@
                     $(this).closest("ul").find("span").click();
                 }
             });
+
+
             $("input[type='submit']").click(function () {
                 $.ajax({
                     url: "/user/insertComment",
                     type: "post",
+                    headers:{'token':$.cookie("token")
+                    },
                     data: {
                         commentDetail: $("textarea[name='message']").val(),
                         commentLevel: $("input[name='level']").val(),
-                        productItemId:$("input[name='productid']").val(),
-                        userId:$("input[name='userid']").val(),
+                        productItemId:$.cookie('productItemId'),
+                        userId:$.cookie('userId')
 
                     },
                     datatype: "json",
                     success: function (result) {
                         if (result.code==0) {
-                            alert("插入成功")
+                            alert("插入成功");
                             // location.reload();
                         } else {
-                            alert("插入失败")
+                            alert("请先登录！");
+                            window.location.href="/user/login.html";
                         }
                     }
                 })
@@ -126,7 +133,7 @@
                 type:"post",
                 datatype:"json",
                 scriptCharset:"utf-8",
-                data:{productId:"1"},
+                data:{productId:$.cookie('productId')},
                 success:function (result) {
                     for(var i=0;i<result.data.length;i++){
                         var $node = $("div[class='article']:eq(0)").clone(true);
@@ -146,7 +153,7 @@
                         scriptCharset:"utf-8",
                         data:{
                             userId:"3",
-                            productId:"1"
+                            productId:$.cookie('productId')
                         },
                         success:function (result) {
                             // var $name = result.data[0].productName;
@@ -161,6 +168,8 @@
                             $("div[class='up']").append(result.data[0].detail4+ "<br/>");
                             $("div[class='up']").append(result.data[0].detail5+ "<br/>");
                             $("div[class='up']").append("商家:"+result.data[0].businessName);
+                            var proitemid = result.data[0].productItemId;
+                            $.cookie("productItemId",proitemid,{path:'/'});
                             //下面是图片路径
                             // alert(result.data[1][0]);
                             // $img = result.data[1][0]
@@ -275,9 +284,7 @@
                         <form>
                             <div class="msg">
                                 <textarea name="message" rows="5" cols="72"></textarea>
-                                <input name="level" value="1">
-                                <input name="userid" value="3">
-                                <input name="productid" value="2">
+                                <input name="level">
                             </div>
                             <div align="center"><input type="reset" value="清除"/> <input type="submit" value="发表"/></div>
                         </form>
