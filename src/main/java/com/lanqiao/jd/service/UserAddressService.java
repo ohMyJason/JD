@@ -7,4 +7,6 @@ public interface UserAddressService {
     public Result insertUserAddress(UserAddress userAddress);
 
     public Result deleteUserAddress(int userAddressId);
+
+    public Result getAddress(int userId);
 }

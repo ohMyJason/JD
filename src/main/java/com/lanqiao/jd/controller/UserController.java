@@ -41,6 +41,9 @@ public class UserController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    UserAddressService userAddressService;
+
 
     //注册验证手机号是否存在
     @PostMapping("/verifyPhoneNumber")
@@ -231,6 +234,11 @@ public class UserController {
     @PostMapping("/getAllOrder")
     public Result getAllOrderByUserId(int userId){
         return orderService.getAllOrderByUserId(userId);
+    }
+    //查询地址
+    @PostMapping("/getAddress")
+    public Result getAddress(@RequestParam(name = "userId") int userId){
+        return userAddressService.getAddress(userId);
     }
 
 }
