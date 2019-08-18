@@ -177,9 +177,9 @@
                         var listImg=$(".Ul li img");
                         for(var i=0;i<listImg.length;i++)
                         {
-                            $(listImg[i]).attr("src",$img)
+                            $(listImg[i]).attr("src",result.data[1][i]);
                         }
-                        $("#zhao").attr("src", result.data[1][i]);
+                        $("#zhao").attr("src", $img);
                     }
             })
             $("button[name='shop']").click(function () {
