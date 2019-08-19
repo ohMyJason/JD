@@ -127,7 +127,7 @@
             success:function (result) {
                 for(var i=0;i<result.data.length;i++){
                     var $node = $("div[class='article']:eq(0)").clone(true);
-                    $node.children().eq(0).text("用户："+result.data[i].userId);
+                    $node.children().eq(0).text("用户："+result.data[i].userName);
                     //星级
                     var star = "";
                     for(var j = 0; j <result.data[i].commentLevel ;j++){
@@ -205,5 +205,22 @@
                 }
             })
         })
+
+        $.ajax({
+            url:"/user/getNameById",
+            type:"post",
+            dataType: "json",
+            headers:{'token':$.cookie("token")
+            },
+            data:{
+                userId: $.cookie('userId')
+            },success:function (result) {
+                if(result.code==0) {
+                    $("#m_right_first").html(result.data);
+                    $("#m_right_first").children().eq(0).html("");
+                }
+            }
+        })
+
     })
 )

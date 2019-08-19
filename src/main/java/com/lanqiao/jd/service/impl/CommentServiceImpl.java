@@ -4,6 +4,7 @@ package com.lanqiao.jd.service.impl;
 import com.lanqiao.jd.dao.CommentMapper;
 import com.lanqiao.jd.dao.ProductItemMapper;
 import com.lanqiao.jd.entity.Comment;
+import com.lanqiao.jd.entity.Comment_User;
 import com.lanqiao.jd.service.CommentService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
     public Result showCommentByItemID(int productId) {
         try{
             int productItemId = productItemMapper.selectByProductId(productId).getProductItemId();
-            List<Comment> commentList = commentMapper.selectByProductItemId(productItemId);
+            List<Comment_User> commentList = commentMapper.selectByProductItemId(productItemId);
             return Result.createSuccessResult(commentList.size(),commentList);
         }catch (Exception e){
             return Result.createByFailure("出现错误，联系管理员");
