@@ -124,6 +124,17 @@ public class UserController {
     public  Result deleteCartItem(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
         return cartItemService.deleteCartItem(userId,productId);
     }
+    //在生成订单时删除购物车相关信息
+    @PostMapping("/deleteWhenCreateOrder")
+    public Result deleteWhenCreateOrder(@RequestParam(name = "IdArry" )String IdArry){
+        String[] split = IdArry.split(",");
+        int []test = new int[split.length];
+        for (int i = 0; i < split.length; i++){
+            test[i] = Integer.parseInt(split[i]);
+        }
+        return cartItemService.deleteWhenCreateOrder(test);
+    }
+
     //查看购物车信息
     @UserLoginToken
     @PostMapping("/showCartItem")

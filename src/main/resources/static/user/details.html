@@ -148,6 +148,25 @@
                     }
                 }
             })
+
+
+            $.ajax({
+                url:"/user/getNameById",
+                type:"post",
+                dataType: "json",
+                headers:{'token':$.cookie("token")
+                },
+                data:{
+                    userId: $.cookie('userId')
+                },success:function (result) {
+                    if(result.code==0) {
+                        $("#m_right_first").html(result.data);
+                        $("#m_right_first").children().eq(0).html("");
+                    }
+                }
+            })
+
+
             $.ajax({
                 url:"/user/detailPage",
                     type:"post",
@@ -225,7 +244,7 @@
         <ul id="m_right">
             <li id="m_right_first">你好，请登录 &nbsp;<span class="red">免..</span></li>
             <li class="spacer"></li>
-            <li class="dt"><a>我的订单</a></li>
+            <li class="dt"><a href="getOrder.html" target="_blank">我的订单</a></li>
             <li class="spacer"></li>
             <li class="dt1"><a>我的京东</a><i class="iconfont"></i></li>
             <li class="spacer"></li>
@@ -361,11 +380,11 @@
 
                 <div class="up">
 
-                    <span>暂无好评！</span>
+                    <span></span>
 
-                    <p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗</p>
+                    <p></p>
 
-                    <p>来源：师徒课堂</p>
+                    <p></p>
 
                 </div>
 
