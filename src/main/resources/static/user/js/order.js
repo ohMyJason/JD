@@ -192,5 +192,43 @@
         })
 
 
+        playauto();//playauto()函数控制弹出框居中显示
+        function playauto() {
+            var _width=$(window).width();//获取浏览器窗口宽度
+            var _height=$(window).height();//获取高度
+            $(" #address").css({left:_width/2-300,top:_height/2-175});//使弹出框居中
+        }
+
+        $(".dl").click(function () {//点击超链接按钮显示bg、login样式
+            playauto();//再次点击登陆按钮时，弹出框仍然处于居中位置
+            $("#bg").show();
+            $("#address").show();
+        })
+        $(".close").click(function () {//点击弹出框上的X按钮隐藏bg、address样式，即关闭弹出框
+            $("#bg").hide();
+            $("#address").hide();
+        });
+
+        $("input[name='subadd']").click(function () {
+            var userId = $.cookie('userId');
+            var data = $("#form1").serialize() + "&userId="+userId;
+            // alert($("#form1").serialize());
+            $.ajax({
+                url:"/userBack/insertAddress",
+                type:"post",
+                dataType:"json",
+                data: data,
+                success:function (result) {
+                    if(result.code==0){
+                        alert("添加成功！");
+                        window.location.reload();
+                    }else {
+                        alert("添加失败！");
+                    }
+                },error:function () {
+                    alert("请求访问失败！");
+                }
+            })
+        })
     })
 )

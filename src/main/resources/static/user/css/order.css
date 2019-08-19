@@ -970,3 +970,13 @@ body
     height: 400px;
     width: 1190px;
 }
+
+#href{float: right;margin-right: 20px;}
+#bg{background:rgba(0,0,0,0.5);/*背景颜色半透明opacity:0.5*/
+    width:100%;height: 100%;position: fixed;left: 0;top: 0;display: none}
+#address{width: 600px;height: 350px;background: white;position: fixed;display: none}
+#address #title{color: white;background: #ff9933;width: 100%;height: 50px;line-height: 50px;font-size: 24px;}
+#address #title .close{font-size: 24px;color: white;float: right;margin-right: 15px;text-decoration: none}
+#address p{margin-top: 35px;margin-left: 120px;}
+#address form p input{width:260px;height:35px;border:1px solid #dddddd;font-size: 18px;}
+#address form p .btn{margin-left: 75px}
