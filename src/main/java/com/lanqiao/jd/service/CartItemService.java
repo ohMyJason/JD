@@ -14,4 +14,6 @@ public interface CartItemService {
     public Result addCartItemNum(int userId,int productId);
     //减少数量
     public Result subCartItemNum(int userId,int productId);
+    //在生成订单时删除购物车信息
+    public Result deleteWhenCreateOrder(int []cartItemIdList);
 }

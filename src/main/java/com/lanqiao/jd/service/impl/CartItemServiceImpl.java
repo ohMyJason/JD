@@ -111,4 +111,18 @@ public class CartItemServiceImpl implements CartItemService {
             return Result.createByFailure("出现错误，联系管理员！");
         }
     }
+
+    @Override
+    public Result deleteWhenCreateOrder(int[] cartItemIdList) {
+        try {
+            for (int i:cartItemIdList) {
+                if(cartItemMapper.deleteByPrimaryKey(i)<0){
+                    return Result.createByFailure("删除购物车相关信息失败！");
+                }
+            }
+            return Result.createSuccessResult();
+        } catch (Exception e) {
+            return Result.createByFailure("删除时发生异常！");
+        }
+    }
 }

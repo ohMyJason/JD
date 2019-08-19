@@ -3,6 +3,22 @@
         $.cookie("productId",null,{path:"/"});
 
         $.ajax({
+            url:"/user/getNameById",
+            type:"post",
+            dataType: "json",
+            headers:{'token':$.cookie("token")
+            },
+            data:{
+                userId: $.cookie('userId')
+            },success:function (result) {
+                if(result.code==0) {
+                    $("#m_right_first").children().eq(0).html(result.data);
+                    $("#m_right_first").children().eq(1).html("");
+                }
+            }
+        })
+
+        $.ajax({
             url : "/user/fuzzyQueryProduct",
             type: "post",
             dataType:"json",
@@ -34,7 +50,7 @@
                 alert("出现异常");
             }
         })
-        $.cookie("name",null,{path:'/'});
+        // $.cookie("name",null,{path:'/'});
 
         $(".proitemlist").click(function () {
             var pro= $(this).children().eq(2).children().eq(5).html();

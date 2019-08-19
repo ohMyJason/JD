@@ -1,4 +1,26 @@
 ($(function () {
+
+    $("input[name='deleteOrder']").click(function () {
+        var orderid = $(this).parent().parent().parent().prev().children().eq(1).html();
+        $.ajax({
+            url:"/user/deleteOrder",
+            type:"post",
+            dataType:"json",
+            data:{
+                orderId: orderid
+            },success:function (result) {
+                if (result.code==0){
+                    alert("删除成功！");
+                    window.location.reload();
+                } else{
+                    alert(result.msg);
+                }
+            },error:function () {
+                alert("请求响应失效！");
+            }
+        })
+    })
+
     //展示订单信息
     $.ajax({
         url:"http://localhost:8080/user/getAllOrder",

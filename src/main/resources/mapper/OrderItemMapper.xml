@@ -90,4 +90,12 @@
       traffic_number = #{trafficNumber,jdbcType=INTEGER}
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_order_item
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

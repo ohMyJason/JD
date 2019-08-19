@@ -124,6 +124,17 @@ public class UserController {
     public  Result deleteCartItem(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
         return cartItemService.deleteCartItem(userId,productId);
     }
+    //在生成订单时删除购物车相关信息
+    @PostMapping("/deleteWhenCreateOrder")
+    public Result deleteWhenCreateOrder(@RequestParam(name = "IdArry" )String IdArry){
+        String[] split = IdArry.split(",");
+        int []test = new int[split.length];
+        for (int i = 0; i < split.length; i++){
+            test[i] = Integer.parseInt(split[i]);
+        }
+        return cartItemService.deleteWhenCreateOrder(test);
+    }
+
     //查看购物车信息
     @UserLoginToken
     @PostMapping("/showCartItem")
@@ -211,7 +222,7 @@ public class UserController {
         return orderService.insertOrder(orderVo);
     }
 
-    //得到订单价值 orderId
+    //得到订单 orderId
     @PostMapping("/getOrderPrice")
     public Result getOrderPrice(@RequestParam(name = "orderId") int orderId){
         return orderService.getOrderByOrderId(orderId);
@@ -246,11 +257,15 @@ public class UserController {
     public Result getAllOrderByUserId(int userId){
         return orderService.getAllOrderByUserId(userId);
     }
+    //订单删除
+    @PostMapping("/deleteOrder")
+    public Result deleteOrder(@RequestParam(name = "orderId") int orderId){
+        return orderService.deleteOrder(orderId);
+    }
 
     //查询地址
     @PostMapping("/getAddress")
     public Result getAddress(@RequestParam(name = "userId") int userId){
         return userAddressService.getAddress(userId);
     }
-
 }

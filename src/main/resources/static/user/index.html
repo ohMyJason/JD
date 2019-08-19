@@ -20,10 +20,26 @@
                 success: function (result) {
                     if(result.code==0) {
                         $.cookie("userId", result.data, {path: '/'});
+
+                        $.ajax({
+                            url:"/user/getNameById",
+                            type:"post",
+                            dataType: "json",
+                            headers:{'token':$.cookie("token")
+                            },
+                            data:{
+                                userId: $.cookie('userId')
+                            },
+                            success: function (result) {
+                                if (result.code==0) {
+                                    $("#m_right_first").find("span").html(result.data);
+                                    $("#m_right_first").children().eq(1).html("");
+                                }
+                            }
+                        })
                     }
                 }
             })
-
 
             $.cookie("name",null,{path:'/'});
             $(".button").click(function () {
@@ -40,7 +56,7 @@
                         },
                         success: function (result) {
                             if (result.code==0) {
-                                $.cookie("name",encodeURI(encodeURI($("#keyword").val())),{path:'/'});
+                                $.cookie("name",encodeURI(encodeURI($("#keyword").val())),{path:'/user/productList.html'});
                                 window.location.href="http://localhost:8080/user/productList.html"
                             }else{
                                 alert("error");
@@ -48,22 +64,6 @@
                         }
 
                     })
-                }
-            })
-            $.ajax({
-                url:"/user/getNameById",
-                type:"post",
-                dataType: "json",
-                headers:{'token':$.cookie("token")
-                },
-                data:{
-                    userId: $.cookie('userId')
-                },
-                success: function (result) {
-                    if (result.code==0) {
-                        $("#m_right_first").find("span").html(result.data);
-                        $("#m_right_first").children().eq(1).html("");
-                    }
                 }
             })
         })
@@ -108,7 +108,7 @@
                 </div>
                 <div id="search_top_center" class="red">
                     <i class="iconfont font16"></i><i class="ci-count">0</i>
-                    <a href="cart.html">我的购物车</a>
+                    <a href="cart.html" target="_blank">我的购物车</a>
                 </div>
                 <div id="search_top_right"><div id="qrcode"></div></div>
                 <div id="search_bottom">

@@ -22,4 +22,5 @@ public interface ProductService {
 
     //商品详情页面
     Result productItem(int userId, int productId);
+
 }
