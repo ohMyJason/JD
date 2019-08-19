@@ -68,3 +68,35 @@ ul {
     float: right;
 
 }
+#tanchu{
+    position: absolute;
+    margin-left: 400px;
+    width: 300px;
+    height: 400px;
+    background-color: #edd28b;
+    /*display: none;*/
+}
+.addshop{
+    margin-left: 480px;
+    background-color:#fffae7;
+    position: absolute;
+    height: 300px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    clear: both;
+    display: none;
+
+}
+.yangshi{
+    margin-top: 20px;
+    height: 30px;
+}
+/*.min{*/
+/*    margin-top: 50px;*/
+/*    margin-left: 100px;*/
+/*    width: 100px;*/
+/*    height: 200px;*/
+/*    background-color: #edd28b;*/
+/*    */
+/*}*/

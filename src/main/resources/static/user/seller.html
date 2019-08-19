@@ -20,83 +20,57 @@
     </script>
     <script>
         $(function () {
+            var entity={"productId":$("input[name='pro_id']"),"productName":$("input[name='pro_name']"),"productPrice":$("input[name='pro_price']")}
 
-            //点击添加商品
-            $(".add").click(function () {
-                alert($(this).parent().next().children().eq(2).eq(0).text());
-            });
+            // //点击添加商品
+            // $(".add").click(function () {
+            //     alert($(this).parent().next().children().eq(2).eq(0).text());
+            // })
 
             $("#sub_btn").click(function () {
+
                 var $node = $("#two").clone(true);
-                $node.children().eq(0).html($("#shop_name").val());
-                $node.children().eq(1).html($("#pro_image").val());
-                $node.children().eq(2).html($("#pro_name").val());
-                $node.children().eq(3).html($("#pro_id").val());
-                $node.children().eq(4).html($("#pro_price").val());
+                $node.children().eq(0).html($("input[name='shop_name']").val());
+                $node.children().eq(1).html($("input[name='pro_image']").val());
+                $node.children().eq(2).html($("input[name='pro_name']").val());
+                $node.children().eq(3).html($("input[name='pro_id']").val());
+                $node.children().eq(4).html($("input[name='pro_price']").val());
                 $("#first").append($node);
                 // $node = $("#two").clone(true);
+                $.ajax({
+                    url:"/verifyPhoneNumber",
+                    type:"post",
+                    datatype:JSON,
+                    data:{
+                        file:$("input[name='pro_image']").val(),
+                        sourceProduct:entity,
+                    },
+                    success:function (result) {
+                     if(result==-100){
+                         alert("插入失败");
+                     }
+                    }
+                })
+
+
+
             });
 
             $("input[name='del']").click(function () {
                 $(this).parent().parent().detach();
             });
 
-
-            //设置多个表格可编辑
-            function EditTables(){
-                for(var i=0;i<arguments.length;i++){
-                    SetTableCanEdit(arguments[i]);
-                }
-            }
-
-            //设置表格是可编辑的
-            function SetTableCanEdit(table){
-                for(var i=1; i<table.rows.length;i++){
-                    SetRowCanEdit(table.rows[i]);
-                }
-            }
-
-
-            //删除行
-            function DeleteRow(table, index){
-                for(var i=table.rows.length - 1; i>0;i--){
-                    var chkOrder = table.rows[i].cells[0].firstChild;
-                    if(chkOrder){
-                        if(chkOrder.type = "CHECKBOX"){
-                            if(chkOrder.checked){
-                                //执行删除
-                                table.deleteRow(i);
-                            }
-                        }
-                    }
-                }
-            }
-
-
-
-
-            $.ajax({
-                url:"",
-                datatype:JSON,
-                type:"post",
-                data:{
-
-                },
-                success:{
-
-                }
-
+            // function  add() {
+            //    $(".addshop").show();
+            // }
+            $(".layui-btn").click(function () {
+                $(".addshop").show();
 
             })
-            function  add() {
-               document.getElementById("add-table").insertRow(0);
-
-
-
-            }
 
         })
     </script>
+
 
 </head>
 <body>
@@ -136,7 +110,7 @@
 
 <!--            <button class="add">添加商品</button>-->
 
-            <button name="add" onclick="add()" class="layui-btn" >添加商品</button>
+            <button name="add"  class="layui-btn" >添加商品</button>
 
             <div class="find">
                 <input name="find" type="text" placeholder="查找商品">
@@ -195,21 +169,35 @@
 <!--            <li><span @click="del">删除</span></li>-->
 <!--        </ul>-->
 
-
-
-
     </div>
 
     <!--输入框-->
-    <div id="input_info">
-        商店名称：<input id="shop_name" type="text"><br>
-        商品图片：<input id="pro_image" type="text"><br>
-        商品名称：<input id="pro_name" type="text"><br>
-        商品编码：<input id="pro_id" type="text"><br>
-        价格：<input id="pro_price" type="text"><br>
-        <input id="sub_btn" type="submit" value="提交">
-    </div>
+
 </div>
+<div class="addshop">
+    <form>
+        <tr> 商店名称：<input name="shop_name" type="text"><br></tr>
+        <td></td>
+        <td></td>
+        <tr>商品图片：<input name="pro_image" type="text"><br></tr>
+        <tr>商品名称：<input name="pro_name" type="text"><br></tr>
+        <tr>商品编码：<input name="pro_id" type="text"><br></tr>
+        <tr>价格：&nbsp;&nbsp;&nbsp;&nbsp;<input id="pro_price" type="text"><br></tr>
+    </form>
+
+    <input id="sub_btn" type="submit" value="提交">
+</div>
+<!--<div class="min">-->
+
+<!--</div>-->
+<!--<div id="tanchu">-->
+<!--    <div class="addshop">添加商品</div>-->
+<!--    <div class="yangshi">-->
+<!--        <label>商品名称</label>-->
+<!--        <input type="text">-->
+<!--    </div>-->
+
+<!--</div>-->
 
 </body>
 </html>
