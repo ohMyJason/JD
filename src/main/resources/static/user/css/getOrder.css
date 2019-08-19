@@ -3,11 +3,200 @@ li{
     color: #9f9f9f;
     float: left;
 }
+
+/*menu*/
+#menu {
+    width: 1349px;
+    height: 31px;
+    background-color: #E3E4E5;
+    color: #999999;
+}
+
+#menu li {
+    line-height: 30px;
+}
+
+#menu_content {
+    width: 1190px;
+    height: 30px;
+    margin: 0px 79.5px;
+}
+
+#m_left li {
+    margin-right: 4px
+}
+
+#m_right {
+    width: 730px;
+    height: 30px;
+    float: right;
+}
+
+#m_right .dt {
+    width: 62px;
+    height: 30px;
+    padding: 0 2px;
+    font-size: 13px;
+    text-align: center;
+}
+
+#m_right .dt1 {
+    width: 77px;
+    height: 30px;
+    padding: 0 2px;
+    text-align: center;
+}
+
+#m_right_first {
+    width: 127.11px;
+}
+
+#m_right .spacer {
+    overflow: hidden;
+    margin: 11px 5px 0;
+    width: 1px;
+    height: 10px;
+    background-color: #ccc;
+}
+
 #head
 {
     width: 100%;
-    height: 150px;
-    border: 1px solid black;
+    height: 80px;
+    background-color: #e2231a;
+}
+
+.logo{
+    width: 272px;
+    height: 80px;
+    float: left;
+    margin-left: 80px;
+}
+
+.fore1{
+    float: left;
+    margin-right: 10px;
+    width: 158px;
+    height: 80px;
+    background: url(//misc.360buyimg.com/user/myjd-2015/widget/common/i/logo_2017.png) no-repeat;
+}
+
+.fore2{
+    float: left;
+    width: 104px;
+    height: 30px;
+    margin-top: 15px;
+    margin-left: -5px;
+    line-height: 30px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+    text-align: center;
+}
+
+.fore2 a{
+    color: white;
+}
+
+.fore3{
+    color: #ffb2b2;
+    border: 1px solid #ffb2b2;
+    border-radius: 10px;
+    padding: 2px 10px;
+}
+
+.navitems{
+    float: left;
+    width: 342px;
+    height: 80px;
+    margin-left: 35px;
+    line-height: 80px;
+}
+
+.navitems li{
+    float: left;
+    font-size: 14px;
+    margin-right: 30px;
+}
+
+.fore-1{
+    font-weight: bold;
+    color: white;
+}
+
+.nav_r{
+    float: right;
+    width: 340px;
+    height: 80px;
+    margin-right: 80px;
+}
+
+.my_cart{
+    float: right;
+    width: 141px;
+    height: 36px;
+    background-color: white;
+    margin-top: 23px;
+}
+
+.ci-left{
+    float: left;
+    width: 18px;
+    height: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background: url(//misc.360buyimg.com/jdf/1.0.0/unit/globalImages/1.0.0/jd2015img.png) 0 -58px no-repeat;
+}
+
+.my_cart a{
+    line-height: 36px;
+    margin-left: 5px;
+}
+
+.ci-right{
+    width: 7px;
+    height: 13px;
+    line-height: 13px;
+    font: 400 13px/13px simsun;
+    margin-left: 5px;
+}
+
+.ci-count{
+    position: relative;
+    top: -8px;
+    left: -6px;
+    right: auto;
+    display: inline-block;
+    padding: 1px 3px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #fff;
+    background-color: #e1251b;
+    border-radius: 7px;
+    min-width: 12px;
+    text-align: center;
+}
+
+.form{
+    float: right;
+    width: 186px;
+    height: 36px;
+    margin-top: 23px;
+    margin-right: 13px;
+    background-color: white;
+}
+
+.text_box{
+    width: 128px;
+    height: 32px;
+    float: left;
+    border: none;
+}
+
+.search_btn{
+    width: 55px;
+    height: 36px;
+    border: none;
+    background-color: #f7f7f7;
 }
 
 #main_body

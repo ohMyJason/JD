@@ -4,13 +4,62 @@
     <meta charset="UTF-8">
     <title>我的订单</title>
     <link type="text/css" rel="stylesheet" href="css/getOrder.css">
+    <link href="css/base.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/getOrder.js" rel="script"></script>
     <script src="js/jquery-cookie.js"></script>
 </head>
 <body>
+<div id="menu">
+    <div id="menu_content">
+        <ul id="m_left">
+            <li><i class="iconfont"></i><a href="index.html">京东首页</a></li>
+            <li class="iconfont red font14"></li>
+            <li><a>北京</a></li>
+        </ul>
+        <ul id="m_right">
+            <li id="m_right_first"><a href="login.html"><span class="red">你好，请登录 &nbsp;</span></a><a href="Login_1.html">免费注册</a></li>
+            <li class="spacer"></li>
+            <li class="dt"><a href="getOrder.html" target="_blank">我的订单</a></li>
+            <li class="spacer"></li>
+            <li class="dt1"><a>我的京东</a><i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt"><a>京东会员</a></li>
+            <li class="spacer"></li>
+            <li class="dt1"><span class="red">企业采购</span><i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt1">客户服务<i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt1">网站导航<i class="iconfont"></i></li>
+            <li class="spacer"></li>
+            <li class="dt">手机京东</li>
+        </ul>
+    </div>
+</div>
     <div id = "head">
-        head
+        <div class="logo">
+            <a href="index.html" target="_blank" class="fore1"></a>
+            <div class="fore2"><a href="index.html" target="_self">我的京东</a></div>
+            <a href="index.html" target="_blank" class="fore3"><span>返回京东首页</span></a>
+        </div>
+        <div class="navitems">
+            <a target="_self" href="index.html"><li class="fore-1">首页</li></a>
+            <a target="_self" href="#"><li class="fore-1">账户设置&nbsp;<i class="iconfont"></i></li></a>
+            <a target="_self" href="#"><li class="fore-1">评价&nbsp;<i class="iconfont"></i></li></a>
+            <a target="_self" href="#"><li class="fore-1">消息&nbsp;6</li></a>
+        </div>
+        <div class="nav_r">
+            <div class="my_cart">
+                <i class="ci-left"></i>
+                <a href="cart.html">我的购物车</a>
+                <i class="ci-count">0</i>
+                <i class="ci-right">&gt;</i>
+            </div>
+            <div class="form">
+                <input type="text" class="text_box" placeholder="华为手机">
+                <input type="button" value="搜索" class="search_btn">
+            </div>
+        </div>
     </div>
     <div id= "main_body">
         <div class="orderBox">
