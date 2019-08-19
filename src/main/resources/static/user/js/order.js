@@ -134,6 +134,7 @@
                     $model.children().eq(0).next().children().children().eq(0).html(result.data[0].receiveName);
                     $model.children().eq(0).next().children().children().eq(1).html(result.data[0].address);
                     $model.children().eq(0).next().children().children().eq(2).html(result.data[0].receiveTel);
+                    $model.children().eq(0).next().children().eq(3).hide();   //设置默认地址按钮隐藏
                     $("#no_display").before($model);
 
                     var $node = $("#cont_addr").clone(true);
@@ -180,6 +181,12 @@
             })
         })
 
+        //设置默认地址
+        $(".def_addr").click(function () {
+            alert(1);
+            // $(this).attr('class','new')
+            // $(".new").html("1");
+        })
 
     })
 )
