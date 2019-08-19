@@ -126,26 +126,18 @@
             },
             success:function (result) {
                 if(result.code == 0){
-                    //第一个默认地址
-                    var $model = $("#cont_addr").clone(true);
-                    $("#cont_addr").detach();
-                    $model.children().eq(0).find("span").html(result.data[0].receiveName);
-                    $model.children().eq(0).next().children().children().eq(0).html(result.data[0].receiveName);
-                    $model.children().eq(0).next().children().children().eq(1).html(result.data[0].address);
-                    $model.children().eq(0).next().children().children().eq(2).html(result.data[0].receiveTel);
-                    $("#no_display").before($model);
-
-                    var $node = $("#cont_addr").clone(true);
-                    for(var i=1; i < result.count; i++){
-                        $node.children().eq(0).find("span").html(result.data[i].receiveName);
-                        $node.children().eq(0).next().children().children().eq(0).html(result.data[i].receiveName);
-                        $node.children().eq(0).next().children().children().eq(1).html(result.data[i].address);
-                        $node.children().eq(0).next().children().children().eq(2).html(result.data[i].receiveTel);
-                        $node.children().eq(0).next().children().eq(1).hide();   //新节点默认地址隐藏
-                        $("#no_display").append($node);
-                        $node = $("#cont_addr").clone();
+                    var $model = $("#selectID");
+                    if (result.count == 0){
+                        alert("该用户未设置地址信息！");
+                    } else {
+                        $("#addr_name").children().eq(0).html(result.data[0].receiveName);
+                        for (var i = 0; i < result.count;i++){
+                            var addressId =result.data[i].userAddressId;
+                            var recName = result.data[i].receiveName;
+                            var addressItem = result.data[i].address +"&nbsp;&nbsp;&nbsp;" +result.data[i].receiveTel;
+                            $model.append("<option value="+addressId+" code = "+recName+">"+addressItem+"</option>");
+                        }
                     }
-
                 }else{
                     alert("请先登录！");
                     window.location.href="/user/login.html";
@@ -163,7 +155,7 @@
                 dataType:"json",
                 data:{
                     userId: $.cookie('userId'),
-                    userAddressId: 1,
+                    userAddressId: $("#selectID").find("option:selected").val(),
                     totalPrice: $("#realPay").html(),
                     IdArry: $.cookie('IdArry')
                 },success:function (result) {
@@ -192,6 +184,11 @@
                     alert("向服务器请求失败！");
                 }
             })
+        })
+
+
+        $("#selectID").change(function () {
+            $("#addr_name").children().eq(0).html($("#selectID").find("option:selected").attr("code"));
         })
 
 
