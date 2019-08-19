@@ -9,7 +9,9 @@
             userId: $.cookie('userId'),
         },
         success: function (result) {
-           $("#search_top_center").children().eq(1).html(result.data);
+            if(result.code == 0){
+                $("#search_top_center").children().eq(1).html(result.data);
+            }
         }
     })
 
