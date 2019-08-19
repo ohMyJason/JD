@@ -78,4 +78,19 @@
             alert("请求响应失效！");
         }
     })
+
+    $.ajax({
+        url:"/user/getNameById",
+        type:"post",
+        dataType: "json",
+        headers:{'token':$.cookie("token")
+        },
+        data:{
+            userId: $.cookie('userId')
+        },success:function (result) {
+            $("#m_right_first").children().eq(0).children().eq(0).html(result.data);
+            $("#m_right_first").children().eq(1).html("");
+        }
+    })
+
 }))
