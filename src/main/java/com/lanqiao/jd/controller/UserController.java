@@ -222,7 +222,7 @@ public class UserController {
         return orderService.insertOrder(orderVo);
     }
 
-    //得到订单价值 orderId
+    //得到订单 orderId
     @PostMapping("/getOrderPrice")
     public Result getOrderPrice(@RequestParam(name = "orderId") int orderId){
         return orderService.getOrderByOrderId(orderId);
@@ -256,6 +256,11 @@ public class UserController {
     @PostMapping("/getAllOrder")
     public Result getAllOrderByUserId(int userId){
         return orderService.getAllOrderByUserId(userId);
+    }
+    //订单删除
+    @PostMapping("/deleteOrder")
+    public Result deleteOrder(@RequestParam(name = "orderId") int orderId){
+        return orderService.deleteOrder(orderId);
     }
 
     //查询地址
