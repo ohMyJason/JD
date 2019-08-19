@@ -22,4 +22,5 @@ public interface ProductImgListMapper {
     int updateByPrimaryKey(ProductImgList record);
 
     List<ProductImgList> selectByItemId(Integer itemId);
+
 }

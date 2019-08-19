@@ -10,211 +10,9 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/layui.js"></script>
     <script src="js/jquery-cookie.js"></script>
-    <script>
-        $(function() {
-            $.cookie("productItemId", null, {path: '/'});
-            var $yin = $(".yin");
-            $(".Ul li img").mouseover(function () {
-                $(this).parent().addClass("li").siblings().removeClass("li");
-                $("#pian").attr("src", $(this).attr("src"));
-                $("#zhao").attr("src", $(this).attr("src"));
-            }).mouseout(function () {
-                $(this).parent().removeClass("li");
-            });
-            var l = $(".shang").eq(0).offset().left;
-            var t = $(".shang").eq(0).offset().top;
-            var width1 = $(".yin").outerWidth() / 2;
-            var height1 = $(".yin").outerHeight() / 2;
-            var maxL = $(".shang").width() - $yin.outerWidth();
-            var maxT = $(".shang").height() - $yin.outerHeight();
-            var bili = $("#zhao").width() / $("#pian").width();
-            $(".shang").mousemove(function (e) {
-                var maskL = e.clientX - l - width1,
-                    maskT = e.clientY - t - height1;
-                if (maskL < 0) {
-                    maskL = 0
-                }
-                ;
-                if (maskT < 0) {
-                    maskT = 0
-                }
-                ;
-                if (maskL > maxL) {
-                    maskL = maxL
-                }
-                ;
-                if (maskT > maxT) {
-                    maskT = maxT
-                }
-                ;
-                $yin.css({
-                    "left": maskL,
-                    "top": maskT
-                });
-                $(".xia").show();
-                $(".yin").show();
-                $("#zhao").css({
-                    "margin-left": -maskL * bili,
-                    "margin-top": -maskT * bili
-                });
-            });
-            $(".shang").mouseleave(function () {
-                $(".xia").hide();
-                $(".yin").hide();
-            });
-            var marginLeft = 0;
-            $(".you").click(function () {
-                marginLeft = marginLeft - 64;
-                if (marginLeft < -64) {
-                    marginLeft = -64
-                }
-                ;
-                $(".tab ul").stop().animate({
-                        "margin-left": marginLeft
-                    },
-                    "fast");
-            });
-            $(".zuo").click(function () {
-                marginLeft = marginLeft + 64;
-                if (marginLeft > 0) {
-                    marginLeft = 0
-                };
-                $(".tab ul").stop().animate({
-                        "margin-left": marginLeft
-                    },
-                    "fast");
-            });
-            $(".lie li").click(function () {
-                var index = $(this).index();
-                $(this).addClass("ll").siblings().removeClass("ll");
-                $(".bao1>div").eq(index).show().siblings().hide();
-            });
-            $("input[value='+']").click(function () {
-                $(this).prev().val(parseInt($(this).prev().val()) + 1);
-                $("input[name='num']").trigger("input");
-            });
-            $("input[value='-']").click(function () {
-                var $num = parseInt($(this).next().val());
-                if ($num > 1) {
-                    $(this).next().val($num - 1);
-                    $("input[name='num']").trigger("input");
-                } else {
-                    $(this).closest("ul").find("span").click();
-                }
-            });
-
-
-            $("input[type='submit']").click(function () {
-                $.ajax({
-                    url: "/user/insertComment",
-                    type: "post",
-                    headers: {
-                        'token': $.cookie("token")
-                    },
-                    data: {
-                        commentDetail: $("textarea[name='message']").val(),
-                        commentLevel: $("input[name='level']").val(),
-                        productItemId: $.cookie('productItemId'),
-                        userId: $.cookie('userId')
-
-                    },
-                    datatype: "json",
-                    success: function (result) {
-                        if (result.code == 0) {
-                            alert("插入成功");
-                            // location.reload();
-                        } else {
-                            alert("请先登录！");
-                            window.location.href = "/user/login.html";
-                        }
-                    }
-                })
-            })
-            $.ajax({
-                url:"/user/showCommentByProductId",
-                type:"post",
-                datatype:"json",
-                scriptCharset:"utf-8",
-                data:{productId:$.cookie('productId')},
-                success:function (result) {
-                    for(var i=0;i<result.data.length;i++){
-                        var $node = $("div[class='article']:eq(0)").clone(true);
-                        $node.children().eq(0).text("用户："+result.data[i].userId);
-                        $node.children().eq(1).text("评论："+result.data[i].commentDetail);
-                        // $node.children().eq(0).children().text("评论："+"#");
-                        $node.children().eq(2).text("星级："+result.data[i].commentLevel);
-                        $node.children().eq(4).text("商品："+result.data[i].productItemId);
-                        $("div[class='down']").prepend($node);
-                    }
-                }
-            })
-            $.ajax({
-                url:"/user/detailPage",
-                    type:"post",
-                    datatype:"json",
-                    scriptCharset:"utf-8",
-                    data:{
-                        userId:"3",
-                        productId:$.cookie('productId')
-                    },
-                    success:function (result) {
-                        // var $name = result.data[0].productName;
-                        $("div[class='name']").text(result.data[0].productName);
-                        $("div[class='address']").append(result.data[2][0].address);
-                        $("div[class='test']").text(result.data[0].productItemId);
-                        $(".price span").eq(1).text(result.data[0].productPrice);
-                        $("div[class='business']").text("由"+result.data[0].businessName+"配送");
-                        $(".lie li").eq(1).text("评论("+result.data[0].commentCount+")");
-                        var up =$(".up ul li");
-                        $(up[0]).text(result.data[0].detail1);
-                        $(up[1]).text(result.data[0].detail2);
-                        $(up[2]).text(result.data[0].detail3);
-                        $(up[3]).text(result.data[0].detail4);
-                        $(up[4]).text(result.data[0].detail5);
-                        $(up[5]).text(result.data[0].detail6);
-                        $(up[6]).text("商家:"+result.data[0].businessName);
-                        // $("div[class='up']").html(result.data[0].detail1+ "<br/>");
-                        // $("div[class='up']").append(result.data[0].detail2+ "<br/>");
-                        // $("div[class='up']").append(result.data[0].detail3+ "<br/>");
-                        // $("div[class='up']").append(result.data[0].detail4+ "<br/>");
-                        // $("div[class='up']").append(result.data[0].detail5+ "<br/>");
-                        // $("div[class='up']").append("商家:"+result.data[0].businessName);
-                        var proitemid = result.data[0].productItemId;
-                        $.cookie("productItemId",proitemid,{path:'/user/details.html'});
-                        //下面是图片路径
-                        $img = result.data[1][0];
-                        $("#pian").attr("src", $img);
-                        var listImg=$(".Ul li img");
-                        for(var i=0;i<listImg.length;i++)
-                        {
-                            $(listImg[i]).attr("src",$img)
-                        }
-                        $("#zhao").attr("src", result.data[1][i]);
-                    }
-            })
-            $("button[name='shop']").click(function () {
-                $.ajax({
-                    url: "/user/insertCartItem",
-                    type: "post",
-                    datatype: "json",
-                    scriptCharset: "utf-8",
-                    headers:{'token':$.cookie("token")
-                    },
-                    data: {
-                        userId: $.cookie('userId'),
-                        productId:$.cookie('productId'),
-                        num: $("input[name='num']").val()
-                    },
-                    success: function (result) {
-                        window.location.href="http://localhost:8080/user/cart.html";
-                    }
-                })
-            })
-        })
-
-    </script>
+    <script src="js/details.js"></script>
 </head>
-<body>
+<body style="background-color: white">
 <a name="top"></a>
 <div id="menu">
     <div id="menu_content">
@@ -287,101 +85,77 @@
 </div>
 
 <div>
-    <div class="da ">
-
+    <div class="da" >
         <div class="shang">
-
-            <img src="images/details/details1.jpg" height="350" width="350" id="pian" />
-
+            <img src="" height="350" width="350" id="pian" />
             <div class="yin"></div>
-
         </div>
-
         <div class="bao">
-
             <span class="zuo"></span>
-
             <div class="tab">
-
                 <ul class="Ul">
-
-                    <li><img src="images/details/details1.jpg" height="52" width="52" /></li>
-                    <li><img src="images/details/details2.jpg" height="52" width="52" /></li>
-                    <li><img src="images/details/details3.jpg" height="52" width="52" /></li>
-                    <li><img src="images/details/details4.jpg" height="52" width="52" /></li>
-                    <li><img src="images/details/details5.jpg" height="52" width="52" /></li>
-                    <li><img src="images/details/details6.jpg" height="52" width="52" /></li>
-
+<!--                    <li><img src="images/details/details1.jpg" height="52" width="52" /></li>-->
+<!--                    <li><img src="images/details/details2.jpg" height="52" width="52" /></li>-->
+<!--                    <li><img src="images/details/details3.jpg" height="52" width="52" /></li>-->
+<!--                    <li><img src="images/details/details4.jpg" height="52" width="52" /></li>-->
+<!--                    <li><img src="images/details/details5.jpg" height="52" width="52" /></li>-->
+<!--                    <li><img src="images/details/details6.jpg" height="52" width="52" /></li>                   -->
+                    <li><img src="" height="52" width="52" /></li>
+                    <li><img src="" height="52" width="52" /></li>
+                    <li><img src="" height="52" width="52" /></li>
+                    <li><img src="" height="52" width="52" /></li>
+                    <li><img src="" height="52" width="52" /></li>
+                    <li><img src="" height="52" width="52" /></li>
                 </ul>
-
             </div>
-
             <span class="you"></span>
-
         </div>
         <div class="wrap">
             <div class="name">
-                水密码 化妆品女 洗面奶 补水 保湿 深层清洁 冰川矿泉 套装系列 洁肤晶露100g                </div>
+                水密码 化妆品女 洗面奶 补水 保湿 深层清洁 冰川矿泉 套装系列 洁肤晶露100g
+            </div>
             <div class="summary">
                 <div class="dt">京东价</div>
                 <div class="dd">
-                                <span class="price">
-                                    <span>￥</span>
-                                    <span>29.90</span>
-                                </span>
+                    <span class="price">
+                        <span>￥</span>
+                        <span>29.90</span>
+                    </span>
                 </div>
                 <div class="address">配送至：</div>
                 <div class="business"></div>
                 <div class="btns">
                     <ul>
-                        <li class="num"><input type="button" value="-" style="width: 20px"> <input name="num" type="text" value="1" size="5px"> <input type="button" value="+" style="width: 20px">
+                        <li class="num"><input type="button" value="-" style="width: 20px">
+                            <input name="num" type="text" value="1" size="5px"> <input type="button" value="+" style="width: 20px">
                             <button class="layui-btn layui-btn-warm" name="shop">加入购物车</button>
                         </li>
-
                     </ul>
-
                 </div>
             </div>
         </div>
         <div class="lie ">
-
             <ul>
-
                 <li class="ll">图文介绍</li>
-
                 <li>评论</li>
-
             </ul>
-
         </div>
-
         <div class="nie">
-
             <div class="bao1">
-
                 <div class="up">
-
-                    <span>暂无好评！</span>
-
-                    <p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗</p>
-
-                    <p>来源：师徒课堂</p>
-
                 </div>
-
                 <div class="down">
-
                     <div class="article">
-<!--                        <div class="author">用户:张三<span>12#</span></div>-->
-<!--                        <div class="content">测试一下</div>-->
-<!--                        <div class="leval">星级:2</div>-->
-<!--                        <div class="time page">发表于:2019-02-09 13:12:23</div>-->
-<!--                        <div class="pid">1</div>-->
-                        <div class="author"><span></span></div>
-                        <div class="content"></div>
+                        <!-- 用户 -->
+                        <div class="author">
+                            <span></span>
+                        </div>
+                        <!-- 评价等级 -->
                         <div class="leval"></div>
+                        <!-- 评价内容 -->
+                        <div class="content"></div>
+                        <!-- 评价时间 -->
                         <div class="time page"></div>
-                        <div class="pid"></div>
                     </div>
                     <div>
                         <form>
@@ -393,24 +167,13 @@
                         </form>
                     </div>
                 </div>
-<!--                    <div class="page">-->
-<!--                        <input class="btn1" type="button" value="上一页" onClick="">-->
-<!--                        <input class="btn1" type="button" value="下一页" onClick="">-->
-<!--                    </div><br>-->
-
             </div>
-
         </div>
-
     </div>
-
     <div class="xia">
-
         <img src="images/details/details1.jpg" height="600" width="600" id="zhao" />
-
     </div>
     <div id="test"></div>
 </div>
-
 </body>
 </html>

@@ -127,4 +127,9 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+//    @Override
+//    public Result getImgListById(int productId) {
+//        List<String> list=  productMapper.selectImgUrl(productId);
+//        return Result.createSuccessResult(list.size(),list);
+//    }
 }

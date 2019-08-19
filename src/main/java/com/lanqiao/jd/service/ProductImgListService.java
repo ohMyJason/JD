@@ -15,6 +15,6 @@ public interface ProductImgListService {
     //修改新纪录
     Result changeImgList(String url,int imgId);
 
-    //通过producitemid 查看商品信息
+    //通过productItemId 查看商品信息
     Result selectAllImgList(int itemId);
 }

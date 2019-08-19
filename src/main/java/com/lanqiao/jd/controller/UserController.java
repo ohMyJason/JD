@@ -252,5 +252,4 @@ public class UserController {
     public Result getAddress(@RequestParam(name = "userId") int userId){
         return userAddressService.getAddress(userId);
     }
-
 }
