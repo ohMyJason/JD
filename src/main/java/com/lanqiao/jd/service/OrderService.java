@@ -21,4 +21,6 @@ public interface OrderService {
     Result getAllOrderByUserId(int userId);
 
     public Result getOrderByOrderId(int orderId);
+
+    public Result deleteOrder(int orderId);
 }

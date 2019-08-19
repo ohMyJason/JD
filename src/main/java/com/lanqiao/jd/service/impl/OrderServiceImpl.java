@@ -125,4 +125,22 @@ public class OrderServiceImpl implements OrderService {
             return Result.createByFailure("数据库错误，联系管理员");
         }
     }
+    //删除订单信息
+    @Override
+    public Result deleteOrder(int orderId) {
+        try{
+            List<OrderItem> orderItemList= orderItemMapper.selectByOrderId(orderId);
+            for (OrderItem orderItem: orderItemList) {
+                int orderItemId = orderItem.getOrderItemId();
+                orderItemMapper.deleteByPrimaryKey(orderItemId);
+            }
+            if(orderMapper.deleteByPrimaryKey(orderId)>0){
+                return Result.createSuccessResult();
+            }else {
+                return Result.createByFailure("删除失败！");
+            }
+        }catch (Exception e){
+            return Result.createByFailure("数据库错误，联系管理员");
+        }
+    }
 }
