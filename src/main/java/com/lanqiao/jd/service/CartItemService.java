@@ -5,15 +5,24 @@ import com.lanqiao.jd.util.Result;
 
 public interface CartItemService {
     //向购物车插入一条信息
-    public Result insertCartItem(int userId, CartItem cartItem);
+    Result insertCartItem(int userId, CartItem cartItem);
+
     //删除一条信息
-    public Result deleteCartItem(int userId, int productId);
+    Result deleteCartItem(int userId, int productId);
+
     //展示购物车信息
-    public Result showCartItem(int userId);
+    Result showCartItem(int userId);
+
     //增加数量
-    public Result addCartItemNum(int userId,int productId);
+    Result addCartItemNum(int userId,int productId);
+
     //减少数量
-    public Result subCartItemNum(int userId,int productId);
+    Result subCartItemNum(int userId,int productId);
+
     //在生成订单时删除购物车信息
-    public Result deleteWhenCreateOrder(int []cartItemIdList);
+    Result deleteWhenCreateOrder(int []cartItemIdList);
+
+    //查询用户的购物车商品数量
+    Result getCartNum(int userId);
+
 }

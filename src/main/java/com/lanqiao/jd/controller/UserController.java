@@ -92,12 +92,12 @@ public class UserController {
         }
     }
 
-
-
     //评论相关
     @UserLoginToken
     @PostMapping("/insertComment")
     public Result insertComment(Comment comment){return commentService.insertComment(comment);}
+
+
     //展示某个商品的评论
     @PostMapping("/showCommentByProductId")
     public Result showCommentByItemId(@RequestParam(name = "productId") int productId){
@@ -119,11 +119,13 @@ public class UserController {
     public Result insertCartItem(@RequestParam(name = "userId") int userId, CartItem cartItem){
         return cartItemService.insertCartItem(userId,cartItem);
     }
+
     //删除信息 参数：userId，producId
     @PostMapping("/deleteCartItem")
     public  Result deleteCartItem(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
         return cartItemService.deleteCartItem(userId,productId);
     }
+
     //在生成订单时删除购物车相关信息
     @PostMapping("/deleteWhenCreateOrder")
     public Result deleteWhenCreateOrder(@RequestParam(name = "IdArry" )String IdArry){
@@ -146,6 +148,7 @@ public class UserController {
     public Result addCartItemNum(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
         return cartItemService.addCartItemNum(userId,productId);
     }
+
     //数量-1
     @PostMapping("/subCartItemNum")
     public Result subCartItemNum(@RequestParam(name = "userId") int userId,@RequestParam(name = "productId") int productId){
@@ -257,6 +260,8 @@ public class UserController {
     public Result getAllOrderByUserId(int userId){
         return orderService.getAllOrderByUserId(userId);
     }
+
+
     //订单删除
     @PostMapping("/deleteOrder")
     public Result deleteOrder(@RequestParam(name = "orderId") int orderId){
@@ -267,5 +272,10 @@ public class UserController {
     @PostMapping("/getAddress")
     public Result getAddress(@RequestParam(name = "userId") int userId){
         return userAddressService.getAddress(userId);
+    }
+
+    @PostMapping("/getCartNum")
+    public Result getCartNum(int userId){
+        return cartItemService.getCartNum(userId);
     }
 }

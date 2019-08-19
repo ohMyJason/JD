@@ -1,4 +1,76 @@
 ($(function () {
+
+    //获取购物车中商品的数量
+    $.ajax({
+        url:"/user/getCartNum",
+        type:"post",
+        dataType: "json",
+        data:{
+            userId: $.cookie('userId'),
+        },
+        success: function (result) {
+           $("#search_top_center").children().eq(1).html(result.data);
+        }
+    })
+
+
+    $.ajax({
+        url:"/testGetUserId",
+        type:"post",
+        headers:{'token':$.cookie("token")
+        },
+        dataType: "json",
+        success: function (result) {
+            if(result.code==0) {
+                $.cookie("userId", result.data, {path: '/'});
+                $.ajax({
+                    url:"/user/getNameById",
+                    type:"post",
+                    dataType: "json",
+                    headers:{'token':$.cookie("token")
+                    },
+                    data:{
+                        userId: $.cookie('userId')
+                    },
+                    success: function (result) {
+                        if (result.code==0) {
+                            $("#m_right_first").find("span").html(result.data);
+                            $("#m_right_first").children().eq(1).html("");
+                            $("#user_show").html("你好，"+result.data+"<br>欢迎逛京东");
+                        }
+                    }
+                })
+            }
+        }
+    })
+
+    $.cookie("name",null,{path:'/'});
+    $(".button").click(function () {
+        var keyword = $("input[name='keyword']").val();
+        if (keyword==null||keyword==''){
+            alert("搜索信息不能为空");
+        }else {
+            $.ajax({
+                url: "/user/fuzzyQueryProduct",
+                type: "post",
+                datatype: "json",
+                data: {
+                    name:$("#keyword").val()
+                },
+                success: function (result) {
+                    if (result.code==0) {
+                        $.cookie("name",encodeURI(encodeURI($("#keyword").val())),{path:'/user/productList.html'});
+                        window.location.href="http://localhost:8080/user/productList.html"
+                    }else{
+                        alert("error");
+                    }
+                }
+
+            })
+        }
+    })
+
+
         //轮播图
         var index = 0;//用index记录下标,默认为0
         var imgs = $('#fs_col2 li');
@@ -61,5 +133,7 @@
             clearInterval(timeid)
         })
 
-    })
-)
+
+
+
+    }))
