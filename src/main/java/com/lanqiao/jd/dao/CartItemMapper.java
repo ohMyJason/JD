@@ -25,7 +25,7 @@ public interface CartItemMapper {
 
     CartItem selectByProductId(@Param("shopCartId") Integer shopCartId,@Param("productId")  Integer productId);
 
-    List<CartItem> selectByShopCartId(Integer cartItemId);
+    List<CartItem> selectByShopCartId(Integer shopCartId);
 
     List<Cart_Product_Business> selectCartItemByuserId(Integer userId);
 

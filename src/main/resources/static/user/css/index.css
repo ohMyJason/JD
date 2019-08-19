@@ -93,6 +93,7 @@
     float: left;
 }
 
+
 /*搜索栏部分开始*/
 #search {
     width: 900px;
@@ -112,7 +113,7 @@
 #keyword {
     padding: 2px 44px 2px 17px;
     width: 400px;
-    height: 25px;
+    height: 31px;
     line-height: 25px;
     font-size: 14px;
     float: left;
