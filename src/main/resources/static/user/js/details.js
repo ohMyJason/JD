@@ -77,13 +77,13 @@
             $(".bao1>div").eq(index).show().siblings().hide();
         });
         $("input[value='+']").click(function () {
-            $(this).prev().val(parseInt($(this).prev().val()) + 1);
+            $(this).parent().prev().val(parseInt($(this).parent().prev().val()) + 1);
             $("input[name='num']").trigger("input");
         });
         $("input[value='-']").click(function () {
-            var $num = parseInt($(this).next().val());
+            var $num = parseInt($(this).parent().prev().val());
             if ($num > 1) {
-                $(this).next().val($num - 1);
+                $(this).parent().prev().val($num - 1);
                 $("input[name='num']").trigger("input");
             } else {
                 $(this).closest("ul").find("span").click();
