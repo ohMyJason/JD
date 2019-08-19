@@ -20,41 +20,27 @@
     </script>
     <script>
         $(function () {
-            var entity={"productId":$("input[name='pro_id']"),"productName":$("input[name='pro_name']"),"productPrice":$("input[name='pro_price']")}
 
-            // //点击添加商品
-            // $(".add").click(function () {
-            //     alert($(this).parent().next().children().eq(2).eq(0).text());
-            // })
-
-            $("#sub_btn").click(function () {
-
-                var $node = $("#two").clone(true);
-                $node.children().eq(0).html($("input[name='shop_name']").val());
-                $node.children().eq(1).html($("input[name='pro_image']").val());
-                $node.children().eq(2).html($("input[name='pro_name']").val());
-                $node.children().eq(3).html($("input[name='pro_id']").val());
-                $node.children().eq(4).html($("input[name='pro_price']").val());
-                $("#first").append($node);
-                // $node = $("#two").clone(true);
+            $("input[name='sub_btn']").click(function () {
+                alert($("#form1").serialize());
                 $.ajax({
-                    url:"/verifyPhoneNumber",
+                    url:"/product/insertProduct",
                     type:"post",
-                    datatype:JSON,
-                    data:{
-                        file:$("input[name='pro_image']").val(),
-                        sourceProduct:entity,
-                    },
+                    dataType: "json",
+                    date:
+                        $("#form1").serialize(),
                     success:function (result) {
-                     if(result==-100){
-                         alert("插入失败");
-                     }
+                        if(result.code==0){
+                            alert("插入成功！");
+                        }else {
+                            alert("插入失败！");
+                        }
+                    },error:function () {
+                        alert("请求响应失败！");
                     }
                 })
+            })
 
-
-
-            });
 
             $("input[name='del']").click(function () {
                 $(this).parent().parent().detach();
@@ -175,17 +161,16 @@
 
 </div>
 <div class="addshop">
-    <form>
-        <tr> 商店名称：<input name="shop_name" type="text"><br></tr>
+    <form id="form1">
+        <tr> 商店代号：<input name="businessId" type="text"><br></tr>
         <td></td>
         <td></td>
-        <tr>商品图片：<input name="pro_image" type="text"><br></tr>
-        <tr>商品名称：<input name="pro_name" type="text"><br></tr>
-        <tr>商品编码：<input name="pro_id" type="text"><br></tr>
-        <tr>价格：&nbsp;&nbsp;&nbsp;&nbsp;<input id="pro_price" type="text"><br></tr>
+        <tr>商品图片：<input name="file" type="file"><br></tr>
+        <tr>商品名称：<input name="productName" type="text"><br></tr>
+        <tr>价格：&nbsp;&nbsp;&nbsp;&nbsp;<input name="productPrice" type="text"><br></tr>
+        <input name="sub_btn" type="button" value="提交">
     </form>
 
-    <input id="sub_btn" type="submit" value="提交">
 </div>
 <!--<div class="min">-->
 
