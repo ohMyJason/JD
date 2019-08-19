@@ -104,8 +104,8 @@
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByProductItemId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select c.comment_id,c.comment_level,c.comment_detail,c.comment_time,c.product_item_id,u.user_id
+  <select id="selectByProductItemId" resultType="com.lanqiao.jd.entity.Comment_User" parameterType="java.lang.Integer" >
+    select c.comment_id,c.comment_level,c.comment_detail,c.comment_time,c.product_item_id,u.user_id,u.user_name
     from tb_comment c, tb_user u
     where product_item_id = #{productItemId,jdbcType=INTEGER} and c.user_id = u.user_id
   </select>

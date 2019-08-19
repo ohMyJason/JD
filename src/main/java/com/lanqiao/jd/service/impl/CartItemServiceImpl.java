@@ -4,6 +4,7 @@ import com.lanqiao.jd.dao.CartItemMapper;
 import com.lanqiao.jd.dao.ShopCartMapper;
 import com.lanqiao.jd.entity.CartItem;
 import com.lanqiao.jd.entity.Cart_Product_Business;
+import com.lanqiao.jd.entity.ShopCart;
 import com.lanqiao.jd.service.CartItemService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class CartItemServiceImpl implements CartItemService {
     CartItemMapper cartItemMapper;
     @Autowired
     ShopCartMapper shopCartMapper;
+
 
     @Override
     public Result insertCartItem(int userId, CartItem cartItem) {
@@ -124,5 +126,19 @@ public class CartItemServiceImpl implements CartItemService {
         } catch (Exception e) {
             return Result.createByFailure("删除时发生异常！");
         }
+    }
+
+    @Override
+    public Result getCartNum(int userId) {
+        try {
+            //根据userId查询shopCartId
+            ShopCart shopCart = shopCartMapper.selectByUserId(userId);
+            //根据shopCartId查询cartItem
+            List<CartItem> cartItems= cartItemMapper.selectByShopCartId(shopCart.getShopCartId());
+            return Result.createSuccessResult(cartItems.size());
+        }catch (Exception e){
+            return Result.createByFailure("出现错误");
+        }
+
     }
 }
