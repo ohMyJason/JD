@@ -28,6 +28,9 @@ body
     cursor: pointer;
 }
 
+.default_address{
+    margin-right: 15px;
+}
 
 /*顶部导航，总大小和背景颜色*/
 #shortCut {
