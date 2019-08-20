@@ -9,4 +9,6 @@ import com.lanqiao.jd.entity.User;
 
 public interface TokenService {
     String getToken(User user);
+
+    String getMd5(String str);
 }

@@ -6,6 +6,10 @@ import com.lanqiao.jd.entity.User;
 import com.lanqiao.jd.service.TokenService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * @author 刘佳昇
  * @Date 2019/8/14 15:26
@@ -20,4 +24,17 @@ public class TokenServiceImpl implements TokenService {
                 .sign(Algorithm.HMAC256(user.getPassword()));
         return token;
     }
-}
+
+    @Override
+    public String getMd5(String str) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            return new BigInteger(1,md.digest()).toString(16);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        }
+
+    }

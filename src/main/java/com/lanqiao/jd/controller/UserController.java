@@ -70,7 +70,8 @@ public class UserController {
         if (userForBase == null) {
             return Result.createByFailure("登录失败,用户不存在");
         } else {
-            if (!userForBase.getPassword().equals(user.getPassword())) {
+//            if (!userForBase.getPassword().equals(user.getPassword())) {
+            if (!(tokenService.getMd5(user.getPassword()).equals(userForBase.getPassword()))){
                 return Result.createByFailure("登录失败,密码错误");
             } else {
                 String token = tokenService.getToken(userForBase);
