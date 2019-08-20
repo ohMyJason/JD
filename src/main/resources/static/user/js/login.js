@@ -56,11 +56,13 @@
                         $.cookie("token",result.data[1].split(":")[1],{ expires:1,path:'/'});
                         window.location.href="http://localhost:8080/user/index.html";
                     }else{
-                        alert(result.msg);
+                        $(".msg-error b").html(result.msg);
+                        // alert(result.msg);
                     }
                 },
                 error:function () {
-                    alert("请求登录响应失败")
+                    $(".msg-error b").html("请求登录响应失败");
+                    // alert("请求登录响应失败")
                 }
             })
         }
