@@ -40,8 +40,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Result register(User user) throws Exception {
         //向用户表中插入记录
-        String Md5Password = tokenService.getMD5(user.getPassword());
-        user.setPassword(Md5Password);
+
+        String userMd5Pass = tokenService.getMd5(user.getPassword());
+        user.setPassword(userMd5Pass);
         int col =  userMapper.insertSelective(user);
         if(col>0){
             int userId = user.getUserId();

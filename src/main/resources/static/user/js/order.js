@@ -169,10 +169,10 @@
                                 IdArry: $.cookie('IdArry')
                             },success:function (result) {
                                 if(result.code!= 0){
-                                    alert("删除购物车信息失败！");
+                                    // alert("删除购物车信息失败！");
                                 }
                             },error:function () {
-                                alert("删除购物车信息的请求失败！")
+                                // alert("删除购物车信息的请求失败！")
                             }
                         })
 

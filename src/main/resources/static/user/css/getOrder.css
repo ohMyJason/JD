@@ -394,3 +394,13 @@ li{
     /*color:#9f9f9f;*/
     line-height: 22px;
 }
+
+#de{
+    width: 77px;
+    height: 30px;
+    background-color: #e1251b;
+    color: white;
+    border: none;
+    margin-left: -12px;
+    margin-top: -10px;
+}
