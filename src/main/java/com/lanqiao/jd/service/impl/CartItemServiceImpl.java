@@ -54,6 +54,7 @@ public class CartItemServiceImpl implements CartItemService {
                 }
             }
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return Result.createByFailure("出现错误，联系管理员！");
         }
     }

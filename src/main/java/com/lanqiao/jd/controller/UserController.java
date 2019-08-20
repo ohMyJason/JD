@@ -53,7 +53,7 @@ public class UserController {
     //注册功能->向数据库中插入一条user记录
     //need:userName password  phoneNumber
     @PostMapping("/register")
-    public Result register(User user) {
+    public Result register(User user) throws Exception {
         return userService.register(user);
     }
 
@@ -65,12 +65,15 @@ public class UserController {
 
     //登录 -> 检查用户名密码与数据库中的记录是否匹配
     @PostMapping("/login")
-    public Result login(User user) {
+    public Result login(User user) throws Exception {
         User userForBase = userService.findByUsername(user);
         if (userForBase == null) {
             return Result.createByFailure("登录失败,用户不存在");
         } else {
-            if (!userForBase.getPassword().equals(user.getPassword())) {
+            String userForBaseMd5Pass = tokenService.getMD5(userForBase.getPassword());
+            String userMd5Pass = user.getPassword();
+//            if (!userForBase.getPassword().equals(user.getPassword())) {
+            if (!userForBaseMd5Pass.equals(userMd5Pass)){
                 return Result.createByFailure("登录失败,密码错误");
             } else {
                 String token = tokenService.getToken(userForBase);

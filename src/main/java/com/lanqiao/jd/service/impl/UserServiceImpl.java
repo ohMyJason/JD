@@ -4,6 +4,7 @@ import com.lanqiao.jd.dao.ShopCartMapper;
 import com.lanqiao.jd.dao.UserMapper;
 import com.lanqiao.jd.entity.ShopCart;
 import com.lanqiao.jd.entity.User;
+import com.lanqiao.jd.service.TokenService;
 import com.lanqiao.jd.service.UserService;
 import com.lanqiao.jd.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     ShopCartMapper shopCartMapper;
+
+    @Autowired
+    TokenService tokenService;
 
     @Override
     public Result verifyPhoneNumber(String phoneNumber) {
@@ -34,8 +38,10 @@ public class UserServiceImpl implements UserService {
     //实现注册功能  用户表中插入记录&购物车表中插入记录
     @Override
     @Transactional
-    public Result register(User user) {
+    public Result register(User user) throws Exception {
         //向用户表中插入记录
+        String Md5Password = tokenService.getMD5(user.getPassword());
+        user.setPassword(Md5Password);
         int col =  userMapper.insertSelective(user);
         if(col>0){
             int userId = user.getUserId();

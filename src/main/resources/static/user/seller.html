@@ -22,20 +22,28 @@
         $(function () {
 
             $("input[name='sub_btn']").click(function () {
-                alert($("#form1").serialize());
                 $.ajax({
                     url:"/product/insertProduct",
                     type:"post",
                     dataType: "json",
+                    processData: false,
+                    contentType: false,
                     date:
-                        $("#form1").serialize(),
+                        // file:$("#file").val(),
+                        // productName:$("#productName").val(),
+                        // productPrice:$("#productPrice").val(),
+                        // businessId:$("#businessId").val()
+                        new FormData($("#form1")[1])
+                    ,
                     success:function (result) {
+                        console.log(result);
                         if(result.code==0){
                             alert("插入成功！");
                         }else {
                             alert("插入失败！");
                         }
-                    },error:function () {
+                    },
+                    error:function () {
                         alert("请求响应失败！");
                     }
                 })
@@ -161,19 +169,19 @@
 
 </div>
 <div class="addshop">
-    <form id="form1">
-        <tr> 商店代号：<input name="businessId" type="text"><br></tr>
+    <form id="form1" enctype="multipart/form-data" >
+        <tr> 商店代号：<input id="businessId" name="businessId" type="text"><br></tr>
         <td></td>
         <td></td>
-        <tr>商品图片：<input name="file" type="file"><br></tr>
-        <tr>商品名称：<input name="productName" type="text"><br></tr>
-        <tr>价格：&nbsp;&nbsp;&nbsp;&nbsp;<input name="productPrice" type="text"><br></tr>
+        <tr>商品图片：<input id="file" name="file" type="file"><br></tr>
+        <tr>商品名称：<input id="productName" name="productName" type="text"><br></tr>
+        <tr>价格：&nbsp;&nbsp;&nbsp;&nbsp;<input id="productPrice" name="productPrice" type="text"><br></tr>
         <input name="sub_btn" type="button" value="提交">
     </form>
 
 </div>
-<!--<div class="min">-->
 
+<!--<div class="min">-->
 <!--</div>-->
 <!--<div id="tanchu">-->
 <!--    <div class="addshop">添加商品</div>-->
@@ -181,7 +189,6 @@
 <!--        <label>商品名称</label>-->
 <!--        <input type="text">-->
 <!--    </div>-->
-
 <!--</div>-->
 
 </body>
