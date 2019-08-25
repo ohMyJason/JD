@@ -16,8 +16,8 @@ public class SmsUtils {
     // 产品域名,开发者无需替换
     static final String domain = "dysmsapi.aliyuncs.com";
 
-    static final String accessKeyId = "LTAIvorMJjXv6ezJ";
-    static final String accessKeySecret = "fHyGRqzXDoyUjVWO4fvB8oKDoYRE0o";
+    static final String accessKeyId = "";// TODO 改这里
+    static final String accessKeySecret = "";// TODO 改这里
 
     public SendSmsResponse sendSms(String telephone, String code) throws ClientException {
         // 可自助调整超时时间
@@ -34,9 +34,9 @@ public class SmsUtils {
         // 必填:待发送手机号
         request.setPhoneNumbers(telephone);
         // 必填:短信签名-可在短信控制台中找到
-        request.setSignName("仿京东购物网站项目"); // TODO 改这里
+        request.setSignName(""); // TODO 改这里
         // 必填:短信模板-可在短信控制台中找到
-        request.setTemplateCode("SMS_172358214");  // TODO 改这里
+        request.setTemplateCode("");  // TODO 改这里
         // 可选:模板中的变量替换JSON串,如模板内容为"亲爱的用户,您的验证码为${code}"时,此处的值为
         request.setTemplateParam("{\"code\":\"" + code + "\"}");
 
